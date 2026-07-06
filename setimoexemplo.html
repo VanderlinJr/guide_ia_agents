@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4.7 Laboratório Prático 7: RAG para pesquisa em documentos institucionais com Python – **Guia para Implementação de Agentes de IA em Escritórios de Dados**</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./oitavoexemplo.html" rel="next">
+<link href="./sextoexemplo.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./primeiroexemplo.html"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></a></li><li class="breadcrumb-item"><a href="./setimoexemplo.html">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="text-align: center; padding: 0px;">
+<p><img src="images/logo-pit-unifesp-color-final.png" alt="Logo" style="width: 32px;"></p>
+</div>
+</div></div>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bem-vindo!🙂🧠🤖</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>1ª Parte — Apresentação</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo01_prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Prefácio: Organização e Recursos do Guia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo02_contexto_institucional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Contexto Institucional e a Necessidade de Inovação</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo03_fundamentos_ia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Fundamentos Agentes de IA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>3ª Parte — Etapas</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 <strong>Etapa 1</strong> - Análise do problema e objetivo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 <strong>Etapa 2</strong> - Modelagem do conhecimento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 <strong>Etapa 4</strong> - Implementação do agente</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 <strong>Etapa 5</strong> - Avaliação e monitoramento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./primeiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 <strong>Laboratório Prático 1</strong>: Recuperação Contextual e Predição de Dados Institucionais com Agente IA com R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./segundoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 <strong>Laboratório Prático 2</strong>: Enriquecimento Analítico e Classificação de Microdados Públicos com Agente de IA com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./terceiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 <strong>Laboratório Prático 3</strong>: Orquestração Multiagente e Mapeamento Estratégico de Recursos via CrewIA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quartoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 <strong>Laboratório Prático 4</strong>: Agente de IA para Governança de Dados e Conformidade LGPD com Python com LangChain</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quintoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 <strong>Laboratório Prático 5</strong>: Agente de IA Local para Higienização, Mapeamento Regional e Pseudonimização de Dados em Conformidade com a LGPD com Pyhon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sextoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./setimoexemplo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./oitavoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.8 <strong>Laboratório Prático 8</strong>: Agentes de IA Local para Auditoria Automatizada de Editais com Ollama</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>5ª Parte — Considerações e Complementos</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo10_consideracoes_finais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Considerações Finais</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista de Verificação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice nesta página</h2>
+   
+  <ul>
+  <li><a href="#análise-e-objetivo-geral" id="toc-análise-e-objetivo-geral" class="nav-link active" data-scroll-target="#análise-e-objetivo-geral">Análise e Objetivo Geral</a></li>
+  <li><a href="#pré-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pré-requisitos">Pré requisitos</a></li>
+  <li><a href="#passo-instalação-do-python-e-visual-studio-code" id="toc-passo-instalação-do-python-e-visual-studio-code" class="nav-link" data-scroll-target="#passo-instalação-do-python-e-visual-studio-code">1° Passo: Instalação do Python e Visual Studio Code</a></li>
+  <li><a href="#passo-obtendo-seu-modelo-llm-local" id="toc-passo-obtendo-seu-modelo-llm-local" class="nav-link" data-scroll-target="#passo-obtendo-seu-modelo-llm-local">2° Passo: Obtendo seu modelo LLM local</a></li>
+  <li><a href="#passo-importanto-a-base-de-dados-para-o-laboratório-do-portal-da-unifesp" id="toc-passo-importanto-a-base-de-dados-para-o-laboratório-do-portal-da-unifesp" class="nav-link" data-scroll-target="#passo-importanto-a-base-de-dados-para-o-laboratório-do-portal-da-unifesp">3° Passo: Importanto a base de dados para o laboratório do Portal da Unifesp</a></li>
+  <li><a href="#passo-preparando-o-ambiente-de-programação-do-script-no-visual-studio-code" id="toc-passo-preparando-o-ambiente-de-programação-do-script-no-visual-studio-code" class="nav-link" data-scroll-target="#passo-preparando-o-ambiente-de-programação-do-script-no-visual-studio-code">4° Passo: Preparando o ambiente de programação do Script no Visual Studio Code</a></li>
+  <li><a href="#passo-identificando-as-bibliotecas-necessárias-e-instalações" id="toc-passo-identificando-as-bibliotecas-necessárias-e-instalações" class="nav-link" data-scroll-target="#passo-identificando-as-bibliotecas-necessárias-e-instalações">5° Passo: Identificando as bibliotecas necessárias e instalações</a></li>
+  <li><a href="#passo-configurações-dos-parâmetros" id="toc-passo-configurações-dos-parâmetros" class="nav-link" data-scroll-target="#passo-configurações-dos-parâmetros">6° Passo: Configurações dos Parâmetros</a></li>
+  <li><a href="#passo-configurações-do-llm-local" id="toc-passo-configurações-do-llm-local" class="nav-link" data-scroll-target="#passo-configurações-do-llm-local">7° Passo: Configurações do LLM local</a></li>
+  <li><a href="#passo-configurações-do-embeddings" id="toc-passo-configurações-do-embeddings" class="nav-link" data-scroll-target="#passo-configurações-do-embeddings">8° Passo: Configurações do <em>Embeddings</em></a></li>
+  <li><a href="#passo-configurações-das-funções-auxiliares" id="toc-passo-configurações-das-funções-auxiliares" class="nav-link" data-scroll-target="#passo-configurações-das-funções-auxiliares">9° Passo: Configurações das funções auxiliares</a></li>
+  <li><a href="#passo-configurações-das-variáveis" id="toc-passo-configurações-das-variáveis" class="nav-link" data-scroll-target="#passo-configurações-das-variáveis">10° Passo: Configurações das variáveis</a></li>
+  <li><a href="#passo-criação-dos-índices---faiss" id="toc-passo-criação-dos-índices---faiss" class="nav-link" data-scroll-target="#passo-criação-dos-índices---faiss">11° Passo: Criação dos índices - FAISS</a></li>
+  <li><a href="#passo-indexação" id="toc-passo-indexação" class="nav-link" data-scroll-target="#passo-indexação">12° Passo: Indexação</a></li>
+  <li><a href="#passo-configurações-da-busca-vetorial" id="toc-passo-configurações-da-busca-vetorial" class="nav-link" data-scroll-target="#passo-configurações-da-busca-vetorial">13° Passo: Configurações da Busca Vetorial</a></li>
+  <li><a href="#passo-configurações-das-ferramentas" id="toc-passo-configurações-das-ferramentas" class="nav-link" data-scroll-target="#passo-configurações-das-ferramentas">14° Passo: Configurações das Ferramentas</a></li>
+  <li><a href="#passo-agente-e-prompt" id="toc-passo-agente-e-prompt" class="nav-link" data-scroll-target="#passo-agente-e-prompt">15° Passo: Agente e Prompt</a></li>
+  <li><a href="#passo-executando-o-agente-de-ia-e-respostas" id="toc-passo-executando-o-agente-de-ia-e-respostas" class="nav-link" data-scroll-target="#passo-executando-o-agente-de-ia-e-respostas">16° Passo: Executando o Agente de IA e Respostas</a></li>
+  <li><a href="#passo-salvar-a-resposta-em-arquivo-.txt" id="toc-passo-salvar-a-resposta-em-arquivo-.txt" class="nav-link" data-scroll-target="#passo-salvar-a-resposta-em-arquivo-.txt">17° Passo: Salvar a resposta em arquivo .txt</a></li>
+  <li><a href="#resultados-esperados-após-execução-do-agente-de-ia" id="toc-resultados-esperados-após-execução-do-agente-de-ia" class="nav-link" data-scroll-target="#resultados-esperados-após-execução-do-agente-de-ia">Resultados Esperados após execução do agente de IA</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./primeiroexemplo.html"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></a></li><li class="breadcrumb-item"><a href="./setimoexemplo.html">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+body {
+  background-color: #f8fcff; /* Escolha o código da tabela acima */
+}
+</style>
+<section id="análise-e-objetivo-geral" class="level1 unnumbered">
+<h1 class="unnumbered">Análise e Objetivo Geral</h1>
+<div style="text-align: justify;">
+<p><img src="images/image_exemplo3.png" class="img-fluid" style="float:right; padding-left: 10px; padding-bottom: 10px;" alt="Imagem gerada somente para ilustração" width="150"></p>
+<p>Este laboratório prático com nível avançado tem como objetivo capacitar o usuário na geração de sistemas de <strong>Recuperação Aumentada por Geração (Retrieval-Augmented Generation – RAG)</strong> , conforme <span class="citation" data-cites="aws_what_is_rag">AWS - Amazon Web Services (<a href="references.html#ref-aws_what_is_rag" role="doc-biblioref">2026</a>)</span> para pesquisa em documentos institucionais utilizando a linguagem Python. A atividade aborda desde a extração e processamento de informações contidas em documentos PDF de base institucional até a criação de bases vetoriais para recuperação semântica de conteúdo, integrando modelos de <em>embeddings</em> e modelos de linguagem de grande porte (LLMs) executados localmente.</p>
+<p>Ao executar o agente de IA em seu computador institucional, as informações permanecem na sua máquina e não são enviadas para servidores externos (como OpenAI ou Google), evitando o compartilhamento de dados sensíveis, isto simplifica bastante a conformidade com a Lei Geral de Proteção de Dados (LGPD), uma vez que não ocorre transferência internacional de dados. <strong>Além disso, por rodar localmente, o modelo não requer chaves de API, não envia dados à internet e elimina custos com assinaturas ou serviços pagos</strong>.</p>
+</div>
+</section>
+<section id="pré-requisitos" class="level1 unnumbered">
+<h1 class="unnumbered">Pré requisitos</h1>
+<p>Para garantir o desempenho ideal e a compatibilidade com as ferramentas mencionadas, certifique-se de que seu hardware atende às seguintes especificações:</p>
+<ul>
+<li><p>Sistema Operacional: Windows 10 ou Windows 11 (versões de 64 bits recomendadas).</p></li>
+<li><p>Arquitetura: Processador x64 ou ARM64.</p></li>
+<li><p>Permissões: Acesso de nível administrativo para instalação de software e execução de comandos via terminal (CMD/PowerShell).</p></li>
+<li><p>Conhecimentos básicos na linguagem Python e Visual Studio Code.</p></li>
+<li><p>Pelo menos 2,0 GB de espaço em disco do computador, devido o modelo qwen2.5:3b no Ollama.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📋 Praticidade: Copiando os Códigos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Não é necessário selecionar o texto dos blocos de código manualmente. No canto superior direito de cada caixinha de código (<em>chunk</em>), existe um ícone de prancheta invisível que aparece ao passar o cursor do mouse. Basta clicar nele para copiar todo o script diretamente para a sua área de transferência.</p>
+</div>
+</div>
+</section>
+<section id="passo-instalação-do-python-e-visual-studio-code" class="level1 unnumbered">
+<h1 class="unnumbered">1° Passo: Instalação do Python e Visual Studio Code</h1>
+<p>Para instalar o <strong>Python</strong> através do <a href="https://www.python.org/">site oficial do Python</a> ou <span class="citation" data-cites="python_software">Python Software Foundation (<a href="references.html#ref-python_software" role="doc-biblioref">2024</a>)</span>, você deve seguir passos essenciais para instalação da versão mais atual:</p>
+<ul>
+<li>Pouse o mouse em <em>Downloads</em> e clique no botão <em>Python install manager</em>, localize o local onde está o Instalador <code>python-manager-26.1.msix</code> e execute este arquivo do instalador e siga as instruções padrão.</li>
+</ul>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_python_1.png" class="img-fluid figure-img" style="width:65.0%"></p>
+<figcaption>Figura 1</figcaption>
+</figure>
+</div>
+</div>
+<p>Para instalar o <strong>Visual Studio Code</strong> através do <a href="https://code.visualstudio.com/download">site oficial da Visual Studio Code</a> ou <span class="citation" data-cites="vscode_software">Microsoft (<a href="references.html#ref-vscode_software" role="doc-biblioref">2024</a>)</span>, você deve seguir estes dois passos essenciais para instalação da versão mais atual:</p>
+<ul>
+<li>Instalar o Visua Studio Code: Clique no botão “Windows - Windows 10, 11” ou outro sitema operacinal disponível em seu computador, será efetuado o download para a versão mais recente do momento, como exemplo: <strong>VSCodeUserSetup-x64-1.118.0.exe</strong> and Install R”. Execute este arquivo do instalador e siga as instruções padrão.</li>
+</ul>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_vsc_1.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>Figura 2</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="passo-obtendo-seu-modelo-llm-local" class="level1 unnumbered">
+<h1 class="unnumbered">2° Passo: Obtendo seu modelo LLM local</h1>
+<p>Para instalar o Ollama no Windows localmente através do site oficial <a href="https://ollama.com/download/windows" class="uri">https://ollama.com/download/windows</a> ou <span class="citation" data-cites="ollama_download">Ollama (<a href="references.html#ref-ollama_download" role="doc-biblioref">2026</a>)</span>:</p>
+<p><strong>Assista também o VÍDEO para auxiliar na instalação</strong>: ▶️ <a href="https://youtu.be/VMS0ZLPRcEc" class="uri">https://youtu.be/VMS0ZLPRcEc</a></p>
+<p>Download: Acesse o link e clique no botão de <code>Download for Windows</code>.</p>
+<p>Instalação: Execute o arquivo <code>OllamaSetup.exe</code>. O processo é automático e, ao finalizar, o ícone do Ollama aparecerá na sua barra de tarefas (perto do relógio).</p>
+<p>Após concluir a instalação do Ollama, siga os passos abaixo para configurar seu primeiro modelo de linguagem local (LLM):</p>
+<ol type="a">
+<li>Seleção do Modelo:</li>
+</ol>
+<p>Acesse <a href="https://ollama.com/library" class="uri">https://ollama.com/library</a> para explorar os modelos disponíveis.</p>
+<p>No campo de busca, procure por <code>qwen2.5</code>, por ser um modelo bastante eficiente conforme <span class="citation" data-cites="yang2024qwen2">Yang et al. (<a href="references.html#ref-yang2024qwen2" role="doc-biblioref">2024</a>)</span>.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_6_library.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Figura 3</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notas Gerais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A Qwen2 supera a maioria dos modelos anteriores de peso aberto, incluindo seu antecessor Qwen1.5, e exibe desempenho competitivo em relação a modelos proprietários em diversos benchmarks sobre compreensão de linguagem, geração, proficiência multilíngue, codificação, matemática e raciocínio, conforme resumo de <span class="citation" data-cites="yang2024qwen2">Yang et al. (<a href="references.html#ref-yang2024qwen2" role="doc-biblioref">2024</a>)</span>.</p>
+</div>
+</div>
+<p>Em seguida na seção <em>Models</em>, localize <code>qwen2.5:3b</code>.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_7_library.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Figura 4</figcaption>
+</figure>
+</div>
+</div>
+<p>Clique sobre o modelo desejado e copie o nome exato exibido na seção principal.</p>
+<ol start="2" type="a">
+<li>Preparação do Ambiente:</li>
+</ol>
+<p>Abra o Prompt de Comando (CMD) ou o PowerShell através da barra de busca do Windows. Como podemos observar na figura a seguir:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_1_cmd.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 5</figcaption>
+</figure>
+</div>
+<ol start="3" type="a">
+<li>Download e Execução:</li>
+</ol>
+<p>O Qwen 2.5 (3b) é uma versão extremamente leve e rápida, ideal para tarefas simples como identificar gênero, pois não exige tanto do processador do seu computador. Para baixar o modelo, digite o seguinte comando:</p>
+<div id="d0646cb3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como podemos observar na figura a seguir:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_2_cmd.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 6</figcaption>
+</figure>
+</div>
+<p>Aguarde a conclusão do download. O Ollama iniciará automaticamente uma interface de chat no terminal assim que terminar.</p>
+<ol start="4" type="a">
+<li>Gerenciamento e Verificação:</li>
+</ol>
+<p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
+<div id="75c1c819" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como podemos observar na figura a seguir:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_3_cmd.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 7</figcaption>
+</figure>
+</div>
+<p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando:</p>
+<div id="c3e1919f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como podemos observar na figura a seguir:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_4_cmd.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 8</figcaption>
+</figure>
+</div>
+<p>Se o cursor de texto (prompt) aparecer pronto para receber perguntas, a instalação local foi concluída com sucesso.</p>
+<ol start="5" type="a">
+<li>Encerrando a Sessão:</li>
+</ol>
+<p>Para sair do chat e retornar ao terminal padrão, digite:</p>
+<div id="35ee1424" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como podemos observar na figura a seguir:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_5_cmd.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 9</figcaption>
+</figure>
+</div>
+<p>Dica: Para utilizar qualquer outro modelo (como Llama 3 ou Mistral), basta repetir o processo de busca no site da Ollama <a href="https://ollama.com/library" class="uri">https://ollama.com/library</a> e substituir o nome do modelo nos comandos acima.</p>
+</section>
+<section id="passo-importanto-a-base-de-dados-para-o-laboratório-do-portal-da-unifesp" class="level1 unnumbered">
+<h1 class="unnumbered">3° Passo: Importanto a base de dados para o laboratório do Portal da Unifesp</h1>
+<p>Acesse o Portal da Unifesp pelo seguinte link <a href="https://portal.unifesp.br/institucional/sobre/estatuto-e-regimento" class="uri">https://portal.unifesp.br/institucional/sobre/estatuto-e-regimento</a>.</p>
+<p>Localize a versão PDF do estatuto e do regimento e clique no link para download do arquivo: <code>estatuto_geral.pdf</code> e <code>Resolução_198__0654522__Regimento_Geral.pdf</code>.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_rag_1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figura 10</figcaption>
+</figure>
+</div>
+</div>
+<p>Para organizar seu ambiente de trabalho, mova os arquivos baixados da pasta <strong>Downloads</strong> para o diretório: <code>C:\guiaagenteia\</code>, utilizando os atalhos <strong>CTRL + X</strong> e <strong>CTRL + V</strong>. Em seguida descompacta este o conteúdo deste arquivo neste mesmo diretório.</p>
+</section>
+<section id="passo-preparando-o-ambiente-de-programação-do-script-no-visual-studio-code" class="level1 unnumbered">
+<h1 class="unnumbered">4° Passo: Preparando o ambiente de programação do Script no Visual Studio Code</h1>
+<p>Com o Visual Studio Code aberto, vamos criar o arquivo onde seu código será executado. Vá ao menu File (Arquivo), selecione New Text File (Novo Arquivo). Na caixa de edição que surgirá, digite ou cole as instruções a seguir para iniciar a programação do agente de IA.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_vsc_2.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 11</figcaption>
+</figure>
+</div>
+<p>Nomeia e salve,entrando e File, depois “Save As…” este novo arquivo na sua pasta de preferencia: <code>C:\guiaagenteia\</code>, com o seguinte nome: <em>setimoagenteia.py</em> e com a extensão Python (<code>.py</code> ).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_vsc_3.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 12</figcaption>
+</figure>
+</div>
+</section>
+<section id="passo-identificando-as-bibliotecas-necessárias-e-instalações" class="level1 unnumbered">
+<h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias e instalações</h1>
+<p>Nesta etapa são identificadas e instaladas as bibliotecas que serão utilizadas no projeto. Essas bibliotecas fornecem recursos para leitura de documentos PDF, geração de embeddings, indexação vetorial, integração com modelos de linguagem e processamento de textos, formando a base tecnológica necessária para o funcionamento do agente de IA com RAG. No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python. Aguarde a conclusão da instalação destas bibliotecas antes de prosseguir, com o seguintes comandos:</p>
+<div id="af6ea087" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pymupdf</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pip install faiss<span class="op">-</span>cpu</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pip install numpy</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>pip install sentence<span class="op">-</span>transformers</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pip install langchain</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pip install langchain<span class="op">-</span>community</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>pip install langchain<span class="op">-</span>text<span class="op">-</span>splitters</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>pip install langchain<span class="op">-</span>ollama</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_14_studio.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 13</figcaption>
+</figure>
+</div>
+<p>e dentro do novo arquivo <em>setimoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
+<div id="ac9710e0" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca para processamento e extração de conteúdo textual de documentos PDF.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fitz</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca para indexação vetorial e recuperação eficiente por similaridade.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> faiss</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca para computação numérica e manipulação de vetores utilizados nos embeddings.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Framework para geração de embeddings semânticos a partir de modelos pré-treinados.</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Interface LangChain para utilização de Large Language Models (LLMs) locais via Ollama.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_ollama <span class="im">import</span> ChatOllama</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Ferramenta para segmentação de documentos em chunks, facilitando a indexação e recuperação no processo de RAG.</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain_text_splitters <span class="im">import</span> RecursiveCharacterTextSplitter</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Manipulação de datas e horários do sistema.</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
+<h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
+<p>Neste passo são definidos os parâmetros gerais do sistema, como tamanho dos blocos de texto (<em>chunks</em>), sobreposição entre blocos, quantidade de documentos recuperados na busca (<em>Top-K</em>) e caminhos dos arquivos. Esses parâmetros influenciam diretamente a qualidade da recuperação das informações e o desempenho do agente.</p>
+<div id="69d3bc71" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CONFIGURAÇÃO</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>PDF_ESTATUTO <span class="op">=</span> <span class="vs">r"C:\guiaagenteia\estatuto_geral.pdf"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>PDF_REGIMENTO <span class="op">=</span> <span class="vs">r"C:\guiaagenteia\Resolução_198__0654522__Regimento_Geral.pdf"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>CHUNK_SIZE <span class="op">=</span> <span class="dv">800</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>CHUNK_OVERLAP <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>TOP_K <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-do-llm-local" class="level1 unnumbered">
+<h1 class="unnumbered">7° Passo: Configurações do LLM local</h1>
+<p>Nesta etapa é configurado o Grande Modelo de Linguagem (LLM) (Qwen) executado localmente por meio do Ollama. São definidos parâmetros como modelo utilizado, temperatura e tamanho do contexto, permitindo que as respostas sejam geradas sem dependência de serviços externos.</p>
+<div id="0aca93ce" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># LLM LOCAL</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> ChatOllama(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"qwen2.5:3b"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    num_ctx<span class="op">=</span><span class="dv">4096</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-do-embeddings" class="level1 unnumbered">
+<h1 class="unnumbered">8° Passo: Configurações do <em>Embeddings</em></h1>
+<p>Neste passo é carregado o modelo de <em>embeddings</em> responsável por transformar textos em vetores numéricos. Esses vetores representam o significado semântico dos documentos e das perguntas, possibilitando a busca por similaridade entre conteúdos relacionados.</p>
+<div id="218aa438" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># EMBEDDINGS</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Carregando embeddings..."</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>embedding_model <span class="op">=</span> SentenceTransformer(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"intfloat/multilingual-e5-base"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Embeddings carregados."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-das-funções-auxiliares" class="level1 unnumbered">
+<h1 class="unnumbered">9° Passo: Configurações das funções auxiliares</h1>
+<p>Nesta etapa são implementadas funções de apoio que executam tarefas específicas, como leitura de arquivos PDF, geração de <em>embeddings</em> e processamento de textos. Essas funções promovem a reutilização de código e facilitam a manutenção do sistema.</p>
+<div id="7ed183a5" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FUNÇÕES AUXILIARES</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ler_pdf(pdf_path):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    texto <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    pdf <span class="op">=</span> fitz.<span class="bu">open</span>(pdf_path)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pagina <span class="kw">in</span> pdf:</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>        texto <span class="op">+=</span> pagina.get_text()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    pdf.close()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> texto</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gerar_embedding(texto):</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> embedding_model.encode(</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        texto,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        normalize_embeddings<span class="op">=</span><span class="va">True</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    ).astype(np.float32)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-das-variáveis" class="level1 unnumbered">
+<h1 class="unnumbered">10° Passo: Configurações das variáveis</h1>
+<p>Neste passo são criadas as variáveis que armazenam documentos, <em>chunks</em>, <em>embeddings</em>, índices vetoriais e demais estruturas utilizadas ao longo da execução. Essas variáveis servem como elementos centrais para o armazenamento temporário e manipulação dos dados processados.</p>
+<div id="cd8a1eaa" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># LEITURA DOS PDFs</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lendo Estatuto..."</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>estatuto_texto <span class="op">=</span> ler_pdf(PDF_ESTATUTO)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Lendo Regimento..."</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>regimento_texto <span class="op">=</span> ler_pdf(PDF_REGIMENTO)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-criação-dos-índices---faiss" class="level1 unnumbered">
+<h1 class="unnumbered">11° Passo: Criação dos índices - FAISS</h1>
+<p>Nesta etapa são criados os índices vetoriais utilizando a biblioteca FAISS. Os índices armazenam os embeddings dos documentos e permitem a realização de buscas rápidas por similaridade, mesmo em grandes volumes de informação.</p>
+<div id="3681bffb" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CRIAÇÃO DOS ÍNDICES</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> criar_indice(texto, fonte):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    splitter <span class="op">=</span> RecursiveCharacterTextSplitter(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        chunk_size<span class="op">=</span>CHUNK_SIZE,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        chunk_overlap<span class="op">=</span>CHUNK_OVERLAP</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    partes <span class="op">=</span> splitter.split_text(texto)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    chunks <span class="op">=</span> []</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> parte <span class="kw">in</span> partes:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        chunks.append({</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"texto"</span>: parte,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fonte"</span>: fonte</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>fonte<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span><span class="bu">len</span>(chunks)<span class="sc">}</span><span class="ss"> chunks"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    embeddings <span class="op">=</span> np.array(</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        [gerar_embedding(chunk[<span class="st">"texto"</span>]) <span class="cf">for</span> chunk <span class="kw">in</span> chunks],</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span>np.float32</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    dimensao <span class="op">=</span> embeddings.shape[<span class="dv">1</span>]</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> faiss.IndexFlatIP(dimensao)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    index.add(embeddings)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> index, chunks</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-indexação" class="level1 unnumbered">
+<h1 class="unnumbered">12° Passo: Indexação</h1>
+<p>Neste passo ocorre a transformação dos documentos em <em>embeddings</em> e sua inserção nos índices vetoriais. O processo de indexação organiza o conhecimento presente nos documentos para que o agente de IA possa ser recuperado posteriormente durante as consultas realizadas pelo próprio agente.</p>
+<div id="82792c61" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INDEXAÇÃO</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Indexando Estatuto..."</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>index_estatuto, chunks_estatuto <span class="op">=</span> criar_indice(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    estatuto_texto,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Estatuto Geral"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Indexando Regimento..."</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>index_regimento, chunks_regimento <span class="op">=</span> criar_indice(</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    regimento_texto,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Regimento Geral"</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-da-busca-vetorial" class="level1 unnumbered">
+<h1 class="unnumbered">13° Passo: Configurações da Busca Vetorial</h1>
+<p>Nesta etapa é implementado o mecanismo de recuperação semântica. Quando uma pergunta é recebida, ela é convertida em <em>embedding</em> e comparada com os vetores armazenados no índice, permitindo localizar os trechos mais relevantes para responder à consulta.</p>
+<div id="e0302dd8" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BUSCA VETORIAL</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> recuperar_documentos(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        pergunta,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        index,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        chunks,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        k<span class="op">=</span>TOP_K</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    pergunta_emb <span class="op">=</span> np.array(</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        [gerar_embedding(pergunta)],</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span>np.float32</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    scores, indices <span class="op">=</span> index.search(</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        pergunta_emb,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        k</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    resultados <span class="op">=</span> []</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pos, idx <span class="kw">in</span> <span class="bu">enumerate</span>(indices[<span class="dv">0</span>]):</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        resultados.append({</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>            <span class="st">"texto"</span>: chunks[idx][<span class="st">"texto"</span>],</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"fonte"</span>: chunks[idx][<span class="st">"fonte"</span>],</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"score"</span>: <span class="bu">float</span>(scores[<span class="dv">0</span>][pos])</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resultados</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-configurações-das-ferramentas" class="level1 unnumbered">
+<h1 class="unnumbered">14° Passo: Configurações das Ferramentas</h1>
+<p>Neste passo são definidas as ferramentas que o agente poderá utilizar para acessar diferentes bases documentais, como <strong>Estatuto</strong> e <strong>Regimento</strong>. Cada ferramenta possui uma responsabilidade específica e funciona como uma fonte especializada de conhecimento.</p>
+<div id="da1d081a" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FERRAMENTAS</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consultar_estatuto(pergunta):</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recuperar_documentos(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        pergunta,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        index_estatuto,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        chunks_estatuto</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consultar_regimento(pergunta):</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recuperar_documentos(</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        pergunta,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        index_regimento,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        chunks_regimento</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> consultar_ambos(pergunta):</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    docs_estatuto <span class="op">=</span> consultar_estatuto(pergunta)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    docs_regimento <span class="op">=</span> consultar_regimento(pergunta)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> docs_estatuto <span class="op">+</span> docs_regimento</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-agente-e-prompt" class="level1 unnumbered">
+<h1 class="unnumbered">15° Passo: Agente e Prompt</h1>
+<p>Nesta etapa é construído o agente de IA e elaborado o prompt que orienta seu comportamento. O agente decide quais ferramentas utilizar, enquanto o prompt estabelece regras de resposta, restrições contra alucinações e critérios para utilização exclusiva das informações recuperadas nos documentos.</p>
+<div id="0515d70a" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AGENTE</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agente_unifesp(pergunta):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    pergunta_lower <span class="op">=</span> pergunta.lower()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DECISÃO</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"estatuto"</span> <span class="kw">in</span> pergunta_lower:</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        rota <span class="op">=</span> <span class="st">"ESTATUTO"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        docs <span class="op">=</span> consultar_estatuto(pergunta)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"regimento"</span> <span class="kw">in</span> pergunta_lower:</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        rota <span class="op">=</span> <span class="st">"REGIMENTO"</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        docs <span class="op">=</span> consultar_regimento(pergunta)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        rota <span class="op">=</span> <span class="st">"AMBOS"</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        docs <span class="op">=</span> consultar_ambos(pergunta)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">[ROTA ESCOLHIDA PELO AGENTE: </span><span class="sc">{</span>rota<span class="sc">}</span><span class="ss">]"</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># MONTA CONTEXTO</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>    contexto <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> doc <span class="kw">in</span> docs:</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>        contexto <span class="op">+=</span> <span class="ss">f"""</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="ss">[FONTE: </span><span class="sc">{</span>doc[<span class="st">'fonte'</span>]<span class="sc">}</span><span class="ss">]</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>doc[<span class="st">'texto'</span>]<span class="sc">}</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="ss">========================================================</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># PROMPT</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">##########################################################################</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="ss">Você é um Especialista em Estatuto e Regimento da Universidade Federal de São Paulo (UNIFESP).</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a><span class="ss">ROTA UTILIZADA:</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>rota<span class="sc">}</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="ss">REGRAS:</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a><span class="ss">1. Utilize apenas o contexto fornecido.</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a><span class="ss">2. Nunca invente informações.</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a><span class="ss">3. Nunca utilize conhecimento externo.</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a><span class="ss">4. Se a resposta não estiver presente no contexto, responda:</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a><span class="ss">"Não encontrei essa informação no Estatuto ou Regimento Geral da UNIFESP."</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a><span class="ss">5. Sempre informe a fonte.</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a><span class="ss">6. Cite claramente o documento utilizado.</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a><span class="ss">CONTEXTO:</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>contexto<span class="sc">}</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a><span class="ss">PERGUNTA:</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>pergunta<span class="sc">}</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="ss">FORMATO:</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="ss">Resposta:</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="ss">Fundamentação:</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="ss">Fonte:</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>    resposta <span class="op">=</span> llm.invoke(prompt)</span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resposta.content</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="passo-executando-o-agente-de-ia-e-respostas" class="level1 unnumbered">
+<h1 class="unnumbered">16° Passo: Executando o Agente de IA e Respostas</h1>
+<p>Neste passo o agente recebe uma pergunta do usuário, consulta os documentos relevantes por meio do mecanismo RAG e gera uma resposta fundamentada utilizando o modelo de linguagem. Todo o fluxo ocorre de forma integrada entre recuperação, contexto e geração textual, conforme definição RAG (Geração Aumentada por Recuperação) <span class="citation" data-cites="aws_what_is_rag">AWS - Amazon Web Services (<a href="references.html#ref-aws_what_is_rag" role="doc-biblioref">2026</a>)</span></p>
+<div id="55137ad4" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># TESTES</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">n"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> \<span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AGENTE ESPECIALISTA EM ESTATUTO E REGIMENTO DA UNIFESP"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> \<span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>pergunta <span class="op">=</span> <span class="st">"Qual é a função da Reitoria?"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#pergunta = "Segundo o Estatuto, qual é a finalidade da Unifesp?"</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#pergunta = "Segundo o Regimento Geral, quais são as atribuições da Reitoria?"</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#pergunta = "Quais são os órgãos colegiados da Unifesp?"</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#pergunta = "Quais são os Conselhos Centrais?"</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>resposta <span class="op">=</span> agente_unifesp(pergunta)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\\</span><span class="st">n"</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> \<span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RESPOSTA"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span> \<span class="op">*</span> <span class="dv">70</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(resposta)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dicas Práticas e Atalhos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Alterne com novas perguntas para o Agente de IA, basta descomentar a nova questão e deixar as demais comentadas com #, salve logo em seguida o arquivo <em>setimoagenteia.py</em>.</p>
+</div>
+</div>
+</section>
+<section id="passo-salvar-a-resposta-em-arquivo-.txt" class="level1 unnumbered">
+<h1 class="unnumbered">17° Passo: Salvar a resposta em arquivo .txt</h1>
+<p>Nesta etapa a resposta produzida pelo agente é registrada em um arquivo de texto contendo data e hora da execução. Esse procedimento permite manter um histórico das consultas realizadas, facilitando auditorias, análises posteriores e documentação dos resultados obtidos.</p>
+<div id="ef51d68a" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SALVAR RESPOSTA EM ARQUIVO .TXT</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>datahora <span class="op">=</span> datetime.now().strftime(<span class="st">"%Y%m</span><span class="sc">%d</span><span class="st">_%H%M%S"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>arquivo_saida <span class="op">=</span> (</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"c:/guiaagenteia/"</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"resposta_agente_estatuto_regimento_</span><span class="sc">{</span>datahora<span class="sc">}</span><span class="ss">.txt"</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(arquivo_saida, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"AGENTE ESPECIALISTA EM ESTATUTO E REGIMENTO DA UNIFESP</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"="</span> <span class="op">*</span> <span class="dv">70</span> <span class="op">+</span> <span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="ss">f"Data/Hora: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'</span><span class="sc">%d</span><span class="st">/%m/%Y %H:%M:%S'</span>)<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="ss">f"Pergunta:</span><span class="ch">\n</span><span class="sc">{</span>pergunta<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">"</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"Resposta:</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    f.write(resposta)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Resposta salva em:</span><span class="ch">\n</span><span class="sc">{</span>arquivo_saida<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código:</p>
+<p><em>&amp; python.exe c:/guiaagenteia/setimoagenteia.py</em></p>
+<div id="4ca75db6" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>setimoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_rag_3.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 15</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dicas Práticas e Atalhos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caso precisar interromper a execução do código por algum motivo, basta usar as teclas CONTROL+C.</p>
+</div>
+</div>
+</section>
+<section id="resultados-esperados-após-execução-do-agente-de-ia" class="level1 unnumbered">
+<h1 class="unnumbered">Resultados Esperados após execução do agente de IA</h1>
+<p>A resposta estará registrada no arquivo .txt, e também exibida no console de execução do Visual Studio Code, conforme a imagem a seguir:</p>
+<ul>
+<li>📄 <code>c:/guiaagenteia/resposta_agente_estatuto_regimento_&lt;data&gt;_&lt;horário&gt;.txt</code></li>
+</ul>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_rag_2.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figura 16</figcaption>
+</figure>
+</div>
+</div>
+<p>A seguir o conteúdo registrado no arquivo .txt</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_rag_4.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Figura 17</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="📂 Download do Relatório">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📂 Download do Relatório
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para consultar a saída provável do relatório gerado pelo agente, você pode fazer o download direto dos arquivos de exemplo através do repositório oficial do projeto:</p>
+<p><a href="https://github.com/VanderlinJr/Guia_relatorio_setimo_exemplo_rag/blob/main/resposta_agente_estatuto_regimento_20260610_053221.txt" class="btn btn-outline-primary btn-sm" role="button">Acessar Repositório no GitHub</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="📂 Download do Código Fonte do Sétimo Laboratório">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📂 Download do Código Fonte do Sétimo Laboratório
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para consultar o código fonte, você pode fazer o download direto do arquivo de exemplo através do repositório oficial do projeto:</p>
+<p><a href="https://github.com/VanderlinJr/Codigo_fonte_setimo_lab" class="btn btn-outline-primary btn-sm" role="button">Acessar Código Fonte no GitHub Lab 7</a></p>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-aws_what_is_rag" class="csl-entry" role="listitem">
+AWS - Amazon Web Services. 2026. <span>«O que <span>é</span> RAG (Gera<span>ç</span><span>ã</span>o aumentada de recupera<span>ç</span><span>ã</span>o)?»</span> 2026. <a href="https://aws.amazon.com/what-is/retrieval-augmented-generation/">https://aws.amazon.com/what-is/retrieval-augmented-generation/</a>.
+</div>
+<div id="ref-vscode_software" class="csl-entry" role="listitem">
+Microsoft. 2024. <em>Visual Studio Code</em>. <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>.
+</div>
+<div id="ref-ollama_download" class="csl-entry" role="listitem">
+Ollama. 2026. <span>«Download Ollama for Windows»</span>. 2026. <a href="https://ollama.com/download/windows">https://ollama.com/download/windows</a>.
+</div>
+<div id="ref-python_software" class="csl-entry" role="listitem">
+Python Software Foundation. 2024. <em>Python Language Reference, version 3.13</em>. <a href="https://www.python.org/">https://www.python.org/</a>.
+</div>
+<div id="ref-yang2024qwen2" class="csl-entry" role="listitem">
+Yang, An, Baosong Yang, Binyuan Hui, Bo Pan, Bowen Tian, Can Chang, Hengyuan Cheng, et al. 2024. <span>«Qwen2 Technical Report»</span>. <em>arXiv preprint arXiv:2407.10671</em>. <a href="https://doi.org/10.48550/arXiv.2407.10671">https://doi.org/10.48550/arXiv.2407.10671</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./sextoexemplo.html" class="pagination-link" aria-label="4.6 **Laboratório Prático 6**: Agente de IA em n8n (Low-code/No-code)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./oitavoexemplo.html" class="pagination-link" aria-label="4.8 **Laboratório Prático 8**: Agentes de IA Local para Auditoria Automatizada de Editais com Ollama">
+        <span class="nav-page-text">4.8 <strong>Laboratório Prático 8</strong>: Agentes de IA Local para Auditoria Automatizada de Editais com Ollama</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

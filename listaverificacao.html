@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lista de Verificação – Guia para Implementação de Agentes de IA em Escritórios de Dados</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./avaliacao.html" rel="next">
+<link href="./glossario.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./capitulo10_consideracoes_finais.html"><strong>5ª Parte — Considerações e Complementos</strong></a></li><li class="breadcrumb-item"><a href="./listaverificacao.html">Lista de Verificação</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="text-align: center; padding: 0px;">
+<p><img src="images/logo-pit-unifesp-color-final.png" alt="Logo" style="width: 32px;"></p>
+</div>
+</div></div>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bem-vindo!🙂🧠🤖</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>1ª Parte — Apresentação</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo01_prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Prefácio: Organização e Recursos do Guia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo02_contexto_institucional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Contexto Institucional e a Necessidade de Inovação</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo03_fundamentos_ia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Fundamentos Agentes de IA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>3ª Parte — Etapas</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 <strong>Etapa 1</strong> - Análise do problema e objetivo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 <strong>Etapa 2</strong> - Modelagem do conhecimento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 <strong>Etapa 4</strong> - Implementação do agente</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 <strong>Etapa 5</strong> - Avaliação e monitoramento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./primeiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 <strong>Laboratório Prático 1</strong>: Recuperação Contextual e Predição de Dados Institucionais com Agente IA com R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./segundoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 <strong>Laboratório Prático 2</strong>: Enriquecimento Analítico e Classificação de Microdados Públicos com Agente de IA com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./terceiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 <strong>Laboratório Prático 3</strong>: Orquestração Multiagente e Mapeamento Estratégico de Recursos via CrewIA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quartoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 <strong>Laboratório Prático 4</strong>: Agente de IA para Governança de Dados e Conformidade LGPD com Python com LangChain</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quintoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 <strong>Laboratório Prático 5</strong>: Agente de IA Local para Higienização, Mapeamento Regional e Pseudonimização de Dados em Conformidade com a LGPD com Pyhon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sextoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./setimoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./oitavoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.8 <strong>Laboratório Prático 8</strong>: Agentes de IA Local para Auditoria Automatizada de Editais com Ollama</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>5ª Parte — Considerações e Complementos</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo10_consideracoes_finais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Considerações Finais</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lista de Verificação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice nesta página</h2>
+   
+  <ul>
+  <li><a href="#progresso-da-homologação" id="toc-progresso-da-homologação" class="nav-link active" data-scroll-target="#progresso-da-homologação">Progresso da Homologação</a>
+  <ul class="collapse">
+  <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
+  </ul></li>
+  <li><a href="#fase-1-etapas" id="toc-fase-1-etapas" class="nav-link" data-scroll-target="#fase-1-etapas">Fase 1: Etapas</a>
+  <ul class="collapse">
+  <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
+  </ul></li>
+  <li><a href="#fase-2-governança-e-segurança-lgpd" id="toc-fase-2-governança-e-segurança-lgpd" class="nav-link" data-scroll-target="#fase-2-governança-e-segurança-lgpd">Fase 2: Governança e Segurança (LGPD)</a>
+  <ul class="collapse">
+  <li><a href="#checklist-1" id="toc-checklist-1" class="nav-link" data-scroll-target="#checklist-1">Checklist</a></li>
+  </ul></li>
+  <li><a href="#fase-3-engenharia-e-prompting" id="toc-fase-3-engenharia-e-prompting" class="nav-link" data-scroll-target="#fase-3-engenharia-e-prompting">Fase 3: Engenharia e Prompting</a>
+  <ul class="collapse">
+  <li><a href="#checklist-2" id="toc-checklist-2" class="nav-link" data-scroll-target="#checklist-2">Checklist</a></li>
+  </ul></li>
+  <li><a href="#fase-4-validação-humana-human-in-the-loop" id="toc-fase-4-validação-humana-human-in-the-loop" class="nav-link" data-scroll-target="#fase-4-validação-humana-human-in-the-loop">Fase 4: Validação Humana (Human-in-the-loop)</a>
+  <ul class="collapse">
+  <li><a href="#checklist-3" id="toc-checklist-3" class="nav-link" data-scroll-target="#checklist-3">Checklist</a></li>
+  </ul></li>
+  <li><a href="#critérios-de-aprovação" id="toc-critérios-de-aprovação" class="nav-link" data-scroll-target="#critérios-de-aprovação">Critérios de Aprovação</a></li>
+  <li><a href="#resumo-da-avaliação" id="toc-resumo-da-avaliação" class="nav-link" data-scroll-target="#resumo-da-avaliação">Resumo da Avaliação</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./capitulo10_consideracoes_finais.html"><strong>5ª Parte — Considerações e Complementos</strong></a></li><li class="breadcrumb-item"><a href="./listaverificacao.html">Lista de Verificação</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Lista de Verificação</h1>
+<p class="subtitle lead">Protótipo de para Escritórios de Dados</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Este tópico constitui um instrumento exclusivo para fins de memorização e fixação e verificação das etapas e itens relevantes apresentadas ao longo deste guia para Escritórios de Dados na contrução dos agentes de IA.</p>
+<div style="margin-bottom:20px;">
+<button id="limpar-checklist" style="padding:10px 20px;background:#E88D8D;color:white;border:none;border-radius:8px;font-weight:bold;cursor:pointer;">
+<p>🔄 Reiniciar Lista Verificação</p>
+</button>
+</div>
+<section id="progresso-da-homologação" class="level2">
+<h2 class="anchored" data-anchor-id="progresso-da-homologação">Progresso da Homologação</h2>
+<p>Marque os itens abaixo conforme forem atendidos.</p>
+<section id="status" class="level3">
+<h3 class="anchored" data-anchor-id="status">Status</h3>
+<p><strong>Itens concluídos:</strong> <span id="contador">0</span> de <span id="total-itens">8</span></p>
+<progress id="progress" value="0" max="100" style="width:100%; height:25px;">
+</progress>
+<p><strong>Progresso:</strong> <span id="percent">0%</span></p>
+<hr>
+</section>
+</section>
+<section id="fase-1-etapas" class="level2">
+<h2 class="anchored" data-anchor-id="fase-1-etapas">Fase 1: Etapas</h2>
+<section id="checklist" class="level3">
+<h3 class="anchored" data-anchor-id="checklist">Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox"><strong>Etapa 1</strong> - Foi realizado uma Análise do problema e objetivo?</label></li>
+<li><label><input type="checkbox"><strong>Etapa 2</strong> - Foi realizado uma Modelagem do conhecimento?</label></li>
+<li><label><input type="checkbox"><strong>Etapa 3</strong> - Foi projetado uma arquitetura inicial?</label></li>
+<li><label><input type="checkbox"><strong>Etapa 4</strong> - Foi Implementação o código do agente de IA?</label></li>
+<li><label><input type="checkbox"><strong>Etapa 5</strong> - Foi planejado uma avaliação e monitoramento?</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="fase-2-governança-e-segurança-lgpd" class="level2">
+<h2 class="anchored" data-anchor-id="fase-2-governança-e-segurança-lgpd">Fase 2: Governança e Segurança (LGPD)</h2>
+<section id="checklist-1" class="level3">
+<h3 class="anchored" data-anchor-id="checklist-1">Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">O modelo de linguagem (LLM) está rodando localmente (ex.: Ollama) para garantir a privacidade?</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="fase-3-engenharia-e-prompting" class="level2">
+<h2 class="anchored" data-anchor-id="fase-3-engenharia-e-prompting">Fase 3: Engenharia e Prompting</h2>
+<section id="checklist-2" class="level3">
+<h3 class="anchored" data-anchor-id="checklist-2">Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">As instruções de sistema (<em>System Prompt</em>) limitam explicitamente o escopo de atuação do agente?</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="fase-4-validação-humana-human-in-the-loop" class="level2">
+<h2 class="anchored" data-anchor-id="fase-4-validação-humana-human-in-the-loop">Fase 4: Validação Humana (Human-in-the-loop)</h2>
+<section id="checklist-3" class="level3">
+<h3 class="anchored" data-anchor-id="checklist-3">Checklist</h3>
+<ul class="task-list">
+<li><label><input type="checkbox">Uma amostra dos resultados foi auditada e validada por usuários da equipe?</label></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="critérios-de-aprovação" class="level2">
+<h2 class="anchored" data-anchor-id="critérios-de-aprovação">Critérios de Aprovação</h2>
+<p>A homologação será considerada concluída quando todos os itens anteriores forem avaliados e marcados como atendidos.</p>
+<div id="sucesso" style="display:none; margin-top:20px;">
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Homologação Concluída com Sucesso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Todos os critérios de etapas, governança, conformidade legal e segurança técnica foram checados e validados.</p>
+<p>Este projeto está apto para publicação e uso em produção.</p>
+</div>
+</div>
+<button onclick="window.print()" style="padding:10px 20px; font-size:16px;">
+<p>📄 Emitir Termo de Conformidade (PDF)</p>
+</button>
+</div>
+</section>
+<section id="resumo-da-avaliação" class="level2">
+<h2 class="anchored" data-anchor-id="resumo-da-avaliação">Resumo da Avaliação</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Fase</th>
+<th style="text-align: right;">Quantidade de Itens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Etapas</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td>Governança e Segurança (LGPD)</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>Engenharia e Prompting</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td>Validação Humana</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td style="text-align: right;"><strong>8</strong></td>
+</tr>
+</tbody>
+</table>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const checkboxes =
+        document.querySelectorAll('input[type="checkbox"]');
+
+    const total = checkboxes.length;
+
+    document.getElementById("total-itens").innerText = total;
+
+    const dadosSalvos =
+        JSON.parse(localStorage.getItem("checklistIA"));
+
+    if (dadosSalvos) {
+        checkboxes.forEach((cb, i) => {
+            if (dadosSalvos[i] !== undefined) {
+                cb.checked = dadosSalvos[i];
+            }
+        });
+    }
+
+    function atualizarProgresso() {
+
+        const marcados =
+            document.querySelectorAll(
+                'input[type="checkbox"]:checked'
+            ).length;
+
+        const percentual =
+            Math.round((marcados / total) * 100);
+
+        document.getElementById("contador").innerText = marcados;
+        document.getElementById("progress").value = percentual;
+        document.getElementById("percent").innerText = percentual + "%";
+
+        if (percentual === 100) {
+            document.getElementById("sucesso").style.display = "block";
+        } else {
+            document.getElementById("sucesso").style.display = "none";
+        }
+
+        localStorage.setItem(
+            "checklistIA",
+            JSON.stringify([...checkboxes].map(cb => cb.checked))
+        );
+    }
+
+    function limparChecklist() {
+
+        if (!confirm("Deseja realmente limpar todas as marcações?")) {
+            return;
+        }
+
+        checkboxes.forEach(cb => {
+            cb.checked = false;
+        });
+
+        localStorage.removeItem("checklistIA");
+
+        atualizarProgresso();
+    }
+
+    document.getElementById("limpar-checklist")
+        .addEventListener("click", limparChecklist);
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", atualizarProgresso);
+    });
+
+    atualizarProgresso();
+
+});
+</script>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./glossario.html" class="pagination-link" aria-label="Glossário">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glossário</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./avaliacao.html" class="pagination-link" aria-label="Aprimoramento Contínuo">
+        <span class="nav-page-text">Aprimoramento Contínuo</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

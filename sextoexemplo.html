@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4.6 Laboratório Prático 6: Agente de IA em n8n (Low-code/No-code) – **Guia para Implementação de Agentes de IA em Escritórios de Dados**</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./setimoexemplo.html" rel="next">
+<link href="./quintoexemplo.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./primeiroexemplo.html"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></a></li><li class="breadcrumb-item"><a href="./sextoexemplo.html">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div style="text-align: center; padding: 0px;">
+<p><img src="images/logo-pit-unifesp-color-final.png" alt="Logo" style="width: 32px;"></p>
+</div>
+</div></div>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bem-vindo!🙂🧠🤖</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>1ª Parte — Apresentação</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo01_prefacio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.1 Prefácio: Organização e Recursos do Guia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo02_contexto_institucional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1.2 Contexto Institucional e a Necessidade de Inovação</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo03_fundamentos_ia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2.1 Fundamentos Agentes de IA</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>3ª Parte — Etapas</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.1 <strong>Etapa 1</strong> - Análise do problema e objetivo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.2 <strong>Etapa 2</strong> - Modelagem do conhecimento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.4 <strong>Etapa 4</strong> - Implementação do agente</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./etapa_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3.5 <strong>Etapa 5</strong> - Avaliação e monitoramento</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./primeiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.1 <strong>Laboratório Prático 1</strong>: Recuperação Contextual e Predição de Dados Institucionais com Agente IA com R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./segundoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.2 <strong>Laboratório Prático 2</strong>: Enriquecimento Analítico e Classificação de Microdados Públicos com Agente de IA com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./terceiroexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.3 <strong>Laboratório Prático 3</strong>: Orquestração Multiagente e Mapeamento Estratégico de Recursos via CrewIA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quartoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.4 <strong>Laboratório Prático 4</strong>: Agente de IA para Governança de Dados e Conformidade LGPD com Python com LangChain</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quintoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.5 <strong>Laboratório Prático 5</strong>: Agente de IA Local para Higienização, Mapeamento Regional e Pseudonimização de Dados em Conformidade com a LGPD com Pyhon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sextoexemplo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./setimoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./oitavoexemplo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4.8 <strong>Laboratório Prático 8</strong>: Agentes de IA Local para Auditoria Automatizada de Editais com Ollama</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>5ª Parte — Considerações e Complementos</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./capitulo10_consideracoes_finais.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5.1 Considerações Finais</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista de Verificação</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice nesta página</h2>
+   
+  <ul>
+  <li><a href="#análise-e-objetivo-geral" id="toc-análise-e-objetivo-geral" class="nav-link active" data-scroll-target="#análise-e-objetivo-geral">Análise e Objetivo Geral</a></li>
+  <li><a href="#pré-requisitos" id="toc-pré-requisitos" class="nav-link" data-scroll-target="#pré-requisitos">Pré requisitos</a></li>
+  <li><a href="#passo-instalação-do-docker" id="toc-passo-instalação-do-docker" class="nav-link" data-scroll-target="#passo-instalação-do-docker">1° Passo: Instalação do Docker</a></li>
+  <li><a href="#passo-criar-a-credencial-gemini" id="toc-passo-criar-a-credencial-gemini" class="nav-link" data-scroll-target="#passo-criar-a-credencial-gemini">2° Passo: Criar a Credencial GEMINI</a></li>
+  <li><a href="#passo-preparação-do-ambiente-com-n8n-e-postgresql" id="toc-passo-preparação-do-ambiente-com-n8n-e-postgresql" class="nav-link" data-scroll-target="#passo-preparação-do-ambiente-com-n8n-e-postgresql">3° Passo: Preparação do ambiente com n8n e Postgresql</a></li>
+  <li><a href="#passo-començando-o-desenvolvimento-dentro-do-ambiente-com-n8n" id="toc-passo-començando-o-desenvolvimento-dentro-do-ambiente-com-n8n" class="nav-link" data-scroll-target="#passo-començando-o-desenvolvimento-dentro-do-ambiente-com-n8n">4° Passo: Començando o Desenvolvimento dentro do ambiente com n8n</a></li>
+  <li><a href="#resultados-esperados-após-execução-do-fluxo-dentro-do-n8n" id="toc-resultados-esperados-após-execução-do-fluxo-dentro-do-n8n" class="nav-link" data-scroll-target="#resultados-esperados-após-execução-do-fluxo-dentro-do-n8n">Resultados Esperados após execução do fluxo dentro do n8n</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./primeiroexemplo.html"><strong>4ª Parte — Casos Práticos do uso Agentes IA</strong></a></li><li class="breadcrumb-item"><a href="./sextoexemplo.html">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">4.6 <strong>Laboratório Prático 6</strong>: Agente de IA em n8n (Low-code/No-code)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+body {
+  background-color: #fff8fc; /* Escolha o código da tabela acima */
+}
+</style>
+<section id="análise-e-objetivo-geral" class="level1 unnumbered">
+<h1 class="unnumbered">Análise e Objetivo Geral</h1>
+<div style="text-align: justify;">
+<p><img src="images/image_exemplo2.png" class="img-fluid" style="float:right; padding-left: 10px; padding-bottom: 10px;" alt="Imagem gerada somente para ilustração" width="150"></p>
+<p>Este laboratório prático tem como objetivo capacitar os participantes no desenvolvimento de soluções de automação utilizando Agentes de Inteligência Artificial na plataforma n8n. Trata-se de uma ferramenta <em>low-code/no-code</em> que possibilita a construção de fluxos de trabalho (<em>workflows</em>) por meio da configuração visual de nós (<em>nodes</em>) e gatilhos (<em>triggers</em>), reduzindo significativamente a necessidade de programação tradicional {#ref-lab6}.</p>
+<p>Ao longo da atividade, será demonstrado como integrar Agentes de IA para automatizar o monitoramento de editais abertos da Coordenação de Aperfeiçoamento de Pessoal de Nível Superior (CAPES), realizar a extração e análise das informações relevantes e gerar relatórios gerenciais voltados ao apoio à tomada de decisão. Além disso, os resultados produzidos poderão ser distribuídos automaticamente para gestores e demais interessados, podendo incluir a geração de relatório gerencial, bem como o envio direto por correio eletrônico, caso existir para envio.</p>
+<p>Para a implementação da solução serão utilizadas Grandes Modelos de Linguagem (<em>Large Language Models</em> – LLMs) amplamente adotados no cenário atual, tais como o Gemini e o GPT, explorando suas capacidades de interpretação, síntese e geração de conteúdo em processos automatizados de apoio à gestão.</p>
+<p>Ao final do laboratório, espera-se que os participantes compreendam os principais conceitos relacionados à automação inteligente, integração de serviços, utilização de agentes baseados em IA e aplicação prática de LLMs em fluxos de trabalho institucionais.</p>
+</div>
+</section>
+<section id="pré-requisitos" class="level1 unnumbered">
+<h1 class="unnumbered">Pré requisitos</h1>
+<p>Para garantir o desempenho ideal e a compatibilidade com as ferramentas mencionadas, certifique-se de que seu hardware atende às seguintes especificações:</p>
+<ul>
+<li><p>Sistema Operacional: Windows 10 ou Windows 11 (versões de 64 bits recomendadas).</p></li>
+<li><p>Arquitetura: Processador x64 ou ARM64.</p></li>
+<li><p>Permissões: Acesso de nível administrativo para instalação de software e execução de comandos via terminal (CMD/PowerShell).</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📋 Praticidade: Copiando os Códigos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Não é necessário selecionar o texto dos blocos de código manualmente. No canto superior direito de cada caixinha de código (<em>chunk</em>), existe um ícone de prancheta invisível que aparece ao passar o cursor do mouse. Basta clicar nele para copiar todo o script diretamente para a sua área de transferência.</p>
+</div>
+</div>
+</section>
+<section id="passo-instalação-do-docker" class="level1 unnumbered">
+<h1 class="unnumbered">1° Passo: Instalação do Docker</h1>
+<p>O principal objetivo do <strong>Docker</strong> é eliminar o problema do ‘na minha máquina funciona’, garantindo que o seu software rode exatamente da mesma forma em qualquer computador ou servidor.</p>
+<p>Para instalar o <strong>Docker</strong> através do site oficial, que tende a ser uma maneira mais prática e facilitada para este laboratório. Siga as etapas:</p>
+<ol type="1">
+<li><p>Baixe o arquivo de instalação do Docker pelo link: <a href="https://docs.docker.com/desktop/setup/install/windows-install/" class="uri">https://docs.docker.com/desktop/setup/install/windows-install/</a> , selecione “Docker Desktop for Windows - x86_64”;</p></li>
+<li><p>Deixe o mouse sobre o botão “Download Docker Desktop”;</p></li>
+<li><p>E clique na opção que corresponde ao seu sistema;</p></li>
+<li><p>Após o download, execute o arquivo de instalação do Docker;</p></li>
+<li><p>Uma janela de opções irá aparecer, deixe as opções de WSL 2 e de atalho habilitadas. Assim:</p></li>
+</ol>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_n8n_2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 1</figcaption>
+</figure>
+</div>
+</div>
+<ol start="6" type="1">
+<li><p>Clique em “OK” e aguarde até concluir a instalação;</p></li>
+<li><p>Caso ocorra algum problema, repita as etapas anteriores, mas se finalizar, uma janela de instalação concluída irá ser exibida, clique no botão “Close and Restart” para reiniciar o computador; ::: {layout-align=“center” style=“margin: 0 auto; text-align: center;”} <img src="./images/imagem_n8n_3.png" class="img-fluid" style="width:100.0%" alt="Figura 2"> :::</p></li>
+<li><p>Após o computador ligar, o Docker irá iniciar com a tela de aceitação dos termos. Recomendo que leia os termos e, em seguida, clique no botão “Accept”;</p></li>
+</ol>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_n8n_4.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 3</figcaption>
+</figure>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Caso tudo ocorrer bem, e ao pesquisar no Windows por “Docker”, terá abertura do sistema uma tela semelhante a da figura 4, mas sem conteúdo inicialmente.</li>
+</ol>
+<p>Ao clicar no canto superior em “Sign Up”, é recomendado efetuar seu cadastro, ao clicar em uma destas opções disponíveis e-mail (Create an account), Google ou GitHub:</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_16.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 4</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="passo-criar-a-credencial-gemini" class="level1 unnumbered">
+<h1 class="unnumbered">2° Passo: Criar a Credencial GEMINI</h1>
+<p>Para criar essa nova Credencial (Chave de API) de modelo no GEMINI gratuitamente, segue os passos:</p>
+<ol type="1">
+<li>Acesse a plataforma: Entre no site do Google AI Studio, através do link: https://aistudio.google.com utilizando a sua conta regular do Google (Gmail);</li>
+<li>Inicie a criação: No menu lateral esquerdo ou no topo da tela, clique no botão “Get API key” (Obter chave de API);</li>
+<li>Selecione o projeto: Clique no botão azul escrito “Create API key” (Criar chave de API);</li>
+<li>Defina a origem: Escolha a opção “Create API key in a new project” (Criar chave de API em um novo projeto). Isso garante que a credencial seja gerada no plano gratuito e sem nenhum vínculo com faturamento;</li>
+<li>Copie o código: Uma janela abrirá exibindo a sua chave (uma longa sequência de letras e números). Clique em “Copy” (Copiar) e salve-a em um local seguro para uso posterior neste laboratório, por exemplo, arquivo txt ou e-mail;</li>
+</ol>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_1_credencial.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 5</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="passo-preparação-do-ambiente-com-n8n-e-postgresql" class="level1 unnumbered">
+<h1 class="unnumbered">3° Passo: Preparação do ambiente com n8n e Postgresql</h1>
+<p>Para instalar o n8n e Postgresql</p>
+<p>Criar a rede Docker com o seguinte comando dentro do PowerShell do Windows, basta localizar PowerShell e selecionar como administrador:</p>
+<div id="c914aaea" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>docker network create n8n<span class="op">-</span>network</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_01.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 6</figcaption>
+</figure>
+</div>
+</div>
+<p>Subir PostgreSQL com o seguinte comando dentro do PowerShell:</p>
+<div id="d93fb90b" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name postgres `</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_DB<span class="op">=</span>n8n `</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_USER<span class="op">=</span>n8n `</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_PASSWORD<span class="op">=</span>n8n123 `</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v postgres_data:<span class="op">/</span>var<span class="op">/</span>lib<span class="op">/</span>postgresql<span class="op">/</span>data `</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5432</span>:<span class="dv">5432</span> `</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d postgres:<span class="dv">17</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_02.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 7</figcaption>
+</figure>
+</div>
+</div>
+<p>Subir n8n com o seguinte comando dentro do PowerShell:</p>
+<div id="949b7c2b" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name n8n `</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_TYPE<span class="op">=</span>postgresdb `</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_HOST<span class="op">=</span>postgres `</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_DATABASE<span class="op">=</span>n8n `</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_USER<span class="op">=</span>n8n `</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_PASSWORD<span class="op">=</span>n8n123 `</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v n8n_data:<span class="op">/</span>home<span class="op">/</span>node<span class="op">/</span>.n8n `</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5678</span>:<span class="dv">5678</span> `</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_03.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 8</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avisos Críticos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caso seja necessário apagar PostgreSQL e n8n, a seguir comandos completos para usar dentro do PowerShell do Windows.</p>
+<div id="0f52d478" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n docker rm <span class="op">-</span>f postgres n8n docker volume rm postgres_data n8n_data docker network rm n8n<span class="op">-</span>network docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>Acessar o n8n pelo seu navegador de internet de preferência (Google Chrome, Mozilla Firefox ou Microsoft Edge), atravês do link:</p>
+<div id="8e250570" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>http:<span class="op">//</span>localhost:<span class="dv">5678</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Faça então seu login para acessar a ferramenta n8n, informando o e-mail, nome, sobrenome e senha, podendo se a mesma utilizada no Docker.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_04.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 9</figcaption>
+</figure>
+</div>
+</div>
+<p>Clicar no botão “Get started” mesmo sem o preenchimento do formulário.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_05.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 10</figcaption>
+</figure>
+</div>
+</div>
+<p>Clica em seguida em “Skip” para acessar o ambiente de desenvolvimento do N8N</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_07.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 11</figcaption>
+</figure>
+</div>
+</div>
+<p>Clica em seguida em “Build a workflow” para começar a criar o fluxo agêntico desse laboratório no n8n</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_08.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 12</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="passo-començando-o-desenvolvimento-dentro-do-ambiente-com-n8n" class="level1 unnumbered">
+<h1 class="unnumbered">4° Passo: Començando o Desenvolvimento dentro do ambiente com n8n</h1>
+<p>Este laboratório começa na opção “Build a workflow”, onde será criado o fluxo agêntico no n8n. Clique no botão “+” para abrir o painel de seleção de gatilhos (Triggers) e nós (Nodes). Em seguida, altere o nome padrão “My workflow”, localizado na barra superior, para “My workflow CAPES”. Após isso, selecione o gatilho “Manual Trigger” e arraste-o para a área do Editor, dando início à construção do fluxo agêntico deste laboratório.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_09.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 13</figcaption>
+</figure>
+</div>
+</div>
+<p>No ícone “+” conectado ao gatilho, clique para adicionar um novo nó ao fluxo. Em seguida, pesquise por “HTTP Request”, selecione-o e insira-o no workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_10.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 14</figcaption>
+</figure>
+</div>
+</div>
+<p>Será exibido o formulário de configuração do nó HTTP Request. Mantenha o método GET selecionado e, no campo URL, informe o endereço:</p>
+<div id="0ede4229" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>www.gov.br<span class="op">/</span>capes<span class="op">/</span>pt<span class="op">-</span>br<span class="op">/</span>assuntos<span class="op">/</span>editais<span class="op">-</span>e<span class="op">-</span>resultados<span class="op">-</span>capes</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Após preencher os parâmetros, clique no ícone “X” localizado no canto superior esquerdo da janela para fechar o painel de configuração e retornar ao Editor do workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_11.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 15</figcaption>
+</figure>
+</div>
+</div>
+<p>Em seguida, adicione um novo nó ao fluxo. Para isso, clique no ícone “+”, pesquise por “AI Agent” na lista de nós disponíveis e selecione-o. Ao clicar sobre o item AI Agent, será aberto o painel de configuração, onde os parâmetros necessários poderão ser definidos para o funcionamento do agente de IA.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_12.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 16</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao abrir o formulário de configuração do nó AI Agent, é possível observar três áreas principais. À esquerda encontra-se a seção INPUT, que exibe os dados recebidos do nó anterior. Na região central estão as configurações do agente, onde são definidos os parâmetros e instruções de processamento. À direita está a seção OUTPUT, responsável por apresentar o resultado gerado após a execução do nó.</p>
+<p>Para facilitar a identificação do agente no workflow, altere o nome padrão do nó para “Agente IA Analista CAPES”, utilizando o campo localizado no canto superior direito da janela.</p>
+<p>Vale destacar a presença da expressão {{ $json.data }}, que corresponde a uma variável dinâmica do n8n. Durante a execução do workflow, essa expressão será substituída automaticamente pelos dados recebidos na entrada (INPUT) do nó, permitindo que o agente de IA analise o conteúdo processado na etapa anterior.</p>
+<p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo indicado a seguir.</p>
+<div id="ca592d80" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em análise de editais da CAPES.</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Sua tarefa é analisar o conteúdo fornecido {{ $json.data }} e identificar todos os links relacionados aos programas ou editais mencionados.</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Extraia apenas os programas ou editais explicitamente informados no documento.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Formato obrigatório da resposta:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Programa<span class="op">/</span>Edital </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Traga também alguma informação extrar relevante relacionada a cada programa ou edital informados no documento.</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Não inclua comentários, explicações, análises ou textos adicionais. Retorne apenas a tabela.</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Se possível calcule o número total de programas e editais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, clique no ícone “+” associado ao campo “Chat Model*”, localizado na parte inferior do nó “Agente IA Analista CAPES”. Essa ação permitirá adicionar e configurar o modelo de linguagem que será utilizado pelo agente para processar as informações e gerar as análises solicitadas.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_13.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 17</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo consiste em definir o modelo de linguagem que será utilizado pelo agente neste laboratório. Para isso, pesquise por “Google Gemini Chat Model” na lista de modelos disponíveis e clique sobre ele para adicioná-lo ao workflow. Em seguida, será exibido o formulário de configuração, onde deverão ser informados os parâmetros necessários para a conexão e utilização do modelo.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_14.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 18</figcaption>
+</figure>
+</div>
+</div>
+<p>Agora é necessário definir o modelo de linguagem que será utilizado neste laboratório. Para isso, localize a opção “Google Gemini Chat Model” na lista de modelos disponíveis e clique sobre ela para adicioná-la ao workflow. Em seguida, será aberto o formulário de configuração, no qual deverão ser informados os parâmetros necessários para o funcionamento do modelo.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_15.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 19</figcaption>
+</figure>
+</div>
+</div>
+<p>Agora configure a conexão com a API do Gemini. No campo Host, mantenha o valor padrão apresentado pelo n8n. Em seguida, informe no campo API Key a chave de acesso gerada no Passo 2 deste laboratório. Após preencher os dados, clique no botão “Save” para salvar a configuração.</p>
+<p>Se as informações estiverem corretas, o n8n realizará um teste automático e exibirá uma mensagem indicando que a conexão foi estabelecida com sucesso. Finalizada a configuração, feche a janela clicando no ícone “X”, localizado no canto superior da tela de configuração da conta da API Gemini.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_17.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 20</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao retornar ao formulário de configuração do nó Agente IA Analista CAPES, é necessário definir o modelo de linguagem que será utilizado neste laboratório. No campo Model, selecione a opção “models/gemini-2.5-flash-lite”, que será responsável pelo processamento das informações e pela geração das análises realizadas pelo agente.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_38.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 21</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo consiste em adicionar memória ao agente de IA, permitindo que ele mantenha o contexto das interações ao longo da execução. Para isso, clique no ícone “+” associado ao campo “Memory”. Será aberta a lista de opções disponíveis; localize e selecione “Postgres Chat Memory”, conforme ilustrado na imagem a seguir.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_19.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 22</figcaption>
+</figure>
+</div>
+</div>
+<p>Após localizar o componente, clique em “Postgres Chat Memory” para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a opção para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
+<div id="68c3e1ac" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Essa configuração permitirá identificar de forma única a sessão associada ao workflow e ao agente de IA.</p>
+<p>No parâmetro “Context Window Length”, defina o valor 5, indicando que as cinco interações mais recentes serão mantidas no contexto da conversa.</p>
+<p>Por fim, clique no ícone de edição (representado por um lápis), localizado no canto superior direito da janela, para configurar a conexão e as credenciais de acesso ao banco de dados PostgreSQL executado no ambiente Docker.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_21.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 23</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao clicar no ícone de edição das credenciais, será exibido o formulário de configuração da conexão com o PostgreSQL. Preencha os campos com os seguintes valores:</p>
+<ul>
+<li>Host: host.docker.internal</li>
+<li>Database: n8n</li>
+<li>User: n8n</li>
+<li>Password: n8n123</li>
+</ul>
+<p>A senha apresentada é utilizada apenas como exemplo para fins de teste e aprendizado. Em ambientes de produção, recomenda-se a utilização de uma senha forte, contendo letras maiúsculas e minúsculas, números e caracteres especiais, de forma a garantir maior segurança ao banco de dados.</p>
+<p>Após preencher os dados, salve a configuração e verifique se o teste de conexão é concluído com sucesso.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_20.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 24</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo é adicionar uma ferramenta ao agente de IA para ampliar suas capacidades de processamento. Para isso, clique no ícone “+” associado ao campo “Tool”. Será exibida a lista de ferramentas disponíveis; localize e selecione “Calculator”, conforme ilustrado na imagem.</p>
+<p>Essa ferramenta permitirá que o agente realize operações matemáticas e cálculos durante a execução do <em>workflow</em>, sendo especialmente útil para atender às instruções e análises descritas no prompt configurado anteriormente.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_22.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 25</figcaption>
+</figure>
+</div>
+</div>
+<p>Em seguida, adicione um novo nó ao fluxo conectado ao nó Agente IA Analista CAPES. Para isso, clique no ícone “+” localizado após o agente, pesquise por “AI Agent” na lista de componentes disponíveis e selecione-o. Ao clicar sobre o item AI Agent, o painel de configuração será aberto, permitindo a definição dos parâmetros e instruções que serão utilizados por este novo agente no <em>workflow</em>.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_23.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 26</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao abrir o formulário de configuração do novo AI Agent, é possível identificar três áreas principais da interface. À esquerda encontra-se a seção INPUT, responsável por exibir os dados recebidos do nó anterior. Na região central estão as configurações do agente, onde são definidos os parâmetros e instruções de processamento. À direita está a seção OUTPUT, que apresentará o resultado gerado após a execução desta etapa do workflow.</p>
+<p>Para facilitar a identificação da função deste agente, altere o nome do nó para “Agente IA Relatório Gerencial CAPES”, utilizando o campo localizado no canto superior direito da janela. O objetivo deste agente é transformar as análises produzidas pelo agente anterior em um relatório gerencial estruturado, com linguagem adequada para apoiar a tomada de decisão por gestores e coordenadores.</p>
+<p>Observe a utilização da expressão {{ $json.data }}, uma variável dinâmica do n8n que será substituída automaticamente, durante a execução do workflow, pelos dados recebidos na entrada (INPUT) do nó. Dessa forma, o agente terá acesso ao conteúdo produzido na etapa anterior e poderá utilizá-lo como base para elaborar o relatório gerencial solicitado.</p>
+<p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo apresentado a seguir.</p>
+<div id="5e41c54f" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em elaboração de relatórios executivos e documentos institucionais para alta gestão.</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Com base exclusivamente no conteúdo de entrada fornecido {{ $json.output }}, elabore um Relatório Gerencial no formato de Ofício, utilizando linguagem formal, objetiva, técnica e adequada ao ambiente institucional.</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Utilize apenas <span class="im">as</span> informações presentes no conteúdo analisado.</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Não invente informações, números, datas, indicadores ou conclusões.</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Destaque os principais resultados, evidências, oportunidades, riscos e recomendações identificados.</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Organize o texto de forma clara e estruturada para facilitar a tomada de decisão pela alta gestão.</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Sempre que houver dados quantitativos, apresente<span class="op">-</span>os de forma resumida e objetiva.</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Caso existam inconsistências ou ausência de informações relevantes, registre essa observação no relatório.</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fl">7.</span> Mantenha foco estratégico, evitando detalhes excessivamente operacionais.</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fl">8.</span> Produza um texto com qualidade equivalente a um documento institucional oficial.</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>Estrutura obrigatória:</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>OFÍCIO Nº [gerar automaticamente] com ano atual {{ $today }}.</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>Assunto: Relatório Gerencial</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Contextualização</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Apresentação resumida do tema analisado.</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Principais Achados</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Principais informações identificadas.</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Resultados relevantes.</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Indicadores ou evidências encontradas.</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Traga a lista dos programas em ordem alfabética e com numeração.</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Análise Gerencial</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Impactos institucionais.</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Oportunidades identificadas.</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Riscos ou pontos de atenção.</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Recomendações</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Sugestões de ações para a gestão.</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Encaminhamentos propostos.</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Considerações Finais</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Síntese executiva para apoio à tomada de decisão.</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Calcule o total de itens de programas fornecidos e traga o total em considerações finais.</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>O relatório deve ser redigido em formato de ofício institucional, pronto para encaminhamento à alta administração.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para finalizar a configuração do agente, é necessário definir o modelo de linguagem que será utilizado para processar as informações e gerar o relatório gerencial. Clique no ícone “+” associado ao campo “Chat Model*”, localizado na parte inferior do nó Agente IA Relatório Gerencial CAPES. Em seguida, selecione o modelo desejado para estabelecer a conexão entre o agente e a inteligência artificial responsável pela geração das respostas.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_24.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 27</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo é adicionar um mecanismo de memória ao agente de IA, permitindo que ele mantenha o contexto das interações e utilize informações de etapas anteriores durante o processamento. Para isso, clique no ícone “+” associado ao campo “Memory”. Será exibida uma lista de opções disponíveis; localize e selecione “Postgres Chat Memory”, conforme ilustrado na imagem a seguir.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_25.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 28</figcaption>
+</figure>
+</div>
+</div>
+<p>Agora é necessário definir o modelo de linguagem que será utilizado por este agente. Para isso, localize a opção “Google Gemini Chat Model” na lista de componentes disponíveis e clique sobre ela para adicioná-la ao workflow. Em seguida, será exibido o formulário de configuração dos parâmetros do modelo.</p>
+<p>Nesta etapa, utilize a mesma credencial da API Gemini configurada anteriormente para o Agente IA Analista CAPES, evitando a criação de uma nova conexão. No campo Model, selecione o mesmo modelo já utilizado anteriormente, <code>models/gemini-2.5-flash</code>, garantindo consistência no processamento e na geração das respostas entre os agentes do fluxo.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_26.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 29</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo consiste em adicionar um componente de memória ao agente de IA. Para isso, clique no ícone “+” localizado ao lado do campo “Memory”. Será exibida uma lista com as opções de memória disponíveis; localize e selecione “Postgres Chat Memory”, conforme ilustrado na imagem.</p>
+<p>A utilização desse componente permitirá que o agente mantenha o contexto das interações, armazenando e recuperando informações relevantes no banco de dados PostgreSQL ao longo da execução do workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_27.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 30</figcaption>
+</figure>
+</div>
+</div>
+<p>Após selecionar a opção “Postgres Chat Memory”, clique sobre o componente para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a configuração para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
+<div id="56d1fc1e" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Essa variável dinâmica utilizará o identificador do workflow para associar corretamente o histórico de conversas à sessão do agente de IA.</p>
+<p>No parâmetro “Context Window Length”, defina o valor 5, indicando que as cinco interações mais recentes serão mantidas no contexto enviado ao modelo de linguagem.</p>
+<p>Por fim, clique no ícone de edição (representado por um lápis), localizado no canto superior direito da janela, para configurar ou selecionar as credenciais de acesso ao banco PostgreSQL executado no ambiente Docker. Essa conexão será responsável pelo armazenamento persistente da memória do agente.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_21.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 31</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao clicar no ícone de edição das credenciais, será exibido o formulário de configuração da conexão com o PostgreSQL. Preencha os campos com os seguintes valores:</p>
+<ul>
+<li>Host: host.docker.internal</li>
+<li>Database: n8n</li>
+<li>User: n8n</li>
+<li>Password: n8n123</li>
+</ul>
+<p>Após informar os dados, clique em Save para salvar a credencial e validar a conexão com o banco de dados.</p>
+<p>Importante: a senha n8n123 está sendo utilizada apenas para fins didáticos neste laboratório. Em ambientes de homologação ou produção, recomenda-se a utilização de senhas fortes e exclusivas, compostas por letras maiúsculas e minúsculas, números e caracteres especiais, seguindo as boas práticas de segurança da informação.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_20.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 32</figcaption>
+</figure>
+</div>
+</div>
+<p>O próximo passo é adicionar uma ferramenta ao nó “Agente IA Relatório Gerencial CAPES” para ampliar suas capacidades de processamento e efetuar a contagem dos programas ou editais. Para isso, clique no ícone “+” associado ao campo “Tool”. Será exibida a lista de ferramentas disponíveis; localize e selecione “Calculator”, conforme ilustrado na imagem.</p>
+<p>A ferramenta Calculator permitirá que o agente execute operações matemáticas e realize cálculos de forma precisa, sempre que necessário para atender às instruções definidas no prompt e enriquecer as análises apresentadas no relatório gerencial.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_28.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 33</figcaption>
+</figure>
+</div>
+</div>
+<p>Em seguida, adicionaremos um novo componente ao nó “Agente IA Relatório Gerencial CAPES”. Para isso, clique no ícone “+” conectado ao agente. Será aberta a janela de seleção de componentes; pesquise por “Convert to File” e selecione essa opção para adicioná-la ao workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_29.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 34</figcaption>
+</figure>
+</div>
+</div>
+<p>Após localizar o componente “Convert to File”, clique sobre ele para adicioná-lo ao workflow. Em seguida, na aba “Action”, selecione a opção “Convert to HTML”, que será utilizada para transformar o conteúdo gerado pelo agente em um arquivo no formato HTML.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_30.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 35</figcaption>
+</figure>
+</div>
+</div>
+<p>Agora configure os parâmetros do nó “Convert to File”. Mantenha o campo “Put Output File in Field” com o valor “data”, que será utilizado para armazenar o arquivo gerado na saída do nó.</p>
+<p>Em seguida, na seção “Options”, preencha o campo “File Name” com o nome:</p>
+<div id="ac216edf" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Relatorio_Gerencial_CAPES.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esse será o nome do arquivo HTML gerado ao final do processamento.</p>
+<p>Após concluir a configuração, clique no ícone “X” localizado no canto superior da janela para fechar o painel de configuração e retornar à área de edição do <em>workflow</em>, onde será possível dar continuidade à construção do fluxo.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_31.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 36</figcaption>
+</figure>
+</div>
+</div>
+<p>Após concluir todas as etapas de configuração, clique no botão “Execute Workflow” para iniciar a execução completa do fluxo. O processamento será iniciado a partir do gatilho “Manual Trigger” e seguirá sequencialmente por todos os nós configurados, incluindo as requisições HTTP, os agentes de IA, os componentes de memória e as ferramentas auxiliares.</p>
+<p>Ao final da execução, o nó “Convert to File” será responsável por gerar o arquivo HTML contendo o relatório gerencial elaborado pelos agentes de IA, concluindo assim o processamento automatizado do workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_32.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 37</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cuidado e Atenção
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Caso ocorrer mensagens de erro: “<em>The service is receiving too many requests from you</em>”, significa que O Google limita a quantidade de tokens de entrada por minuto, pois está está no Free Tier (camada gratuita), provavelmente o workflow enviou mais de 250.000 tokens de entrada em menos de 1 minuto, a API bloqueou, portanto, precisa alternar entre os modelos disponíveis do Gemini e executar novamente o workflow.</p>
+</div>
+</div>
+<p>Concluído o processamento, espera-se que o n8n exiba a mensagem “<em>Workflow executed successfully</em>”, confirmando a execução bem-sucedida de todas as etapas do fluxo e a geração correta dos artefatos definidos no workflow.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_33.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 38</figcaption>
+</figure>
+</div>
+</div>
+<p>Ao clicar em download do nó “Convert to File” é possível extrair localmente o arquivo.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_34.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 39</figcaption>
+</figure>
+</div>
+</div>
+<p>A seguir a imagem do arquivo “Relatório_Gerencial_Capes.html”, ponto para ser enviado para gestão como o resultado final do workflow gerado pelo n8n.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_35.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 40</figcaption>
+</figure>
+</div>
+</div>
+<p>Para fins de organização e reutilização futura, recomenda-se realizar o download do workflow após a sua conclusão. Dessa forma, será possível armazenar uma cópia do fluxo e importá-la novamente sempre que necessário.</p>
+<p>Para efetuar o download, clique no menu de opções representado pelos três pontos (…), localizado no canto superior da interface, e selecione a opção “Download”. O n8n exportará o workflow em um arquivo que poderá ser armazenado como backup ou compartilhado com outros usuários.</p>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_36.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 41</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="resultados-esperados-após-execução-do-fluxo-dentro-do-n8n" class="level1 unnumbered">
+<h1 class="unnumbered">Resultados Esperados após execução do fluxo dentro do n8n</h1>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_37.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 42</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dicas Práticas e Atalhos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Exite a possibilidade em adicionar junto ao nó “Agente IA Relatório”, um nó para GMAIL, selecionando e configurando “Send a message” para envio automatizado para Gestão, mas isso é indicado quando há amadurecimento das informações geradas pelo workflow, que necessariamente já estariam revisadas ou homologadas por revisão humana.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_docker_39.png" class="img-fluid figure-img"></p>
+<figcaption>Figura 43</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="📂 Download das planilhas">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📂 Download das planilhas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para consultar a saída provável para o Relatório Gerencial CAPES gerados, você pode fazer o download direto dos arquivos de exemplo através do repositório oficial do projeto:</p>
+<p><a href="https://github.com/VanderlinJr/Guia_relatorio_htm_n8n/blob/main/Relat%C3%B3rio_Gerencial_Capes.html" class="btn btn-outline-primary btn-sm" role="button">Acessar Repositório no GitHub</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="📂 Download do Código Fonte do Sexto Laboratório">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+📂 Download do Código Fonte do Sexto Laboratório
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para consultar o código fonte, você pode fazer o download direto do arquivo de exemplo através do repositório oficial do projeto, será necessário reconfiguração da chave de API para reativar acesso ao modelo de LLM. Para abrir, basta localizar os três pontos (…), localizado no canto superior da interface do n8n, e selecione a opção “Import from file…”.</p>
+<p><a href="https://github.com/VanderlinJr/Codigo_fonte_sexto_lab" class="btn btn-outline-primary btn-sm" role="button">Acessar Código Fonte no GitHub Lab 6</a></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./quintoexemplo.html" class="pagination-link" aria-label="4.5 **Laboratório Prático 5**: Agente de IA Local para Higienização, Mapeamento Regional e Pseudonimização de Dados em Conformidade com a LGPD com Pyhon">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4.5 <strong>Laboratório Prático 5</strong>: Agente de IA Local para Higienização, Mapeamento Regional e Pseudonimização de Dados em Conformidade com a LGPD com Pyhon</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./setimoexemplo.html" class="pagination-link" aria-label="4.7 **Laboratório Prático 7**: RAG para pesquisa em documentos institucionais com Python">
+        <span class="nav-page-text">4.7 <strong>Laboratório Prático 7</strong>: RAG para pesquisa em documentos institucionais com Python</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
