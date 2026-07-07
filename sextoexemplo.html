@@ -71,10 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -135,6 +137,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -307,20 +312,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossário</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lista de Verificação</span></a>
+ <span class="menu-text">5.2 Lista de Verificação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aprimoramento Contínuo</span></a>
+ <span class="menu-text">5.3 Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -478,7 +483,7 @@ body {
 <h1 class="unnumbered">3° Passo: Preparação do ambiente com n8n e Postgresql</h1>
 <p>Para instalar o n8n e Postgresql</p>
 <p>Criar a rede Docker com o seguinte comando dentro do PowerShell do Windows, basta localizar PowerShell e selecionar como administrador:</p>
-<div id="c914aaea" class="cell" data-execution_count="1">
+<div id="b4b88279" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>docker network create n8n<span class="op">-</span>network</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -490,7 +495,7 @@ body {
 </div>
 </div>
 <p>Subir PostgreSQL com o seguinte comando dentro do PowerShell:</p>
-<div id="d93fb90b" class="cell" data-execution_count="2">
+<div id="4075281e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name postgres `</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_DB<span class="op">=</span>n8n `</span>
@@ -509,7 +514,7 @@ body {
 </div>
 </div>
 <p>Subir n8n com o seguinte comando dentro do PowerShell:</p>
-<div id="949b7c2b" class="cell" data-execution_count="3">
+<div id="4b80bb11" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name n8n `</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_TYPE<span class="op">=</span>postgresdb `</span>
@@ -540,13 +545,13 @@ Avisos Críticos
 </div>
 <div class="callout-body-container callout-body">
 <p>Caso seja necessário apagar PostgreSQL e n8n, a seguir comandos completos para usar dentro do PowerShell do Windows.</p>
-<div id="0f52d478" class="cell" data-execution_count="4">
+<div id="c66d6ea8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n docker rm <span class="op">-</span>f postgres n8n docker volume rm postgres_data n8n_data docker network rm n8n<span class="op">-</span>network docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>Acessar o n8n pelo seu navegador de internet de preferência (Google Chrome, Mozilla Firefox ou Microsoft Edge), atravês do link:</p>
-<div id="8e250570" class="cell" data-execution_count="5">
+<div id="762efc97" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>http:<span class="op">//</span>localhost:<span class="dv">5678</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Faça então seu login para acessar a ferramenta n8n, informando o e-mail, nome, sobrenome e senha, podendo se a mesma utilizada no Docker.</p>
@@ -607,7 +612,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Será exibido o formulário de configuração do nó HTTP Request. Mantenha o método GET selecionado e, no campo URL, informe o endereço:</p>
-<div id="0ede4229" class="cell" data-execution_count="6">
+<div id="30cdfc15" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>www.gov.br<span class="op">/</span>capes<span class="op">/</span>pt<span class="op">-</span>br<span class="op">/</span>assuntos<span class="op">/</span>editais<span class="op">-</span>e<span class="op">-</span>resultados<span class="op">-</span>capes</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Após preencher os parâmetros, clique no ícone “X” localizado no canto superior esquerdo da janela para fechar o painel de configuração e retornar ao Editor do workflow.</p>
@@ -632,7 +637,7 @@ Avisos Críticos
 <p>Para facilitar a identificação do agente no workflow, altere o nome padrão do nó para “Agente IA Analista CAPES”, utilizando o campo localizado no canto superior direito da janela.</p>
 <p>Vale destacar a presença da expressão {{ $json.data }}, que corresponde a uma variável dinâmica do n8n. Durante a execução do workflow, essa expressão será substituída automaticamente pelos dados recebidos na entrada (INPUT) do nó, permitindo que o agente de IA analise o conteúdo processado na etapa anterior.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo indicado a seguir.</p>
-<div id="ca592d80" class="cell" data-execution_count="7">
+<div id="23c9899d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em análise de editais da CAPES.</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Sua tarefa é analisar o conteúdo fornecido {{ $json.data }} e identificar todos os links relacionados aos programas ou editais mencionados.</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
@@ -699,7 +704,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Após localizar o componente, clique em “Postgres Chat Memory” para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a opção para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="68c3e1ac" class="cell" data-execution_count="8">
+<div id="0a3db93a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa configuração permitirá identificar de forma única a sessão associada ao workflow e ao agente de IA.</p>
@@ -753,7 +758,7 @@ Avisos Críticos
 <p>Para facilitar a identificação da função deste agente, altere o nome do nó para “Agente IA Relatório Gerencial CAPES”, utilizando o campo localizado no canto superior direito da janela. O objetivo deste agente é transformar as análises produzidas pelo agente anterior em um relatório gerencial estruturado, com linguagem adequada para apoiar a tomada de decisão por gestores e coordenadores.</p>
 <p>Observe a utilização da expressão {{ $json.data }}, uma variável dinâmica do n8n que será substituída automaticamente, durante a execução do workflow, pelos dados recebidos na entrada (INPUT) do nó. Dessa forma, o agente terá acesso ao conteúdo produzido na etapa anterior e poderá utilizá-lo como base para elaborar o relatório gerencial solicitado.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo apresentado a seguir.</p>
-<div id="5e41c54f" class="cell" data-execution_count="9">
+<div id="e25d5d5a" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em elaboração de relatórios executivos e documentos institucionais para alta gestão.</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Com base exclusivamente no conteúdo de entrada fornecido {{ $json.output }}, elabore um Relatório Gerencial no formato de Ofício, utilizando linguagem formal, objetiva, técnica e adequada ao ambiente institucional.</span>
@@ -844,7 +849,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Após selecionar a opção “Postgres Chat Memory”, clique sobre o componente para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a configuração para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="56d1fc1e" class="cell" data-execution_count="10">
+<div id="192804e2" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa variável dinâmica utilizará o identificador do workflow para associar corretamente o histórico de conversas à sessão do agente de IA.</p>
@@ -905,7 +910,7 @@ Avisos Críticos
 </div>
 <p>Agora configure os parâmetros do nó “Convert to File”. Mantenha o campo “Put Output File in Field” com o valor “data”, que será utilizado para armazenar o arquivo gerado na saída do nó.</p>
 <p>Em seguida, na seção “Options”, preencha o campo “File Name” com o nome:</p>
-<div id="ac216edf" class="cell" data-execution_count="11">
+<div id="ef987324" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Relatorio_Gerencial_CAPES.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esse será o nome do arquivo HTML gerado ao final do processamento.</p>
@@ -1061,6 +1066,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

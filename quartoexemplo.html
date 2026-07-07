@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -155,6 +157,9 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -327,20 +332,20 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossário</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lista de Verificação</span></a>
+ <span class="menu-text">5.2 Lista de Verificação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aprimoramento Contínuo</span></a>
+ <span class="menu-text">5.3 Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -522,7 +527,7 @@ Notas Gerais
 <li>Download e Execução:</li>
 </ol>
 <p>O Qwen2.5 (14B) é uma versão mais robusta e precisa, capaz de seguir instruções complexas de prompt com maior rigor, característica essencial para tarefas de verificação de conformidade com a LGPD. Embora apresente velocidade de processamento ligeiramente inferior aos modelos menores, o ganho em qualidade e assertividade das respostas justifica sua adoção. Para baixar o modelo, digite o seguinte comando:</p>
-<div id="1d614f3a" class="cell" data-execution_count="1">
+<div id="fe349ac1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">14</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -537,7 +542,7 @@ Notas Gerais
 <li>Gerenciamento e Verificação:</li>
 </ol>
 <p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
-<div id="b6e702be" class="cell" data-execution_count="2">
+<div id="25f3e5a3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -548,7 +553,7 @@ Notas Gerais
 </figure>
 </div>
 <p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando, com o seguinte modelo qwen2.5:14b:</p>
-<div id="c4ef5a30" class="cell" data-execution_count="3">
+<div id="928c7b79" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">14</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -563,7 +568,7 @@ Notas Gerais
 <li>Encerrando a Sessão:</li>
 </ol>
 <p>Para sair do chat e retornar ao terminal padrão, digite:</p>
-<div id="41e2de1a" class="cell" data-execution_count="4">
+<div id="338e68a1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -607,7 +612,7 @@ Notas Gerais
 <section id="passo-identificando-as-bibliotecas-necessárias" class="level1 unnumbered">
 <h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias</h1>
 <p>No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python: utilizaremos o <strong>Pandas</strong> para leitura e manipulação de dados (CSV e Excel) e o <strong>Ollama</strong> para realizar a conexão com os modelos de IA. Aguarde a conclusão da instalação antes de prosseguir.</p>
-<div id="938e26e2" class="cell" data-execution_count="5">
+<div id="4e496b41" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pandas openpyxl langchain<span class="op">-</span>core langchain<span class="op">-</span>ollama langchain</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -619,7 +624,7 @@ Notas Gerais
 </figure>
 </div>
 <p>e dentro do novo arquivo <em>segundoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
-<div id="d9ef6606" class="cell" data-execution_count="6">
+<div id="74f0a5c2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Módulo nativo do Python para interagir com o sistema operacional. </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># No seu projeto, ele é essencial para manipular caminhos de arquivos.</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -647,7 +652,7 @@ Notas Gerais
 <section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
 <h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
 <p>As configurações destes parâmtros visa facilitar a localizaçãod dos arquivos e tornar o código mais entendível possível. Configuramos então os arquivos de entrada e saída, além da variável de total de registros que será utilizado para o processamento com IA</p>
-<div id="4b4ea72e" class="cell" data-execution_count="7">
+<div id="bff2016d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Caminhos e Parâmetros</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ARQUIVO_ENTRADA <span class="op">=</span> <span class="vs">r"C:/guiaagenteia/planilha_teste_discentes.xlsx"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ARQUIVO_SAIDA <span class="op">=</span> <span class="st">"C:/guiaagenteia/planilha_dados_tratados_lgpd_discentes.csv"</span></span>
@@ -658,7 +663,7 @@ Notas Gerais
 <section id="passo-criação-das-ferramentas-dos-agentes" class="level1 unnumbered">
 <h1 class="unnumbered">7° Passo: Criação das Ferramentas dos agentes</h1>
 <p>Este trecho de código compreende a Camada de Integração Instrumental, ferramentas (Tools) de uma arquitetura agêntica. No escopo da engenharia de software baseada em IA, o bloco estabelece as interfaces determinísticas de entrada e saída (I/O) que servem como os atuadores e sensores do agente no ambiente computacional local.</p>
-<div id="e1f384e0" class="cell" data-execution_count="8">
+<div id="c2c1419d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. CRIAÇÃO DAS CAPACIDADES NATIVAS (FERRAMENTAS DOS AGENTES)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -694,7 +699,7 @@ Notas Gerais
 <section id="passo-instanciação-do-motor-de-inferência-cognitiva-o-cérebro-do-sistema" class="level1 unnumbered">
 <h1 class="unnumbered">8° Passo: Instanciação do Motor de Inferência Cognitiva, o “cérebro” do sistema</h1>
 <p>Este trecho de código compreende a Instanciação do Motor de Inferência Cognitiva da arquitetura agêntica, utilizando a biblioteca unificada do LangChain para acoplamento com o ecossistema Ollama, parametrizando um modelo de linguagem compacto de alto desempenho (Qwen).</p>
-<div id="dd4fd15a" class="cell" data-execution_count="9">
+<div id="0e9b3a58" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. INICIALIZAÇÃO DO MODELO COGNITIVO LOCAL</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -707,7 +712,7 @@ Notas Gerais
 <section id="passo-prompts-dos-agentes-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">9° Passo: Prompts dos agentes de IA</h1>
 <p>Este trecho compreende a Definição da Camada de Diretrizes Cognitivas e Engenharia de Prompts, responsável por estruturar e isolar as instruções semânticas especializadas (limpeza, mapeamento regional e pseudonimização) que guiarão o raciocínio e o comportamento autônomo do modelo de linguagem de acordo com os requisitos de negócio e conformidade legal estabelecidos.</p>
-<div id="92529ea6" class="cell" data-execution_count="10">
+<div id="114d3cc7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. PROMPTS ESPECÍFICOS DO AGENTE</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -795,7 +800,7 @@ Notas Gerais
 <section id="º-passo-acoplamento-e-orquestração-dos-pipelines-lógicos" class="level1 unnumbered">
 <h1 class="unnumbered">10º Passo: Acoplamento e Orquestração dos Pipelines Lógicos</h1>
 <p>Por meio da sintaxe LCEL (<em>LangChain Expression Language</em>), o bloco consolida a Conexão das Cadeias Cognitivas, interligando síncronamente os <em>prompts</em> estruturados, o motor de inferência (LLM) e os parsers de saída para converter instruções semânticas abstratas em objetos unificados, modulares e executáveis.</p>
-<div id="9053739e" class="cell" data-execution_count="11">
+<div id="3402b798" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conexão das cadeias cognitivas do agentes de IA</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cadeira_agente <span class="op">=</span> prompt_auditor <span class="op">|</span> llm <span class="op">|</span> StrOutputParser()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -803,7 +808,7 @@ Notas Gerais
 <section id="passo-executando-o-agente-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">11° Passo: Executando o agente de IA</h1>
 <p>Este trecho de código compreende a Camada de Orquestração Executiva e Ciclo de Percepção-Cognição-Ação do agente de IA.</p>
-<div id="9a8b21b7" class="cell" data-execution_count="12">
+<div id="7780748b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. EXECUTOR DO AGENTE (ORQUESTRAÇÃO AGÊNTICA)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -833,7 +838,7 @@ Notas Gerais
 <section id="passo-gravação-dos-resultados-do-agente-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">12° Passo: Gravação dos Resultados do Agente de IA</h1>
 <p>Este trecho de código compreende a Camada de Efetuação (Ação Final) e Emissão de resposta do agente de IA.</p>
-<div id="e16ca07c" class="cell" data-execution_count="13">
+<div id="3466dac8" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Aqui temos a execução da gravação final através da ferramenta Pandas</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"[Agente] Aplicando filtros e salvando novos arquivos em conformidade..."</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    resultado_processamento <span class="op">=</span> filtrar_e_salvar_planilha_lgpd(colunas_selecionadas)</span>
@@ -843,7 +848,7 @@ Notas Gerais
 </div>
 <p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código:</p>
 <p><em>&amp; python.exe c:/guiaagenteia/quartoagenteia.py</em></p>
-<div id="021ef137" class="cell" data-execution_count="14">
+<div id="797ba8b9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>quartoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -948,6 +953,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

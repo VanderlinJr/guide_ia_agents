@@ -91,10 +91,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -155,6 +157,9 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"><strong>Guia para Implementação de Agentes de IA em Escritórios de Dados</strong></a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo escuro"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -327,20 +332,20 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Glossário</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./listaverificacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Lista de Verificação</span></a>
+ <span class="menu-text">5.2 Lista de Verificação</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./avaliacao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aprimoramento Contínuo</span></a>
+ <span class="menu-text">5.3 Aprimoramento Contínuo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossário</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -526,7 +531,7 @@ Notas Gerais
 <li>Download e Execução:</li>
 </ol>
 <p>O Qwen 2.5 (3b) é uma versão extremamente leve e rápida, ideal para tarefas simples como identificar gênero, pois não exige tanto do processador do seu computador. Para baixar o modelo, digite o seguinte comando:</p>
-<div id="4e9db045" class="cell" data-execution_count="1">
+<div id="a003c2a6" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -543,7 +548,7 @@ Notas Gerais
 <li>Gerenciamento e Verificação:</li>
 </ol>
 <p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
-<div id="e539434b" class="cell" data-execution_count="2">
+<div id="10a23654" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -556,7 +561,7 @@ Notas Gerais
 </div>
 </div>
 <p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando:</p>
-<div id="4d962c1f" class="cell" data-execution_count="3">
+<div id="fd33ea06" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -573,7 +578,7 @@ Notas Gerais
 <li>Encerrando a Sessão:</li>
 </ol>
 <p>Para sair do chat e retornar ao terminal padrão, digite:</p>
-<div id="c2a2769d" class="cell" data-execution_count="4">
+<div id="ac06d001" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -626,7 +631,7 @@ Notas Gerais
 <section id="passo-identificando-as-bibliotecas-necessárias" class="level1 unnumbered">
 <h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias</h1>
 <p>No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python: utilizaremos o <strong>pypdf</strong> para leitura e manipulação de dados (PDF) e o <strong>openai</strong> para realizar a conexão com os modelos de IA. Aguarde a conclusão da instalação antes de prosseguir.</p>
-<div id="d27e55f3" class="cell" data-execution_count="5">
+<div id="cef7dce4" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pypdf openai</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -640,7 +645,7 @@ Notas Gerais
 </div>
 </div>
 <p>e dentro do novo arquivo <em>oitavoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
-<div id="fbcdc8fa" class="cell" data-execution_count="6">
+<div id="130d0550" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manipula caminhos de arquivos e variáveis de ambiente do sistema operacional</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os  </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerencia parâmetros e interações diretas com o interpretador do Python</span></span>
@@ -654,7 +659,7 @@ Notas Gerais
 <section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
 <h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
 <p>As configurações destes parâmetros visa facilitar a localização dos arquivos e tornar o código mais entendível possível. Configuramos então os arquivos de entrada e saída</p>
-<div id="2f563107" class="cell" data-execution_count="7">
+<div id="c39b015f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Inicializando o Agente de IA: Auditor de Editais"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>EDITAL_ENTRADA <span class="op">=</span> <span class="vs">r"C:\guiaagenteia\Edital PIBID_LP_2026_bolsistasID-2.pdf"</span></span>
@@ -664,7 +669,7 @@ Notas Gerais
 <section id="º-passo-configurações-iniciais" class="level1 unnumbered">
 <h1 class="unnumbered">7º Passo: Configurações iniciais</h1>
 <p>Esta etapa de código realiza a preparação e a configuração inicial do ambiente de execução, começando por uma validação de segurança que encerra o programa imediatamente caso o arquivo PDF do edital não seja encontrado no caminho especificado. Em seguida, ele inicializa o cliente da biblioteca OpenAI redirecionando seu fluxo de requisições para o servidor local do Ollama.</p>
-<div id="faff5260" class="cell" data-execution_count="8">
+<div id="5283b620" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificação de segurança: o arquivo PDF de entrada existe?</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> os.path.exists(EDITAL_ENTRADA):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Erro Crítico: Arquivo '</span><span class="sc">{</span>EDITAL_ENTRADA<span class="sc">}</span><span class="ss">' não encontrado."</span>)</span>
@@ -686,7 +691,7 @@ Notas Gerais
 <section id="passo-leitura-e-mapeamento-do-ambiente" class="level1 unnumbered">
 <h1 class="unnumbered">8° Passo: Leitura e mapeamento do ambiente</h1>
 <p>Esta etapa de código realiza a extração automatizada de texto do arquivo PDF local especificado, iterando por todas as suas páginas e concatenando o conteúdo capturado em uma variável de memória, contando com um tratamento de exceções para interromper a execução do script caso ocorra alguma falha de leitura. No contexto do framework <strong>ReAct</strong>.</p>
-<div id="9bbab0a2" class="cell" data-execution_count="9">
+<div id="cd2d64ae" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Leitura e mapeamento do ambiente</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
@@ -705,7 +710,7 @@ Notas Gerais
 <section id="passo-avaliação-o-nível-de-conformidade-jurídica-do-edital" class="level1 unnumbered">
 <h1 class="unnumbered">9° Passo: Avaliação o nível de conformidade jurídica do edital</h1>
 <p>Esta etapa de código estrutura e envia um prompt direcionado ao modelo de linguagem local (<code>qwen2.5:3b</code>) para avaliar o nível de conformidade jurídica do edital extraído em relação à Lei de Cotas, classificando o documento de forma limpa em uma de três categorias pré-definidas (CRITICO, SUSPEITO ou REGULAR). É o momento em que o agente processa internamente as informações colhidas no ambiente (as observações do texto do edital) e orquestra seu raciocínio lógico para “pensar” sobre a gravidade da situação.</p>
-<div id="36d71f47" class="cell" data-execution_count="10">
+<div id="43b834ae" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ANÁLISE / TOMADA DE DECISÃO</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
@@ -752,7 +757,7 @@ Notas Gerais
 <section id="º-passo-execução-da-tarefa-baseada-na-decisão-ação" class="level1 unnumbered">
 <h1 class="unnumbered">10º Passo: Execução da tarefa baseada na decisão (Ação)</h1>
 <p>Esta etapa de código direciona a execução do plano de auditoria do agente por meio de uma estrutura condicional (if/elif/else), mapeando a classificação obtida na fase anterior para definir uma diretriz de ação customizada (CRITICO, SUSPEITO ou REGULAR) e injetando-a, junto com uma fatia expandida do texto do edital, em um prompt final altamente estruturado para a geração do parecer jurídico.</p>
-<div id="b0abaa5d" class="cell" data-execution_count="11">
+<div id="4f099f1a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Execução da tarefa baseada na decisão (Ação)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =========================================================================</span></span>
@@ -789,7 +794,7 @@ Notas Gerais
 <section id="º-passo-exportação-dos-resultados" class="level1 unnumbered">
 <h1 class="unnumbered">11º Passo: Exportação dos Resultados</h1>
 <p>Esta etapa de código executa a chamada final ao modelo de linguagem local via API para gerar o parecer jurídico estruturado em Markdown, captura o texto da resposta, exibe o resultado diretamente no console e realiza a gravação em arquivo local, o agente conclui sua atuação prática e o texto gerado e o arquivo gravado tornam-se o resultado observável desse ciclo, consolidando o objetivo em entregar uma tarefa plausível e auditável com base em dados reais.</p>
-<div id="8986c6c9" class="cell" data-execution_count="12">
+<div id="47ffec45" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Segunda chamada gerando o parecer através das configurações explícitas</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    resposta_final <span class="op">=</span> client.chat.completions.create(</span>
@@ -837,7 +842,7 @@ Notas Gerais
 </div>
 <p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código:</p>
 <p><em>&amp; python.exe c:/guiaagenteia/oitavoagenteia.py</em></p>
-<div id="c62fcec9" class="cell" data-execution_count="13">
+<div id="15267b37" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>oitavoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -961,6 +966,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

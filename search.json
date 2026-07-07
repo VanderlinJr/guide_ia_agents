@@ -25,7 +25,7 @@
     "href": "capitulo01_prefacio.html#recursos-de-navegação-e-interatividade",
     "title": "1.1 Prefácio: Organização e Recursos do Guia",
     "section": "",
-    "text": "Este livro foi desenvolvido utilizando a plataforma Quarto, o que permite uma experiência dinâmica de leitura. Ao longo das páginas, o usuário poderá interagir com o conteúdo através de:\n\nBarra Lateral Retrátil: Permite alternar rapidamente entre as quatro macropartes do livro e seus respectivos capítulos.\nÍndice de Seções Dinâmico (TOC): Localizado no canto direito da tela, acompanha a rolagem da página, facilitando a localização de tópicos específicos dentro de cada capítulo.\nMecanismo de Busca Integrado: A barra de pesquisa na lateral realiza buscas em tempo real por palavras-chave em todo o texto do guia (ex: buscando por “Ollama” ou “CSV”).\nModo Escuro/Claro: O leitor pode ajustar o tema visual no topo da página para maior conforto de leitura.\n💡 Dica de navegação e cópia dos códigos: Ao posicionar o mouse sobre o canto superior direito de qualquer bloco de código, a palavra “Copy” ou “Copiar para a área de transferência” e o ícone de uma prancheta serão exibidos. Após o clique, o ícone mudará temporariamente para um sinal de “visto” ou “copiada” (check), confirmando que o código foi copiado com sucesso e está pronto para ser colado no seu terminal Python ou R.",
+    "text": "Este guia foi desenvolvido utilizando a plataforma Quarto, o que permite uma experiência dinâmica de leitura. Ao longo das páginas, o usuário poderá interagir com o conteúdo através de:\n\nBarra Lateral Retrátil: Permite alternar rapidamente entre as quatro macropartes do livro e seus respectivos capítulos.\nÍndice de Seções Dinâmico (TOC): Localizado no canto direito da tela, acompanha a rolagem da página, facilitando a localização de tópicos específicos dentro de cada capítulo.\nMecanismo de Busca Integrado: A barra de pesquisa na lateral realiza buscas em tempo real por palavras-chave em todo o texto do guia (ex: buscando por “Ollama” ou “CSV”).\nModo Escuro/Claro: O leitor pode ajustar o tema visual no topo da página para maior conforto de leitura.\n💡 Dica de navegação e cópia dos códigos: Ao posicionar o mouse sobre o canto superior direito de qualquer bloco de código, a palavra “Copy” ou “Copiar para a área de transferência” e o ícone de uma prancheta serão exibidos. Após o clique, o ícone mudará temporariamente para um sinal de “visto” ou “copiada” (check), confirmando que o código foi copiado com sucesso e está pronto para ser colado no seu terminal Python ou R.",
     "crumbs": [
       "**1ª Parte — Apresentação**",
       "1.1 Prefácio: Organização e Recursos do Guia"
@@ -47,7 +47,7 @@
     "href": "capitulo01_prefacio.html#ciclo-de-avaliação-e-aprimoramento-contínuo",
     "title": "1.1 Prefácio: Organização e Recursos do Guia",
     "section": "🔄 Ciclo de Avaliação e Aprimoramento Contínuo",
-    "text": "🔄 Ciclo de Avaliação e Aprimoramento Contínuo\n\nComo um produto técnico (artefato) de um Mestrado Profissional, este guia foi desenhado sob a ótica da melhoria contínua. Ele não é um artefato finalizado, mas um organismo dinâmico que evolui com o feedback dos usuários.\nNo menu final (5ª Parte), o leitor encontrará o capítulo Avaliação do Guia, que contém um formulário interativo. Incentiva-se que todos os servidores e técnicos que aplicarem os códigos deste manual submetam suas percepções quanto a:\n\nClareza Didática: Se as explicações de Python e IA foram compreensíveis.\nAplicabilidade: Se os códigos funcionaram corretamente no ambiente local da UNIFESP.\nErros e Bugs: Relatos de comportamentos inesperados para correções em futuras versões do livro.\n\nDessa forma, o Escritório de Dados garante a longevidade e a utilidade prática deste material para a governança institucional.",
+    "text": "🔄 Ciclo de Avaliação e Aprimoramento Contínuo\n\nComo um produto técnico (artefato) de um Mestrado Profissional, este guia foi desenhado sob a ótica da melhoria contínua. Ele não é um artefato finalizado, mas um organismo dinâmico que evolui com o feedback dos usuários.\nNo menu final (5ª Parte), o leitor encontrará o capítulo Aprimoramento Contínuo. Incentiva-se que todos os servidores e técnicos que aplicarem os códigos deste manual compartilhem suas percepções diretamente com o autor, por meio do contato disponibilizado ao final desta obra, quanto a::\n\nClareza Didática: Se as explicações de Python e IA foram compreensíveis.\nAplicabilidade: Se os códigos funcionaram corretamente no ambiente local da UNIFESP.\nErros e Bugs: Relatos de comportamentos inesperados para correções em futuras versões do guia.\n\nDessa forma, o Escritório de Dados garante a longevidade e a utilidade prática deste material para a governança institucional.",
     "crumbs": [
       "**1ª Parte — Apresentação**",
       "1.1 Prefácio: Organização e Recursos do Guia"
@@ -362,6 +362,127 @@
     ]
   },
   {
+    "objectID": "listaverificacao.html",
+    "href": "listaverificacao.html",
+    "title": "5.2 Lista de Verificação",
+    "section": "",
+    "text": "Progresso da Homologação\nMarque os itens abaixo conforme forem atendidos.",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#progresso-da-homologação",
+    "href": "listaverificacao.html#progresso-da-homologação",
+    "title": "5.2 Lista de Verificação",
+    "section": "",
+    "text": "Status\nItens concluídos: 0 de 8\n\n\nProgresso: 0%",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#fase-1-etapas",
+    "href": "listaverificacao.html#fase-1-etapas",
+    "title": "5.2 Lista de Verificação",
+    "section": "Fase 1: Etapas",
+    "text": "Fase 1: Etapas\n\nChecklist\n\nEtapa 1 - Foi realizado uma Análise do problema e objetivo?\nEtapa 2 - Foi realizado uma Modelagem do conhecimento?\nEtapa 3 - Foi projetado uma arquitetura inicial?\nEtapa 4 - Foi Implementação o código do agente de IA?\nEtapa 5 - Foi planejado uma avaliação e monitoramento?",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#fase-2-governança-e-segurança-lgpd",
+    "href": "listaverificacao.html#fase-2-governança-e-segurança-lgpd",
+    "title": "5.2 Lista de Verificação",
+    "section": "Fase 2: Governança e Segurança (LGPD)",
+    "text": "Fase 2: Governança e Segurança (LGPD)\n\nChecklist\n\nO modelo de linguagem (LLM) está rodando localmente (ex.: Ollama) para garantir a privacidade?",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#fase-3-engenharia-e-prompting",
+    "href": "listaverificacao.html#fase-3-engenharia-e-prompting",
+    "title": "5.2 Lista de Verificação",
+    "section": "Fase 3: Engenharia e Prompting",
+    "text": "Fase 3: Engenharia e Prompting\n\nChecklist\n\nAs instruções de sistema (System Prompt) limitam explicitamente o escopo de atuação do agente?",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#fase-4-validação-humana-human-in-the-loop",
+    "href": "listaverificacao.html#fase-4-validação-humana-human-in-the-loop",
+    "title": "5.2 Lista de Verificação",
+    "section": "Fase 4: Validação Humana (Human-in-the-loop)",
+    "text": "Fase 4: Validação Humana (Human-in-the-loop)\n\nChecklist\n\nUma amostra dos resultados foi auditada e validada por usuários da equipe?",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#critérios-de-aprovação",
+    "href": "listaverificacao.html#critérios-de-aprovação",
+    "title": "5.2 Lista de Verificação",
+    "section": "Critérios de Aprovação",
+    "text": "Critérios de Aprovação\nA homologação será considerada concluída quando todos os itens anteriores forem avaliados e marcados como atendidos.\n\n\n\n\n\n\n\nHomologação Concluída com Sucesso\n\n\n\nTodos os critérios de etapas, governança, conformidade legal e segurança técnica foram checados e validados.\nEste projeto está apto para publicação e uso em produção.\n\n\n\n📄 Emitir Termo de Conformidade (PDF)",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "listaverificacao.html#resumo-da-avaliação",
+    "href": "listaverificacao.html#resumo-da-avaliação",
+    "title": "5.2 Lista de Verificação",
+    "section": "Resumo da Avaliação",
+    "text": "Resumo da Avaliação\n\n\n\nFase\nQuantidade de Itens\n\n\n\n\nEtapas\n5\n\n\nGovernança e Segurança (LGPD)\n1\n\n\nEngenharia e Prompting\n1\n\n\nValidação Humana\n1\n\n\nTotal\n8",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.2 Lista de Verificação"
+    ]
+  },
+  {
+    "objectID": "avaliacao.html",
+    "href": "avaliacao.html",
+    "title": "5.3 Aprimoramento Contínuo",
+    "section": "",
+    "text": "📝 Sugestão de Melhorias e Feedback",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.3 Aprimoramento Contínuo"
+    ]
+  },
+  {
+    "objectID": "avaliacao.html#sugestão-de-melhorias-e-feedback",
+    "href": "avaliacao.html#sugestão-de-melhorias-e-feedback",
+    "title": "5.3 Aprimoramento Contínuo",
+    "section": "",
+    "text": "Por favor, colabore com o aprimoramento desta ferramenta enviando seu feedback sobre o uso do guia ou sugestões de melhorias para o e-mail do autor: vapjunior@unifesp.br.",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.3 Aprimoramento Contínuo"
+    ]
+  },
+  {
+    "objectID": "avaliacao.html#histórico-de-versões-e-atualizações",
+    "href": "avaliacao.html#histórico-de-versões-e-atualizações",
+    "title": "5.3 Aprimoramento Contínuo",
+    "section": "🔄 Histórico de Versões e Atualizações",
+    "text": "🔄 Histórico de Versões e Atualizações\n\nComo este guia adota a filosofia de melhoria contínua a partir das avaliações recebidas, todas as modificações, correções de bugs nos scripts de Python ou atualizações de modelos no Ollama serão registradas formalmente abaixo:\n\nVersão 1.0.2 (Julho de 2026): Versão atual entregue para o Escritório de Dados. Ajuste na estrutura dos capítulos.\nVersão 1.0.1 (Abril de 2026): Ajuste na estrutura dos capítulos e teste amplo dos exemplos práticos.\nVersão 1.0.0 (Março de 2026): Protótipo inicial para testes internos.",
+    "crumbs": [
+      "**5ª Parte — Considerações e Complementos**",
+      "5.3 Aprimoramento Contínuo"
+    ]
+  },
+  {
     "objectID": "glossario.html",
     "href": "glossario.html",
     "title": "Glossário",
@@ -370,127 +491,6 @@
     "crumbs": [
       "**5ª Parte — Considerações e Complementos**",
       "Glossário"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html",
-    "href": "listaverificacao.html",
-    "title": "Lista de Verificação",
-    "section": "",
-    "text": "Progresso da Homologação\nMarque os itens abaixo conforme forem atendidos.",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#progresso-da-homologação",
-    "href": "listaverificacao.html#progresso-da-homologação",
-    "title": "Lista de Verificação",
-    "section": "",
-    "text": "Status\nItens concluídos: 0 de 8\n\n\nProgresso: 0%",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#fase-1-etapas",
-    "href": "listaverificacao.html#fase-1-etapas",
-    "title": "Lista de Verificação",
-    "section": "Fase 1: Etapas",
-    "text": "Fase 1: Etapas\n\nChecklist\n\nEtapa 1 - Foi realizado uma Análise do problema e objetivo?\nEtapa 2 - Foi realizado uma Modelagem do conhecimento?\nEtapa 3 - Foi projetado uma arquitetura inicial?\nEtapa 4 - Foi Implementação o código do agente de IA?\nEtapa 5 - Foi planejado uma avaliação e monitoramento?",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#fase-2-governança-e-segurança-lgpd",
-    "href": "listaverificacao.html#fase-2-governança-e-segurança-lgpd",
-    "title": "Lista de Verificação",
-    "section": "Fase 2: Governança e Segurança (LGPD)",
-    "text": "Fase 2: Governança e Segurança (LGPD)\n\nChecklist\n\nO modelo de linguagem (LLM) está rodando localmente (ex.: Ollama) para garantir a privacidade?",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#fase-3-engenharia-e-prompting",
-    "href": "listaverificacao.html#fase-3-engenharia-e-prompting",
-    "title": "Lista de Verificação",
-    "section": "Fase 3: Engenharia e Prompting",
-    "text": "Fase 3: Engenharia e Prompting\n\nChecklist\n\nAs instruções de sistema (System Prompt) limitam explicitamente o escopo de atuação do agente?",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#fase-4-validação-humana-human-in-the-loop",
-    "href": "listaverificacao.html#fase-4-validação-humana-human-in-the-loop",
-    "title": "Lista de Verificação",
-    "section": "Fase 4: Validação Humana (Human-in-the-loop)",
-    "text": "Fase 4: Validação Humana (Human-in-the-loop)\n\nChecklist\n\nUma amostra dos resultados foi auditada e validada por usuários da equipe?",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#critérios-de-aprovação",
-    "href": "listaverificacao.html#critérios-de-aprovação",
-    "title": "Lista de Verificação",
-    "section": "Critérios de Aprovação",
-    "text": "Critérios de Aprovação\nA homologação será considerada concluída quando todos os itens anteriores forem avaliados e marcados como atendidos.\n\n\n\n\n\n\n\nHomologação Concluída com Sucesso\n\n\n\nTodos os critérios de etapas, governança, conformidade legal e segurança técnica foram checados e validados.\nEste projeto está apto para publicação e uso em produção.\n\n\n\n📄 Emitir Termo de Conformidade (PDF)",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "listaverificacao.html#resumo-da-avaliação",
-    "href": "listaverificacao.html#resumo-da-avaliação",
-    "title": "Lista de Verificação",
-    "section": "Resumo da Avaliação",
-    "text": "Resumo da Avaliação\n\n\n\nFase\nQuantidade de Itens\n\n\n\n\nEtapas\n5\n\n\nGovernança e Segurança (LGPD)\n1\n\n\nEngenharia e Prompting\n1\n\n\nValidação Humana\n1\n\n\nTotal\n8",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Lista de Verificação"
-    ]
-  },
-  {
-    "objectID": "avaliacao.html",
-    "href": "avaliacao.html",
-    "title": "Aprimoramento Contínuo",
-    "section": "",
-    "text": "📝 Sugestão de Melhorias e Feedback",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Aprimoramento Contínuo"
-    ]
-  },
-  {
-    "objectID": "avaliacao.html#sugestão-de-melhorias-e-feedback",
-    "href": "avaliacao.html#sugestão-de-melhorias-e-feedback",
-    "title": "Aprimoramento Contínuo",
-    "section": "",
-    "text": "Por favor, colabore com o aprimoramento desta ferramenta enviando seu feedback sobre o uso do guia ou sugestões de melhorias para o e-mail do autor: vapjunior@unifesp.br.",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Aprimoramento Contínuo"
-    ]
-  },
-  {
-    "objectID": "avaliacao.html#histórico-de-versões-e-atualizações",
-    "href": "avaliacao.html#histórico-de-versões-e-atualizações",
-    "title": "Aprimoramento Contínuo",
-    "section": "🔄 Histórico de Versões e Atualizações",
-    "text": "🔄 Histórico de Versões e Atualizações\n\nComo este guia adota a filosofia de melhoria contínua a partir das avaliações recebidas, todas as modificações, correções de bugs nos scripts de Python ou atualizações de modelos no Ollama serão registradas formalmente abaixo:\n\nVersão 1.0.2 (Julho de 2026): Versão atual entregue para o Escritório de Dados. Ajuste na estrutura dos capítulos.\nVersão 1.0.1 (Abril de 2026): Ajuste na estrutura dos capítulos e teste amplo dos exemplos práticos.\nVersão 1.0.0 (Março de 2026): Protótipo inicial para testes internos.",
-    "crumbs": [
-      "**5ª Parte — Considerações e Complementos**",
-      "Aprimoramento Contínuo"
     ]
   },
   {
