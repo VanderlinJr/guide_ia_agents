@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+ <span class="menu-text"><strong>2ª Parte — Introdução</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -307,8 +307,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice nesta página</h2>
+   
+  <ul>
+  <li><a href="#sobre-o-problema" id="toc-sobre-o-problema" class="nav-link active" data-scroll-target="#sobre-o-problema">1. <strong>Sobre o Problema</strong></a></li>
+  <li><a href="#sobre-o-conhecimento" id="toc-sobre-o-conhecimento" class="nav-link" data-scroll-target="#sobre-o-conhecimento">2. <strong>Sobre o Conhecimento</strong></a></li>
+  <li><a href="#sobre-as-tarefas" id="toc-sobre-as-tarefas" class="nav-link" data-scroll-target="#sobre-as-tarefas">3. <strong>Sobre as Tarefas</strong></a></li>
+  <li><a href="#sobre-a-tomada-de-decisão" id="toc-sobre-a-tomada-de-decisão" class="nav-link" data-scroll-target="#sobre-a-tomada-de-decisão">4. <strong>Sobre a Tomada de Decisão</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -338,36 +347,35 @@ ul.task-list li input[type="checkbox"] {
 <p>No contexto da <em>Design Science Research Methodology</em> (DSRM), a análise do problema corresponde às etapas de identificação do problema e definição dos objetivos da solução. Segundo essa abordagem, o desenvolvimento de um artefato computacional deve partir da compreensão aprofundada do problema investigado, garantindo que a solução proposta seja relevante, útil e cientificamente fundamentada. Dessa forma, o agente de IA é concebido como um artefato tecnológico desenvolvido para atender a uma necessidade específica, devendo possuir objetivos claramente definidos e passíveis de avaliação.</p>
 <p>Uma forma eficaz de justificar a implementação de um agente de IA é utilizar o seguinte conjunto de perguntas que avaliem a necessidade, a viabilidade e o potencial de geração de valor da solução. Essas perguntas são inspiradas em práticas de análise de requisitos, automação de processos e desenvolvimento de agentes baseados em LLMs.</p>
 </div>
-<ol type="1">
-<li><strong>Sobre o Problema</strong></li>
-</ol>
+<section id="sobre-o-problema" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sobre-o-problema">1. <strong>Sobre o Problema</strong></h2>
 <ul>
 <li>Existe um problema ou necessidade claramente identificada?</li>
 <li>O problema ocorre com frequência?</li>
 <li>O problema impacta a produtividade, qualidade ou tomada de decisão? - O problema afeta um número significativo de usuários?</li>
 <li>O processo atual apresenta gargalos ou ineficiências?</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>Sobre o Conhecimento</strong></li>
-</ol>
+</section>
+<section id="sobre-o-conhecimento" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sobre-o-conhecimento">2. <strong>Sobre o Conhecimento</strong></h2>
 <ul>
 <li>As informações necessárias para resolver o problema já existem?</li>
 <li>O conhecimento está distribuído em muitos documentos ou sistemas? - - Os usuários gastam muito tempo procurando informações?</li>
 <li>Há grande volume de dados ou documentos para analisar?</li>
 <li>O conhecimento precisa ser consultado frequentemente?</li>
 </ul>
-<ol start="3" type="1">
-<li><strong>Sobre as Tarefas</strong></li>
-</ol>
+</section>
+<section id="sobre-as-tarefas" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sobre-as-tarefas">3. <strong>Sobre as Tarefas</strong></h2>
 <ul>
 <li>Existem tarefas repetitivas que poderiam ser automatizadas?</li>
 <li>Os usuários realizam consultas semelhantes com frequência?</li>
 <li>O processo exige análise de grandes quantidades de texto?</li>
 <li>O trabalho envolve consolidação de informações de múltiplas fontes? - Existem atividades que dependem fortemente de conhecimento especializado?</li>
 </ul>
-<ol start="4" type="1">
-<li><strong>Sobre a Tomada de Decisão</strong></li>
-</ol>
+</section>
+<section id="sobre-a-tomada-de-decisão" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="sobre-a-tomada-de-decisão">4. <strong>Sobre a Tomada de Decisão</strong></h2>
 <ul>
 <li>O agente pode apoiar decisões sem substituir a responsabilidade humana?</li>
 <li>Há necessidade de sintetizar informações para apoiar gestores?</li>
@@ -398,6 +406,7 @@ Exemplo Prático para Análise do Problema e Objetivo
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

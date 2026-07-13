@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+ <span class="menu-text"><strong>2ª Parte — Introdução</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -316,10 +316,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#status" id="toc-status" class="nav-link" data-scroll-target="#status">Status</a></li>
   </ul></li>
-  <li><a href="#fase-1-etapas" id="toc-fase-1-etapas" class="nav-link" data-scroll-target="#fase-1-etapas">Fase 1: Etapas</a></li>
-  <li><a href="#fase-2-governança-e-segurança-lgpd" id="toc-fase-2-governança-e-segurança-lgpd" class="nav-link" data-scroll-target="#fase-2-governança-e-segurança-lgpd">Fase 2: Governança e Segurança (LGPD)</a></li>
-  <li><a href="#fase-3-engenharia-e-prompting" id="toc-fase-3-engenharia-e-prompting" class="nav-link" data-scroll-target="#fase-3-engenharia-e-prompting">Fase 3: Engenharia e Prompting</a></li>
-  <li><a href="#fase-4-validação-humana-human-in-the-loop" id="toc-fase-4-validação-humana-human-in-the-loop" class="nav-link" data-scroll-target="#fase-4-validação-humana-human-in-the-loop">Fase 4: Validação Humana (Human-in-the-loop)</a></li>
+  <li><a href="#fases" id="toc-fases" class="nav-link" data-scroll-target="#fases">Fases</a></li>
   <li><a href="#critérios-de-aprovação" id="toc-critérios-de-aprovação" class="nav-link" data-scroll-target="#critérios-de-aprovação">Critérios de Aprovação</a></li>
   <li><a href="#resumo-da-avaliação" id="toc-resumo-da-avaliação" class="nav-link" data-scroll-target="#resumo-da-avaliação">Resumo da Avaliação</a></li>
   </ul>
@@ -366,8 +363,8 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 </section>
 </section>
-<section id="fase-1-etapas" class="level2">
-<h2 class="anchored" data-anchor-id="fase-1-etapas">Fase 1: Etapas</h2>
+<section id="fases" class="level2">
+<h2 class="anchored" data-anchor-id="fases">Fases</h2>
 <section id="checklist" class="level4">
 <h4 class="anchored" data-anchor-id="checklist"><em>Checklist</em></h4>
 <ul class="task-list">
@@ -376,35 +373,8 @@ ul.task-list li input[type="checkbox"] {
 <li><label><input type="checkbox" checked=""><strong>Etapa 3</strong> - Foi projetado uma arquitetura inicial?</label></li>
 <li><label><input type="checkbox" checked=""><strong>Etapa 4</strong> - Foi Implementação o código do agente de IA?</label></li>
 <li><label><input type="checkbox" checked=""><strong>Etapa 5</strong> - Foi planejado uma avaliação e monitoramento?</label></li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="fase-2-governança-e-segurança-lgpd" class="level2">
-<h2 class="anchored" data-anchor-id="fase-2-governança-e-segurança-lgpd">Fase 2: Governança e Segurança (LGPD)</h2>
-<section id="checklist-1" class="level4">
-<h4 class="anchored" data-anchor-id="checklist-1"><em>Checklist</em></h4>
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">O modelo de linguagem (LLM) está rodando localmente (ex.: Ollama) para garantir a privacidade?</label></li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="fase-3-engenharia-e-prompting" class="level2">
-<h2 class="anchored" data-anchor-id="fase-3-engenharia-e-prompting">Fase 3: Engenharia e Prompting</h2>
-<section id="checklist-2" class="level4">
-<h4 class="anchored" data-anchor-id="checklist-2"><em>Checklist</em></h4>
-<ul class="task-list">
+<li><label><input type="checkbox" checked="">Adota-se a execução local do modelo de LLM (ex.: Ollama) visando à conformidade com a LGPD e à privacidade, ou o processamento em nuvem (ex.: Gemini/GPT), observando-se os limites de cotas do serviço gratuito.</label></li>
 <li><label><input type="checkbox" checked="">As instruções de sistema (<em>System Prompt</em>) limitam explicitamente o escopo de atuação do agente?</label></li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="fase-4-validação-humana-human-in-the-loop" class="level2">
-<h2 class="anchored" data-anchor-id="fase-4-validação-humana-human-in-the-loop">Fase 4: Validação Humana (Human-in-the-loop)</h2>
-<section id="checklist-3" class="level4">
-<h4 class="anchored" data-anchor-id="checklist-3"><em>Checklist</em></h4>
-<ul class="task-list">
 <li><label><input type="checkbox" checked="">Uma amostra dos resultados foi auditada e validada por usuários da equipe?</label></li>
 </ul>
 <hr>

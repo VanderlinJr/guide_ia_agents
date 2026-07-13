@@ -167,7 +167,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text"><strong>2ª Parte — Introdução, Fundamentos e Governança</strong></span></a>
+ <span class="menu-text"><strong>2ª Parte — Introdução</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -327,8 +327,19 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice nesta página</h2>
+   
+  <ul>
+  <li><a href="#definição-da-arquitetura-geral" id="toc-definição-da-arquitetura-geral" class="nav-link active" data-scroll-target="#definição-da-arquitetura-geral">1. <strong>Definição da Arquitetura Geral</strong></a></li>
+  <li><a href="#definição-do-modelo-de-linguagem-llm" id="toc-definição-do-modelo-de-linguagem-llm" class="nav-link" data-scroll-target="#definição-do-modelo-de-linguagem-llm">2. <strong>Definição do Modelo de Linguagem (LLM)</strong></a></li>
+  <li><a href="#definição-dos-componentes-de-conhecimento" id="toc-definição-dos-componentes-de-conhecimento" class="nav-link" data-scroll-target="#definição-dos-componentes-de-conhecimento">3. <strong>Definição dos Componentes de Conhecimento</strong></a></li>
+  <li><a href="#definição-das-ferramentas-tools" id="toc-definição-das-ferramentas-tools" class="nav-link" data-scroll-target="#definição-das-ferramentas-tools">4. <strong>Definição das Ferramentas (Tools)</strong></a></li>
+  <li><a href="#definição-da-memória" id="toc-definição-da-memória" class="nav-link" data-scroll-target="#definição-da-memória">5. <strong>Definição da Memória</strong></a></li>
+  <li><a href="#mecanismo-de-execução" id="toc-mecanismo-de-execução" class="nav-link" data-scroll-target="#mecanismo-de-execução">6. <strong>Mecanismo de Execução</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -355,9 +366,8 @@ div.csl-indent {
 <div style="text-align: justify;">
 <p><img src="images/imagem_etapa3.png" class="img-fluid" style="float:right; padding-left: 10px; padding-bottom: 10px;" alt="Imagem gerada somente para ilustração" width="150"> A etapa de Projeto da Arquitetura tem como finalidade definir a estrutura técnica do agente de IA, especificando seus componentes, fluxos de informação, mecanismos de recuperação do conhecimento, ferramentas disponíveis, estratégias de memória, integrações e interfaces de interação. O resultado dessa etapa consiste em um modelo arquitetural capaz de orientar a implementação da solução e garantir que os requisitos funcionais e não funcionais identificados nas fases anteriores sejam adequadamente atendidos, sendo uma etapa mais técnica qua dita como o agente de IA irá operar.</p>
 </div>
-<ol type="1">
-<li><strong>Definição da Arquitetura Geral</strong></li>
-</ol>
+<section id="definição-da-arquitetura-geral" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="definição-da-arquitetura-geral">1. <strong>Definição da Arquitetura Geral</strong></h2>
 <p>Descrever os principais componentes da solução.</p>
 <p>Questões:</p>
 <ul>
@@ -365,18 +375,18 @@ div.csl-indent {
 <li>Haverá acesso a ferramentas externas?</li>
 <li>Haverá uso de RAG?</li>
 </ul>
-<ol start="2" type="1">
-<li><strong>Definição do Modelo de Linguagem (LLM)</strong></li>
-</ol>
+</section>
+<section id="definição-do-modelo-de-linguagem-llm" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="definição-do-modelo-de-linguagem-llm">2. <strong>Definição do Modelo de Linguagem (LLM)</strong></h2>
 <p>Especificar o modelo responsável pelo raciocínio e geração de respostas.</p>
 <p>Exemplos:</p>
 <ul>
-<li>Llama</li>
-<li>Qwen</li>
-<li>GPT</li>
-<li>Claude</li>
-<li>Gemini</li>
-<li>Mistral</li>
+<li>Llama (<span class="citation" data-cites="meta2026llama">Meta AI (<a href="references.html#ref-meta2026llama" role="doc-biblioref">2026</a>)</span>)</li>
+<li>Qwen (<span class="citation" data-cites="alibaba2026qwen">Alibaba Cloud (<a href="references.html#ref-alibaba2026qwen" role="doc-biblioref">2026</a>)</span>)</li>
+<li>GPT (<span class="citation" data-cites="openai2026gpt">OpenAI (<a href="references.html#ref-openai2026gpt" role="doc-biblioref">2026</a>)</span>)</li>
+<li>Claude (<span class="citation" data-cites="anthropic2026claude">Anthropic (<a href="references.html#ref-anthropic2026claude" role="doc-biblioref">2026</a>)</span>)</li>
+<li>Gemini (<span class="citation" data-cites="google2026gemini">Google DeepMind (<a href="references.html#ref-google2026gemini" role="doc-biblioref">2026</a>)</span>)</li>
+<li>Mistral (<span class="citation" data-cites="mistral2026models">Mistral AI (<a href="references.html#ref-mistral2026models" role="doc-biblioref">2026</a>)</span>)</li>
 </ul>
 <p>Critérios:</p>
 <ul>
@@ -398,9 +408,9 @@ Notas Gerais
 <p>Para garantir que o agente não alucine ao consultar os dados institucionais, utilizando a arquitetura de RAG, é necessário o uso de outras LLM, como <strong>Modelos de Embedding</strong>, que será usada para transforma a pergunta em vetor e busca dados no banco, depois que com o contexto recuperado, que permite juntar os dados encontrados com a pergunta original, que posteriormente será enviado ao modelo de LLM, que irá planejar a ação e gera a resposta final.</p>
 </div>
 </div>
-<ol start="3" type="1">
-<li><strong>Definição dos Componentes de Conhecimento</strong></li>
-</ol>
+</section>
+<section id="definição-dos-componentes-de-conhecimento" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="definição-dos-componentes-de-conhecimento">3. <strong>Definição dos Componentes de Conhecimento</strong></h2>
 <p>Definir como o agente acessará o conhecimento.</p>
 <p>Exemplos:</p>
 <ul>
@@ -410,9 +420,9 @@ Notas Gerais
 <li>Repositórios documentais e</li>
 <li>Sistemas corporativos.</li>
 </ul>
-<ol start="4" type="1">
-<li><strong>Definição das Ferramentas (Tools)</strong></li>
-</ol>
+</section>
+<section id="definição-das-ferramentas-tools" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="definição-das-ferramentas-tools">4. <strong>Definição das Ferramentas (Tools)</strong></h2>
 <p>Determinar quais ações o agente poderá executar.</p>
 <ul>
 <li>SQL Consultar dados;</li>
@@ -422,17 +432,17 @@ Notas Gerais
 </ul>
 <p>Pergunta principal que este item propõe responder:</p>
 <p><strong>Quais outras ações o agente poderá realizar?</strong></p>
-<ol start="5" type="1">
-<li><strong>Definição da Memória</strong></li>
-</ol>
+</section>
+<section id="definição-da-memória" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="definição-da-memória">5. <strong>Definição da Memória</strong></h2>
 <p>Especificar como o contexto será mantido.</p>
 <ul>
 <li>Memória de curto prazo: Histórico da conversa e</li>
 <li>Memória de longo prazo: Informações persistentes ou conhecimento acumulado, com uso de banco de dados PostgreSQL.</li>
 </ul>
-<ol start="6" type="1">
-<li><strong>Mecanismo de Execução</strong></li>
-</ol>
+</section>
+<section id="mecanismo-de-execução" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="mecanismo-de-execução">6. <strong>Mecanismo de Execução</strong></h2>
 <p>Mecanismo de Execução:</p>
 <p>Especifica o ambiente e os meios pelos quais o agente será executado e disponibilizado aos usuários ou sistemas consumidores.</p>
 <p>Exemplos:</p>
@@ -455,7 +465,7 @@ Exemplo Prático para Projeto da arquitetura
 <div class="callout-body-container callout-body">
 <p>Em continuação a Etapa 2, nesta Etapa 3, são especificado seus componentes principais, para avançar na sua construção do agente de IA:</p>
 <ul>
-<li><p>Modelo base de LLM que atuará como o núcleo de raciocínio e geração do agente. Caso priorizar a privacidade e eficiência localmente, o modelo Qwen, destacado por sua eficiência computacional e alta performance em ambientes locais <span class="citation" data-cites="yang2024qwen2">(<a href="references.html#ref-yang2024qwen2" role="doc-biblioref">Yang et al. 2024</a>)</span>. Caso contrário for uma abordagem em nuvem, o modelo Gemini, utilizando cotas gratuitas de API para validação inicial de fluxos de trabalho no n8n.</p></li>
+<li><p>Modelo base de LLM que atuará como o núcleo de raciocínio e geração do agente. Caso priorizar a privacidade e eficiência localmente, o modelo <strong>Qwen</strong>, destacado por sua eficiência computacional e alta performance em ambientes locais <span class="citation" data-cites="yang2024qwen2">(<a href="references.html#ref-yang2024qwen2" role="doc-biblioref">Yang et al. 2024</a>)</span>. Caso contrário for uma abordagem em nuvem, o modelo Gemini, utilizando cotas gratuitas de API para validação inicial de fluxos de trabalho no n8n.</p></li>
 <li><p>Mecanismo de Execução e Orquestração: A arquitetura do agente é integrada a um motor de execução baseado no n8n, sendo <em>low-code/no-code</em> justifica-se pela capacidade de estruturar fluxos complexos e encadear ações de forma visual, reduzindo drasticamente a necessidade de desenvolvimento de código computacional.</p></li>
 <li><p>Definição das Ferramentas (<em>Tools</em>), servirá para expandir as capacidades do agente além da geração de texto. No ambiente do n8n, por exemplo, especificam-se nós de integração para APIs de cálculo (calculadoras), permitindo que o agente execute operações matemáticas precisas e apoie de forma confiável a resposta esperada da análise de dados institucionais.</p></li>
 <li><p>Definição da Memória, entre várias que possam ser utilizada, no caso podemos de definar uma memória de curto prazo: em banco de dados PostgreSQL, neste exemplo, pela facilidade de instalação e uso local.</p></li>
@@ -465,10 +475,29 @@ Exemplo Prático para Projeto da arquitetura
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-alibaba2026qwen" class="csl-entry" role="listitem">
+Alibaba Cloud. 2026. <span>«Qwen Large Language Model Series»</span>. Alibaba Group. 2026. <a href="https://github.com/QwenLM/Qwen2.5">https://github.com/QwenLM/Qwen2.5</a>.
+</div>
+<div id="ref-anthropic2026claude" class="csl-entry" role="listitem">
+Anthropic. 2026. <span>«The Claude Model Family»</span>. Anthropic PBC. 2026. <a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a>.
+</div>
+<div id="ref-google2026gemini" class="csl-entry" role="listitem">
+Google DeepMind. 2026. <span>«Gemini Models Overview»</span>. Google LLC. 2026. <a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a>.
+</div>
+<div id="ref-meta2026llama" class="csl-entry" role="listitem">
+Meta AI. 2026. <span>«Llama Large Language Models»</span>. Meta Platforms, Inc. 2026. <a href="https://llama.meta.com/">https://llama.meta.com/</a>.
+</div>
+<div id="ref-mistral2026models" class="csl-entry" role="listitem">
+Mistral AI. 2026. <span>«Mistral AI Open Weights and Commercial Models»</span>. Mistral AI. 2026. <a href="https://docs.mistral.ai/getting-started/models/">https://docs.mistral.ai/getting-started/models/</a>.
+</div>
+<div id="ref-openai2026gpt" class="csl-entry" role="listitem">
+OpenAI. 2026. <span>«GPT Models and API Documentation»</span>. OpenAI. 2026. <a href="https://platform.openai.com/docs/models">https://platform.openai.com/docs/models</a>.
+</div>
 <div id="ref-yang2024qwen2" class="csl-entry" role="listitem">
 Yang, An, Baosong Yang, Binyuan Hui, Bo Pan, Bowen Tian, Can Chang, Hengyuan Cheng, et al. 2024. <span>«Qwen2 Technical Report»</span>. <em>arXiv preprint arXiv:2407.10671</em>. <a href="https://doi.org/10.48550/arXiv.2407.10671">https://doi.org/10.48550/arXiv.2407.10671</a>.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
