@@ -483,7 +483,7 @@ body {
 <h1 class="unnumbered">3° Passo: Preparação do ambiente com n8n e Postgresql</h1>
 <p>Para instalar o n8n e Postgresql</p>
 <p>Criar a rede Docker com o seguinte comando dentro do PowerShell do Windows, basta localizar PowerShell e selecionar como administrador:</p>
-<div id="2d1f5266" class="cell" data-execution_count="1">
+<div id="7c217520" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>docker network create n8n<span class="op">-</span>network</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -495,7 +495,7 @@ body {
 </div>
 </div>
 <p>Subir PostgreSQL com o seguinte comando dentro do PowerShell:</p>
-<div id="06edfbf0" class="cell" data-execution_count="2">
+<div id="2db5c451" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name postgres `</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_DB<span class="op">=</span>n8n `</span>
@@ -514,7 +514,7 @@ body {
 </div>
 </div>
 <p>Subir n8n com o seguinte comando dentro do PowerShell:</p>
-<div id="94d4fdec" class="cell" data-execution_count="3">
+<div id="eecef282" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name n8n `</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_TYPE<span class="op">=</span>postgresdb `</span>
@@ -545,13 +545,13 @@ Avisos Críticos
 </div>
 <div class="callout-body-container callout-body">
 <p>Caso seja necessário apagar PostgreSQL e n8n, a seguir comandos completos para usar dentro do PowerShell do Windows.</p>
-<div id="2b24c41f" class="cell" data-execution_count="4">
+<div id="f2b2f3de" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n docker rm <span class="op">-</span>f postgres n8n docker volume rm postgres_data n8n_data docker network rm n8n<span class="op">-</span>network docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>Acessar o n8n pelo seu navegador de internet de preferência (Google Chrome, Mozilla Firefox ou Microsoft Edge), atravês do link:</p>
-<div id="a61a449f" class="cell" data-execution_count="5">
+<div id="3664e4db" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>http:<span class="op">//</span>localhost:<span class="dv">5678</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Faça então seu login para acessar a ferramenta n8n, informando o e-mail, nome, sobrenome e senha, podendo se a mesma utilizada no Docker.</p>
@@ -612,7 +612,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Será exibido o formulário de configuração do nó HTTP Request. Mantenha o método GET selecionado e, no campo URL, informe o endereço:</p>
-<div id="5712c734" class="cell" data-execution_count="6">
+<div id="a2e1fef9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>www.gov.br<span class="op">/</span>capes<span class="op">/</span>pt<span class="op">-</span>br<span class="op">/</span>assuntos<span class="op">/</span>editais<span class="op">-</span>e<span class="op">-</span>resultados<span class="op">-</span>capes</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Após preencher os parâmetros, clique no ícone “X” localizado no canto superior esquerdo da janela para fechar o painel de configuração e retornar ao Editor do workflow.</p>
@@ -637,7 +637,7 @@ Avisos Críticos
 <p>Para facilitar a identificação do agente no workflow, altere o nome padrão do nó para “Agente IA Analista CAPES”, utilizando o campo localizado no canto superior direito da janela.</p>
 <p>Vale destacar a presença da expressão {{ $json.data }}, que corresponde a uma variável dinâmica do n8n. Durante a execução do workflow, essa expressão será substituída automaticamente pelos dados recebidos na entrada (INPUT) do nó, permitindo que o agente de IA analise o conteúdo processado na etapa anterior.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo indicado a seguir.</p>
-<div id="1ae83dbf" class="cell" data-execution_count="7">
+<div id="4cf1bf56" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em análise de editais da CAPES.</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Sua tarefa é analisar o conteúdo fornecido {{ $json.data }} e identificar todos os links relacionados aos programas ou editais mencionados.</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
@@ -704,7 +704,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Após localizar o componente, clique em “Postgres Chat Memory” para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a opção para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="d6fd94d9" class="cell" data-execution_count="8">
+<div id="d73399de" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa configuração permitirá identificar de forma única a sessão associada ao workflow e ao agente de IA.</p>
@@ -758,7 +758,7 @@ Avisos Críticos
 <p>Para facilitar a identificação da função deste agente, altere o nome do nó para “Agente IA Relatório Gerencial CAPES”, utilizando o campo localizado no canto superior direito da janela. O objetivo deste agente é transformar as análises produzidas pelo agente anterior em um relatório gerencial estruturado, com linguagem adequada para apoiar a tomada de decisão por gestores e coordenadores.</p>
 <p>Observe a utilização da expressão {{ $json.data }}, uma variável dinâmica do n8n que será substituída automaticamente, durante a execução do workflow, pelos dados recebidos na entrada (INPUT) do nó. Dessa forma, o agente terá acesso ao conteúdo produzido na etapa anterior e poderá utilizá-lo como base para elaborar o relatório gerencial solicitado.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo apresentado a seguir.</p>
-<div id="2de95aea" class="cell" data-execution_count="9">
+<div id="26d436e0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em elaboração de relatórios executivos e documentos institucionais para alta gestão.</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Com base exclusivamente no conteúdo de entrada fornecido {{ $json.output }}, elabore um Relatório Gerencial no formato de Ofício, utilizando linguagem formal, objetiva, técnica e adequada ao ambiente institucional.</span>
@@ -849,7 +849,7 @@ Avisos Críticos
 </div>
 </div>
 <p>Após selecionar a opção “Postgres Chat Memory”, clique sobre o componente para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a configuração para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="d906f191" class="cell" data-execution_count="10">
+<div id="8d9ee79b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa variável dinâmica utilizará o identificador do workflow para associar corretamente o histórico de conversas à sessão do agente de IA.</p>
@@ -910,7 +910,7 @@ Avisos Críticos
 </div>
 <p>Agora configure os parâmetros do nó “Convert to File”. Mantenha o campo “Put Output File in Field” com o valor “data”, que será utilizado para armazenar o arquivo gerado na saída do nó.</p>
 <p>Em seguida, na seção “Options”, preencha o campo “File Name” com o nome:</p>
-<div id="9d720de2" class="cell" data-execution_count="11">
+<div id="c955b9a5" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Relatorio_Gerencial_CAPES.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esse será o nome do arquivo HTML gerado ao final do processamento.</p>
