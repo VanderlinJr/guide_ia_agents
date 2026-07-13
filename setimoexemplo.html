@@ -466,6 +466,7 @@ body {
 <ul>
 <li>Instalar o Visua Studio Code: Clique no botão “Windows - Windows 10, 11” ou outro sitema operacinal disponível em seu computador, será efetuado o download para a versão mais recente do momento, como exemplo: <strong>VSCodeUserSetup-x64-1.118.0.exe</strong> and Install R”. Execute este arquivo do instalador e siga as instruções padrão.</li>
 </ul>
+<p><strong>Assista também o VÍDEO para auxiliar na instalação do Visual Studio Code</strong>: ▶️ <a href="https://youtu.be/vr_B4dNkgrM" class="uri">https://youtu.be/vr_B4dNkgrM</a></p>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -478,7 +479,7 @@ body {
 <section id="passo-obtendo-seu-modelo-llm-local" class="level1 unnumbered">
 <h1 class="unnumbered">2° Passo: Obtendo seu modelo LLM local</h1>
 <p>Para instalar o Ollama no Windows localmente através do site oficial <a href="https://ollama.com/download/windows" class="uri">https://ollama.com/download/windows</a> ou <span class="citation" data-cites="ollama_download">Ollama (<a href="references.html#ref-ollama_download" role="doc-biblioref">2026</a>)</span>:</p>
-<p><strong>Assista também o VÍDEO para auxiliar na instalação</strong>: ▶️ <a href="https://youtu.be/VMS0ZLPRcEc" class="uri">https://youtu.be/VMS0ZLPRcEc</a></p>
+<p><strong>Assista também o VÍDEO para auxiliar na instalação do Ollama</strong>: ▶️ <a href="https://youtu.be/VMS0ZLPRcEc" class="uri">https://youtu.be/VMS0ZLPRcEc</a></p>
 <p>Download: Acesse o link e clique no botão de <code>Download for Windows</code>.</p>
 <p>Instalação: Execute o arquivo <code>OllamaSetup.exe</code>. O processo é automático e, ao finalizar, o ícone do Ollama aparecerá na sua barra de tarefas (perto do relógio).</p>
 <p>Após concluir a instalação do Ollama, siga os passos abaixo para configurar seu primeiro modelo de linguagem local (LLM):</p>
@@ -532,7 +533,7 @@ Notas Gerais
 <li>Download e Execução:</li>
 </ol>
 <p>O Qwen 2.5 (3b) é uma versão extremamente leve e rápida, ideal para tarefas simples como identificar gênero, pois não exige tanto do processador do seu computador. Para baixar o modelo, digite o seguinte comando:</p>
-<div id="cbfd9095" class="cell" data-execution_count="1">
+<div id="2de9b76d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -547,7 +548,7 @@ Notas Gerais
 <li>Gerenciamento e Verificação:</li>
 </ol>
 <p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
-<div id="a1fba218" class="cell" data-execution_count="2">
+<div id="a21d8ebb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -558,7 +559,7 @@ Notas Gerais
 </figure>
 </div>
 <p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando:</p>
-<div id="1162d002" class="cell" data-execution_count="3">
+<div id="f77ddc1e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -573,7 +574,7 @@ Notas Gerais
 <li>Encerrando a Sessão:</li>
 </ol>
 <p>Para sair do chat e retornar ao terminal padrão, digite:</p>
-<div id="e8ca98fc" class="cell" data-execution_count="4">
+<div id="d130ccb3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -619,7 +620,7 @@ Notas Gerais
 <section id="passo-identificando-as-bibliotecas-necessárias-e-instalações" class="level1 unnumbered">
 <h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias e instalações</h1>
 <p>Nesta etapa são identificadas e instaladas as bibliotecas que serão utilizadas no projeto. Essas bibliotecas fornecem recursos para leitura de documentos PDF, geração de embeddings, indexação vetorial, integração com modelos de linguagem e processamento de textos, formando a base tecnológica necessária para o funcionamento do agente de IA com RAG. No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python. Aguarde a conclusão da instalação destas bibliotecas antes de prosseguir, com o seguintes comandos:</p>
-<div id="4f417c50" class="cell" data-execution_count="5">
+<div id="a1591c86" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pymupdf</span>
@@ -638,7 +639,7 @@ Notas Gerais
 </figure>
 </div>
 <p>e dentro do novo arquivo <em>setimoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
-<div id="2db0135b" class="cell" data-execution_count="6">
+<div id="c4eee83e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca para processamento e extração de conteúdo textual de documentos PDF.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fitz</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -664,7 +665,7 @@ Notas Gerais
 <section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
 <h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
 <p>Neste passo são definidos os parâmetros gerais do sistema, como tamanho dos blocos de texto (<em>chunks</em>), sobreposição entre blocos, quantidade de documentos recuperados na busca (<em>Top-K</em>) e caminhos dos arquivos. Esses parâmetros influenciam diretamente a qualidade da recuperação das informações e o desempenho do agente.</p>
-<div id="e91defb3" class="cell" data-execution_count="7">
+<div id="c28a2661" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CONFIGURAÇÃO</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -682,7 +683,7 @@ Notas Gerais
 <section id="passo-configurações-do-llm-local" class="level1 unnumbered">
 <h1 class="unnumbered">7° Passo: Configurações do LLM local</h1>
 <p>Nesta etapa é configurado o Grande Modelo de Linguagem (LLM) (Qwen) executado localmente por meio do Ollama. São definidos parâmetros como modelo utilizado, temperatura e tamanho do contexto, permitindo que as respostas sejam geradas sem dependência de serviços externos.</p>
-<div id="4cba7cdc" class="cell" data-execution_count="8">
+<div id="541dcdb8" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># LLM LOCAL</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -697,7 +698,7 @@ Notas Gerais
 <section id="passo-configurações-do-embeddings" class="level1 unnumbered">
 <h1 class="unnumbered">8° Passo: Configurações do <em>Embeddings</em></h1>
 <p>Neste passo é carregado o modelo de <em>embeddings</em> responsável por transformar textos em vetores numéricos. Esses vetores representam o significado semântico dos documentos e das perguntas, possibilitando a busca por similaridade entre conteúdos relacionados.</p>
-<div id="48143c72" class="cell" data-execution_count="9">
+<div id="1c438220" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># EMBEDDINGS</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -714,7 +715,7 @@ Notas Gerais
 <section id="passo-configurações-das-funções-auxiliares" class="level1 unnumbered">
 <h1 class="unnumbered">9° Passo: Configurações das funções auxiliares</h1>
 <p>Nesta etapa são implementadas funções de apoio que executam tarefas específicas, como leitura de arquivos PDF, geração de <em>embeddings</em> e processamento de textos. Essas funções promovem a reutilização de código e facilitam a manutenção do sistema.</p>
-<div id="27c40660" class="cell" data-execution_count="10">
+<div id="28df7a7b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FUNÇÕES AUXILIARES</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -737,7 +738,7 @@ Notas Gerais
 <section id="passo-configurações-das-variáveis" class="level1 unnumbered">
 <h1 class="unnumbered">10° Passo: Configurações das variáveis</h1>
 <p>Neste passo são criadas as variáveis que armazenam documentos, <em>chunks</em>, <em>embeddings</em>, índices vetoriais e demais estruturas utilizadas ao longo da execução. Essas variáveis servem como elementos centrais para o armazenamento temporário e manipulação dos dados processados.</p>
-<div id="0cb75c8c" class="cell" data-execution_count="11">
+<div id="62f34dc8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># LEITURA DOS PDFs</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -754,7 +755,7 @@ Notas Gerais
 <section id="passo-criação-dos-índices---faiss" class="level1 unnumbered">
 <h1 class="unnumbered">11° Passo: Criação dos índices - FAISS</h1>
 <p>Nesta etapa são criados os índices vetoriais utilizando a biblioteca FAISS. Os índices armazenam os embeddings dos documentos e permitem a realização de buscas rápidas por similaridade, mesmo em grandes volumes de informação.</p>
-<div id="01aa857d" class="cell" data-execution_count="12">
+<div id="0172073f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># CRIAÇÃO DOS ÍNDICES</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -785,7 +786,7 @@ Notas Gerais
 <section id="passo-indexação" class="level1 unnumbered">
 <h1 class="unnumbered">12° Passo: Indexação</h1>
 <p>Neste passo ocorre a transformação dos documentos em <em>embeddings</em> e sua inserção nos índices vetoriais. O processo de indexação organiza o conhecimento presente nos documentos para que o agente de IA possa ser recuperado posteriormente durante as consultas realizadas pelo próprio agente.</p>
-<div id="3489173c" class="cell" data-execution_count="13">
+<div id="87869dab" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># INDEXAÇÃO</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -808,7 +809,7 @@ Notas Gerais
 <section id="passo-configurações-da-busca-vetorial" class="level1 unnumbered">
 <h1 class="unnumbered">13° Passo: Configurações da Busca Vetorial</h1>
 <p>Nesta etapa é implementado o mecanismo de recuperação semântica. Quando uma pergunta é recebida, ela é convertida em <em>embedding</em> e comparada com os vetores armazenados no índice, permitindo localizar os trechos mais relevantes para responder à consulta.</p>
-<div id="db54ba40" class="cell" data-execution_count="14">
+<div id="081ff0c8" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># BUSCA VETORIAL</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -845,7 +846,7 @@ Notas Gerais
 <section id="passo-configurações-das-ferramentas" class="level1 unnumbered">
 <h1 class="unnumbered">14° Passo: Configurações das Ferramentas</h1>
 <p>Neste passo são definidas as ferramentas que o agente poderá utilizar para acessar diferentes bases documentais, como <strong>Estatuto</strong> e <strong>Regimento</strong>. Cada ferramenta possui uma responsabilidade específica e funciona como uma fonte especializada de conhecimento.</p>
-<div id="07a31582" class="cell" data-execution_count="15">
+<div id="7c09c45a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># FERRAMENTAS</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -875,7 +876,7 @@ Notas Gerais
 <section id="passo-agente-e-prompt" class="level1 unnumbered">
 <h1 class="unnumbered">15° Passo: Agente e Prompt</h1>
 <p>Nesta etapa é construído o agente de IA e elaborado o prompt que orienta seu comportamento. O agente decide quais ferramentas utilizar, enquanto o prompt estabelece regras de resposta, restrições contra alucinações e critérios para utilização exclusiva das informações recuperadas nos documentos.</p>
-<div id="bfc09f27" class="cell" data-execution_count="16">
+<div id="d16efb58" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># AGENTE</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -942,7 +943,7 @@ Notas Gerais
 <section id="passo-executando-o-agente-de-ia-e-respostas" class="level1 unnumbered">
 <h1 class="unnumbered">16° Passo: Executando o Agente de IA e Respostas</h1>
 <p>Neste passo o agente recebe uma pergunta do usuário, consulta os documentos relevantes por meio do mecanismo RAG e gera uma resposta fundamentada utilizando o modelo de linguagem. Todo o fluxo ocorre de forma integrada entre recuperação, contexto e geração textual, conforme definição RAG (Geração Aumentada por Recuperação) <span class="citation" data-cites="aws_what_is_rag">AWS - Amazon Web Services (<a href="references.html#ref-aws_what_is_rag" role="doc-biblioref">2026</a>)</span></p>
-<div id="94a70821" class="cell" data-execution_count="17">
+<div id="3ef4176e" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># TESTES</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -984,7 +985,7 @@ Dicas Práticas e Atalhos
 <section id="passo-salvar-a-resposta-em-arquivo-.txt" class="level1 unnumbered">
 <h1 class="unnumbered">17° Passo: Salvar a resposta em arquivo .txt</h1>
 <p>Nesta etapa a resposta produzida pelo agente é registrada em um arquivo de texto contendo data e hora da execução. Esse procedimento permite manter um histórico das consultas realizadas, facilitando auditorias, análises posteriores e documentação dos resultados obtidos.</p>
-<div id="7b33f3bd" class="cell" data-execution_count="18">
+<div id="d38c369c" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SALVAR RESPOSTA EM ARQUIVO .TXT</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">##############################################################################</span></span>
@@ -1008,7 +1009,7 @@ Dicas Práticas e Atalhos
 </div>
 <p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código ou clique no ícone <strong>Run Python File</strong> (botão de <em>Play</em> no canto superior direito) do Visual Studio Code para executar o código:</p>
 <p><em>&amp; python.exe c:/guiaagenteia/setimoagenteia.py</em></p>
-<div id="7ff65043" class="cell" data-execution_count="19">
+<div id="e91eeb45" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>setimoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
