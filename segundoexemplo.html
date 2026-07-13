@@ -528,7 +528,7 @@ Notas Gerais
 <li>Download e Execução:</li>
 </ol>
 <p>O Qwen 2.5 (3b) é uma versão extremamente leve e rápida, ideal para tarefas simples como identificar gênero, pois não exige tanto do processador do seu computador. Para baixar o modelo, digite o seguinte comando:</p>
-<div id="4ebb7dc0" class="cell" data-execution_count="1">
+<div id="af6903cc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -543,7 +543,7 @@ Notas Gerais
 <li>Gerenciamento e Verificação:</li>
 </ol>
 <p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
-<div id="d869ab76" class="cell" data-execution_count="2">
+<div id="06a9e306" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -554,7 +554,7 @@ Notas Gerais
 </figure>
 </div>
 <p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando:</p>
-<div id="cb07c0b3" class="cell" data-execution_count="3">
+<div id="158fe351" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -569,7 +569,7 @@ Notas Gerais
 <li>Encerrando a Sessão:</li>
 </ol>
 <p>Para sair do chat e retornar ao terminal padrão, digite:</p>
-<div id="bbff0d8c" class="cell" data-execution_count="4">
+<div id="a51d7fc1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -614,7 +614,7 @@ Notas Gerais
 <section id="passo-identificando-as-bibliotecas-necessárias" class="level1 unnumbered">
 <h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias</h1>
 <p>No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python: utilizaremos o <strong>Pandas</strong> para leitura e manipulação de dados (CSV e Excel) e o <strong>Ollama</strong> para realizar a conexão com os modelos de IA. Aguarde a conclusão da instalação antes de prosseguir.</p>
-<div id="a1c28da8" class="cell" data-execution_count="5">
+<div id="098fd1ed" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pandas ollama openpyxl</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +626,7 @@ Notas Gerais
 </figure>
 </div>
 <p>e dentro do novo arquivo <em>segundoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
-<div id="8a8d752f" class="cell" data-execution_count="6">
+<div id="a94812cf" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Útil para manipulação de tabelas e dados.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Útil para rodar modelos de linguagem (LLM) localmente no seu computador.</span></span>
@@ -640,7 +640,7 @@ Notas Gerais
 <section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
 <h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
 <p>As configurações destes parâmetros visa facilitar a localização dos arquivos e tornar o código mais entendível possível. Configuramos então os arquivos de entrada e saída, além da variável de total de registros que será utilizado para o processamento com IA</p>
-<div id="f3df42ba" class="cell" data-execution_count="7">
+<div id="a081ea72" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ARQUIVO_ENTRADA <span class="op">=</span> <span class="vs">r"C:/guiaagenteia/microdados_censo_da_educacao_superior_2024/dados/MICRODADOS_CADASTRO_CURSOS_2024.CSV"</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ARQUIVO_SAIDA <span class="op">=</span> <span class="st">"C:/guiaagenteia/cursos_processados_inep.csv"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ARQUIVO_SAIDA_EXCEL <span class="op">=</span> <span class="st">"C:/guiaagenteia/cursos_processados_inep.xlsx"</span></span>
@@ -650,7 +650,7 @@ Notas Gerais
 <section id="º-passo-criando-o-agente-inteligente" class="level1 unnumbered">
 <h1 class="unnumbered">7º Passo: Criando o Agente Inteligente</h1>
 <p>A função do agente_classificador_curso funciona como um pequeno robô especializado somente em area STEM (Ciência, Tecnologia, Engenharia e Matemática), Medicina e Saúde ou Humanidades e Ciências Sociais. Neste trecho do código, configuramos o ‘cérebro’ da IA via Python. Note que dividimos a conversa em duas funções claras para garantir que a IA não saia do roteiro estabelecido pelas suas regras de negócio, em <code>system</code> filtra o comportamento, para evitar que a IA dê aleatoriamente explicações e <code>user</code> é a definição do escopo da tarefa a ser realizada pelo agente e além do mais, temos a <code>temperature</code> igual a zero, para que a IA não invente respostas diferentes para um mesmo curso.</p>
-<div id="bdef685e" class="cell" data-execution_count="8">
+<div id="bc7db4ef" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> agente_classificador_curso(nome_curso):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">str</span>(nome_curso).strip():</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Indefinido"</span></span>
@@ -671,7 +671,7 @@ Notas Gerais
 <section id="passo-acessando-a-planilha-de-dados" class="level1 unnumbered">
 <h1 class="unnumbered">8° Passo: Acessando a planilha de dados</h1>
 <p>Agora que o ambiente está pronto, vamos “trazer” os dados da sua pasta no computador para dentro da variável df. Para isso, criaremos um objeto chamado df (abreviação de Data Frame, que é como o Python chama as tabelas).</p>
-<div id="f2117b73" class="cell" data-execution_count="9">
+<div id="6c2c1066" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Início da Execução</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Abertura do Arquivo</span></span>
@@ -682,7 +682,7 @@ Notas Gerais
 <section id="passo-identificação-do-nome-das-colunas" class="level1 unnumbered">
 <h1 class="unnumbered">9° Passo: Identificação do nome das colunas</h1>
 <p>Antes de processar as informações, você precisa conhecer o “esqueleto” da sua planilha. No Python, temos comandos rápidos que nos permitem espiar o conteúdo sem precisar abrir o arquivo no csv, pois o Python é <em>case-sensitive</em>, ou seja, ele diferencia maiúsculas de minúsculas.</p>
-<div id="0ba420cd" class="cell" data-execution_count="10">
+<div id="241822e7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalização de colunas</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">=</span> [<span class="bu">str</span>(col).strip() <span class="cf">for</span> col <span class="kw">in</span> df.columns]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -694,7 +694,7 @@ Notas Gerais
 <section id="º-passo-processando-a-base-de-dados-com-a-ia" class="level1 unnumbered">
 <h1 class="unnumbered">10º Passo: Processando a Base de Dados com a IA</h1>
 <p>Este bloco de código é responsável por aplicar o seu agente de Inteligência Artificial a cada linha da planilha da UNIFESP.</p>
-<div id="b8152cb2" class="cell" data-execution_count="11">
+<div id="5e4063ce" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparação (Amostra e Colunas)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_resultado <span class="op">=</span> df.head(QTD_TESTE).copy()</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -706,7 +706,7 @@ Notas Gerais
 <section id="º-passo-exportação-dos-resultados" class="level1 unnumbered">
 <h1 class="unnumbered">11º Passo: Exportação dos Resultados</h1>
 <p>Aqui, estamos utilizando duas funções para salvar a mesma tabela em formatos diferentes.</p>
-<div id="1d6c05cc" class="cell" data-execution_count="12">
+<div id="82ef72e8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GRAVAÇÃO EM CSV</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_resultado.to_csv(ARQUIVO_SAIDA, index<span class="op">=</span><span class="va">False</span>, encoding<span class="op">=</span><span class="st">'utf-8'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sucesso! Arquivo csv gerada em: </span><span class="sc">{</span>ARQUIVO_SAIDA<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -744,7 +744,7 @@ Dicas Práticas e Atalhos
 </div>
 <p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código ou clique no ícone <strong>Run Python File</strong> (botão de <em>Play</em> no canto superior direito) do Visual Studio Code para executar o código:</p>
 <p><em>&amp; python.exe c:/guiaagenteia/segundoagenteia.py</em></p>
-<div id="a0b9652c" class="cell" data-execution_count="13">
+<div id="4fdff40e" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>segundoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -770,7 +770,7 @@ Dicas Práticas e Atalhos
 <section id="º-passo-opcional-monitoramento-de-desempenho-cronômetro" class="level1 unnumbered">
 <h1 class="unnumbered">13º Passo (Opcional): Monitoramento de Desempenho (Cronômetro)</h1>
 <p>Este código opcional, que pode ser substituido no passo 10°, funciona como um cronômetro digital. Ele não altera o resultado dos dados, mas serve para você saber exatamente quanto tempo a IA levou para processar a sua lista de discentes da UNIFESP.</p>
-<div id="3771ac00" class="cell" data-execution_count="14">
+<div id="6219b123" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparação (Amostra e Colunas)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_resultado <span class="op">=</span> df.head(QTD_TESTE).copy()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
