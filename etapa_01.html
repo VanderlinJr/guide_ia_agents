@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -345,7 +365,7 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/imagem_etapa1.png" class="img-fluid" style="float:right; padding-left: 10px; padding-bottom: 10px;" alt="Imagem gerada somente para ilustração" width="150"></p>
 <p>A análise do problema e a definição dos objetivos representam a etapa inicial do processo de desenvolvimento de um agente de Inteligência Artificial (IA), sendo responsáveis por estabelecer as bases conceituais e funcionais que orientarão todas as etapas subsequentes do projeto. Essa fase busca compreender a necessidade que motivará o desenvolvimento do agente, delimitando claramente o contexto de aplicação, os usuários envolvidos, os requisitos do sistema e os resultados esperados.</p>
 <p>No contexto da <em>Design Science Research Methodology</em> (DSRM), a análise do problema corresponde às etapas de identificação do problema e definição dos objetivos da solução. Segundo essa abordagem, o desenvolvimento de um artefato computacional deve partir da compreensão aprofundada do problema investigado, garantindo que a solução proposta seja relevante, útil e cientificamente fundamentada. Dessa forma, o agente de IA é concebido como um artefato tecnológico desenvolvido para atender a uma necessidade específica, devendo possuir objetivos claramente definidos e passíveis de avaliação.</p>
-<p>Uma forma eficaz de justificar a implementação de um agente de IA é utilizar o seguinte conjunto de perguntas que avaliem a necessidade, a viabilidade e o potencial de geração de valor da solução. Essas perguntas são inspiradas em práticas de análise de requisitos, automação de processos e desenvolvimento de agentes baseados em LLMs.</p>
+<p>Uma forma eficaz de justificar a implementação de um agente de IA é utilizar o seguinte conjunto de perguntas que avaliem a necessidade, a viabilidade e o potencial de geração de valor da solução, da mesma forma que temos dentro da Engenharia de Software tradicional em levantamento e análise de requisitos (<span class="citation" data-cites="pressman2014engenharia">Pressman e Maxim (<a href="references.html#ref-pressman2014engenharia" role="doc-biblioref">2021</a>)</span>). Essas perguntas são inspiradas em práticas de análise de requisitos, automação de processos e desenvolvimento de agentes baseados em LLMs.</p>
 </div>
 <section id="sobre-o-problema" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="sobre-o-problema">1. <strong>Sobre o Problema</strong></h2>
@@ -406,6 +426,11 @@ Exemplo Prático para Análise do Problema e Objetivo
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-pressman2014engenharia" class="csl-entry" role="listitem">
+Pressman, Roger S., e Bruce R. Maxim. 2021. <em>Engenharia de Software: uma abordagem profissional</em>. 9.ª ed. Porto Alegre: AMGH.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
