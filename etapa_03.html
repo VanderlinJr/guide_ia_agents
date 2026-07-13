@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3.3 Etapa 3 - Projeto da arquitetura – **Guia para Implementação de Agentes de IA em Escritórios de Dados**</title>
+<title>3.3 Etapa 3 - Projeto da Arquitetura – **Guia para Implementação de Agentes de IA em Escritórios de Dados**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,7 +103,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./etapa_01.html"><strong>3ª Parte — Etapas</strong></a></li><li class="breadcrumb-item"><a href="./etapa_03.html">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./etapa_01.html"><strong>3ª Parte — Etapas</strong></a></li><li class="breadcrumb-item"><a href="./etapa_03.html">3.3 <strong>Etapa 3</strong> - Projeto da Arquitetura</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -205,7 +205,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./etapa_03.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</span></a>
+ <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da Arquitetura</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -337,16 +337,16 @@ div.csl-indent {
   <li><a href="#definição-dos-componentes-de-conhecimento" id="toc-definição-dos-componentes-de-conhecimento" class="nav-link" data-scroll-target="#definição-dos-componentes-de-conhecimento">3. <strong>Definição dos Componentes de Conhecimento</strong></a></li>
   <li><a href="#definição-das-ferramentas-tools" id="toc-definição-das-ferramentas-tools" class="nav-link" data-scroll-target="#definição-das-ferramentas-tools">4. <strong>Definição das Ferramentas (Tools)</strong></a></li>
   <li><a href="#definição-da-memória" id="toc-definição-da-memória" class="nav-link" data-scroll-target="#definição-da-memória">5. <strong>Definição da Memória</strong></a></li>
-  <li><a href="#mecanismo-de-execução" id="toc-mecanismo-de-execução" class="nav-link" data-scroll-target="#mecanismo-de-execução">6. <strong>Mecanismo de Execução</strong></a></li>
+  <li><a href="#mecanismo-de-execução-e-frameworks" id="toc-mecanismo-de-execução-e-frameworks" class="nav-link" data-scroll-target="#mecanismo-de-execução-e-frameworks">6. <strong>Mecanismo de Execução e <em>Frameworks</em></strong></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./etapa_01.html"><strong>3ª Parte — Etapas</strong></a></li><li class="breadcrumb-item"><a href="./etapa_03.html">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./etapa_01.html"><strong>3ª Parte — Etapas</strong></a></li><li class="breadcrumb-item"><a href="./etapa_03.html">3.3 <strong>Etapa 3</strong> - Projeto da Arquitetura</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</h1>
+<h1 class="title">3.3 <strong>Etapa 3</strong> - Projeto da Arquitetura</h1>
 </div>
 
 
@@ -390,10 +390,11 @@ div.csl-indent {
 </ul>
 <p>Critérios:</p>
 <ul>
-<li>Custo</li>
-<li>Desempenho</li>
-<li>Privacidade</li>
-<li>Infraestrutura disponível</li>
+<li>Custo: por rodar com LLM localmente, o modelo não requer chaves de API, não envia dados à internet e elimina custos com assinaturas ou serviços pagos e pagamentos por volume de tokens trafegados (<em>pay-per-use</em>);</li>
+<li>Desempenho: medindo parâmetros como latência (tempo de resposta), velocidade de geração de texto (tokens por segundo) e a assertividade das respostas;</li>
+<li>Privacidade: atendimento integral às diretrizes de conformidade da LGPD, das informações tratadas pela IA;</li>
+<li>Infraestrutura: hardware físico existente (servidores locais, capacidade de memória RAM e disponibilidade de placas de vídeo/GPUs) e</li>
+<li>Rankings: Utiliza índices globais, referências da comunidade para LLMs.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -405,7 +406,7 @@ Notas Gerais
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Para garantir que o agente não alucine ao consultar os dados institucionais, utilizando a arquitetura de RAG, é necessário o uso de outras LLM, como <strong>Modelos de Embedding</strong>, que será usada para transforma a pergunta em vetor e busca dados no banco, depois que com o contexto recuperado, que permite juntar os dados encontrados com a pergunta original, que posteriormente será enviado ao modelo de LLM, que irá planejar a ação e gera a resposta final.</p>
+<p>Para garantir que o agente de IA não alucine ao consultar os dados institucionais, utilizando a arquitetura de RAG, é necessário o uso de outras LLM, como <strong>Modelos de Embedding</strong>, que será usada para transforma a pergunta em vetor e busca dados no banco, depois que com o contexto recuperado, que permite juntar os dados encontrados com a pergunta original, que posteriormente será enviado ao modelo de LLM, que irá planejar a ação e gera a resposta final, além das configurações da temperatura igual ou próximo de 0 (zero).</p>
 </div>
 </div>
 </section>
@@ -414,11 +415,11 @@ Notas Gerais
 <p>Definir como o agente acessará o conhecimento.</p>
 <p>Exemplos:</p>
 <ul>
-<li>Banco vetorial;</li>
-<li>PostgreSQL;</li>
-<li>APIs;</li>
-<li>Repositórios documentais e</li>
-<li>Sistemas corporativos.</li>
+<li>Banco vetorial (banco de dados especializado em armazenar e buscar informações na forma de vetores numéricos (<em>embeddings</em>));</li>
+<li>PostgreSQL (Sistemas de gerenciamento de banco de dados relacionais (SGBD) de código aberto);</li>
+<li>APIs (APIs governamentais permitem a integração e a consulta automatizada de dados públicos (<span class="citation" data-cites="govbr2026catalogo">Brasil (<a href="references.html#ref-govbr2026catalogo" role="doc-biblioref">2026</a>)</span>));</li>
+<li>Repositórios documentais (fonte e dados de estruturas institucionais onde arquivos estão armazenados e organizados para consulta) e</li>
+<li>Sistemas corporativos (fonte de dados dos sistemas de informação integrados utilizados na gestão da universidade).</li>
 </ul>
 </section>
 <section id="definição-das-ferramentas-tools" class="level2 unnumbered">
@@ -441,17 +442,18 @@ Notas Gerais
 <li>Memória de longo prazo: Informações persistentes ou conhecimento acumulado, com uso de banco de dados PostgreSQL.</li>
 </ul>
 </section>
-<section id="mecanismo-de-execução" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="mecanismo-de-execução">6. <strong>Mecanismo de Execução</strong></h2>
-<p>Mecanismo de Execução:</p>
+<section id="mecanismo-de-execução-e-frameworks" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="mecanismo-de-execução-e-frameworks">6. <strong>Mecanismo de Execução e <em>Frameworks</em></strong></h2>
 <p>Especifica o ambiente e os meios pelos quais o agente será executado e disponibilizado aos usuários ou sistemas consumidores.</p>
 <p>Exemplos:</p>
 <ul>
-<li>Aplicação Python(Script ou aplicação);</li>
-<li>Notebook Jupyter (Script Python);</li>
-<li>Script RStudio (Script R);</li>
-<li>Workflow N8N (Script ou aplicação) e</li>
-<li>Processo CrewAI (Processo multiagente).</li>
+<li>Aplicação Python(Script ou aplicação executável);</li>
+<li>Notebook Jupyter (Script Python ou R em ambiente interativo de desenvolvimento);</li>
+<li>Script RStudio (Script R dentro do RStudio);</li>
+<li>Workflow N8N (Script ou aplicação num fluxo automatizado <em>No-code ou Low-code</em> (<span class="citation" data-cites="n8n2026workflow">n8n (<a href="references.html#ref-n8n2026workflow" role="doc-biblioref">2026</a>)</span>));</li>
+<li>Processo CrewAI (Processo para multiagentes (<span class="citation" data-cites="crewai2026docs">CrewAI (<a href="references.html#ref-crewai2026docs" role="doc-biblioref">2026</a>)</span>));</li>
+<li>LangChain (<em>Framework</em> de integração e encadeamento para LLMs (<span class="citation" data-cites="langchain2026framework">LangChain (<a href="references.html#ref-langchain2026framework" role="doc-biblioref">2026a</a>)</span>)) e</li>
+<li>LangGraph (<em>Framework</em> de coordenação de agentes com base em grafos (<span class="citation" data-cites="langgraph2026framework">LangChain (<a href="references.html#ref-langgraph2026framework" role="doc-biblioref">2026b</a>)</span>)).</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -459,7 +461,7 @@ Notas Gerais
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exemplo Prático para Projeto da arquitetura
+Exemplo Prático para Projeto da Arquitetura
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -481,14 +483,29 @@ Alibaba Cloud. 2026. <span>«Qwen Large Language Model Series»</span>. Alibaba 
 <div id="ref-anthropic2026claude" class="csl-entry" role="listitem">
 Anthropic. 2026. <span>«The Claude Model Family»</span>. Anthropic PBC. 2026. <a href="https://docs.anthropic.com/en/docs/about-claude/models">https://docs.anthropic.com/en/docs/about-claude/models</a>.
 </div>
+<div id="ref-govbr2026catalogo" class="csl-entry" role="listitem">
+Brasil. 2026. <span>«Catálogo de <span>API’s</span> Governamentais»</span>. Plataforma ConectaGov, Ministério da Gestão e da Inovação em Serviços Públicos. 2026. <a href="https://www.gov.br/conecta/catalogo/">https://www.gov.br/conecta/catalogo/</a>.
+</div>
+<div id="ref-crewai2026docs" class="csl-entry" role="listitem">
+CrewAI. 2026. <span>«CrewAI Documentation and Multi-Agent Systems Framework»</span>. CrewAI Inc. 2026. <a href="https://docs.crewai.com/">https://docs.crewai.com/</a>.
+</div>
 <div id="ref-google2026gemini" class="csl-entry" role="listitem">
 Google DeepMind. 2026. <span>«Gemini Models Overview»</span>. Google LLC. 2026. <a href="https://ai.google.dev/gemini-api/docs/models">https://ai.google.dev/gemini-api/docs/models</a>.
+</div>
+<div id="ref-langchain2026framework" class="csl-entry" role="listitem">
+LangChain. 2026a. <span>«LangChain Core Documentation and LLM Integrations»</span>. LangChain, Inc. 2026. <a href="https://python.langchain.com/v0.2/docs/introduction/">https://python.langchain.com/v0.2/docs/introduction/</a>.
+</div>
+<div id="ref-langgraph2026framework" class="csl-entry" role="listitem">
+———. 2026b. <span>«LangGraph: Building Cyclic and Stateful Multi-Agent Applications»</span>. LangChain, Inc. 2026. <a href="https://langchain-ai.github.io/langgraph/">https://langchain-ai.github.io/langgraph/</a>.
 </div>
 <div id="ref-meta2026llama" class="csl-entry" role="listitem">
 Meta AI. 2026. <span>«Llama Large Language Models»</span>. Meta Platforms, Inc. 2026. <a href="https://llama.meta.com/">https://llama.meta.com/</a>.
 </div>
 <div id="ref-mistral2026models" class="csl-entry" role="listitem">
 Mistral AI. 2026. <span>«Mistral AI Open Weights and Commercial Models»</span>. Mistral AI. 2026. <a href="https://docs.mistral.ai/getting-started/models/">https://docs.mistral.ai/getting-started/models/</a>.
+</div>
+<div id="ref-n8n2026workflow" class="csl-entry" role="listitem">
+n8n. 2026. <span>«n8n Documentation and Node-Based Workflow Automation»</span>. n8n Node Automation. 2026. <a href="https://docs.n8n.io/">https://docs.n8n.io/</a>.
 </div>
 <div id="ref-openai2026gpt" class="csl-entry" role="listitem">
 OpenAI. 2026. <span>«GPT Models and API Documentation»</span>. OpenAI. 2026. <a href="https://platform.openai.com/docs/models">https://platform.openai.com/docs/models</a>.

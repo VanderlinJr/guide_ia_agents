@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./etapa_03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da arquitetura</span></a>
+ <span class="menu-text">3.3 <strong>Etapa 3</strong> - Projeto da Arquitetura</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -436,8 +436,18 @@ body {
 </div>
 <ol start="6" type="1">
 <li><p>Clique em “OK” e aguarde até concluir a instalação;</p></li>
-<li><p>Caso ocorra algum problema, repita as etapas anteriores, mas se finalizar, uma janela de instalação concluída irá ser exibida, clique no botão “Close and Restart” para reiniciar o computador; ::: {layout-align=“center” style=“margin: 0 auto; text-align: center;”} <img src="./images/imagem_n8n_3.png" class="img-fluid" style="width:100.0%" alt="Figura 2"> :::</p></li>
-<li><p>Após o computador ligar, o Docker irá iniciar com a tela de aceitação dos termos. Recomendo que leia os termos e, em seguida, clique no botão “Accept”;</p></li>
+<li><p>Caso ocorra algum problema, repita as etapas anteriores, mas se finalizar, uma janela de instalação concluída irá ser exibida, clique no botão “Close and Restart” para reiniciar o computador;</p></li>
+</ol>
+<div data-layout-align="center" style="margin: 0 auto; text-align: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/imagem_n8n_3.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figura 2</figcaption>
+</figure>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Após o computador ligar, o Docker irá iniciar com a tela de aceitação dos termos. Recomendo que leia os termos e, em seguida, clique no botão “Accept”;</li>
 </ol>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -482,9 +492,17 @@ body {
 <section id="passo-preparação-do-ambiente-com-n8n-e-postgresql" class="level1 unnumbered">
 <h1 class="unnumbered">3° Passo: Preparação do ambiente com n8n e Postgresql</h1>
 <p>Para instalar o n8n e Postgresql</p>
+<p>Apague PostgreSQL e n8n, a seguir comandos completos para usar dentro do PowerShell do Windows para evitar que haja versões pendentes.</p>
+<div id="a87f805d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n<span class="op">;</span> `</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>docker rm <span class="op">-</span>f postgres n8n<span class="op">;</span> `</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>docker volume rm postgres_data n8n_data<span class="op">;</span> `</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>docker network rm n8n<span class="op">-</span>network<span class="op">;</span> `</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Criar a rede Docker com o seguinte comando dentro do PowerShell do Windows, basta localizar PowerShell e selecionar como administrador:</p>
-<div id="44b92354" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>docker network create n8n<span class="op">-</span>network</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4654e9fc" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>docker network create n8n<span class="op">-</span>network</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -495,15 +513,15 @@ body {
 </div>
 </div>
 <p>Subir PostgreSQL com o seguinte comando dentro do PowerShell:</p>
-<div id="7b17ac9f" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name postgres `</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_DB<span class="op">=</span>n8n `</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_USER<span class="op">=</span>n8n `</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_PASSWORD<span class="op">=</span>n8n123 `</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v postgres_data:<span class="op">/</span>var<span class="op">/</span>lib<span class="op">/</span>postgresql<span class="op">/</span>data `</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5432</span>:<span class="dv">5432</span> `</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d postgres:<span class="dv">17</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="64e02908" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name postgres `</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_DB<span class="op">=</span>n8n `</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_USER<span class="op">=</span>n8n `</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e POSTGRES_PASSWORD<span class="op">=</span>n8n123 `</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v postgres_data:<span class="op">/</span>var<span class="op">/</span>lib<span class="op">/</span>postgresql<span class="op">/</span>data `</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5432</span>:<span class="dv">5432</span> `</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d postgres:<span class="dv">17</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -514,17 +532,17 @@ body {
 </div>
 </div>
 <p>Subir n8n com o seguinte comando dentro do PowerShell:</p>
-<div id="cd1e7e20" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name n8n `</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_TYPE<span class="op">=</span>postgresdb `</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_HOST<span class="op">=</span>postgres `</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_DATABASE<span class="op">=</span>n8n `</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_USER<span class="op">=</span>n8n `</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_PASSWORD<span class="op">=</span>n8n123 `</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v n8n_data:<span class="op">/</span>home<span class="op">/</span>node<span class="op">/</span>.n8n `</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5678</span>:<span class="dv">5678</span> `</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="098c1f70" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker run <span class="op">--</span>name n8n `</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span>network n8n<span class="op">-</span>network `</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_TYPE<span class="op">=</span>postgresdb `</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_HOST<span class="op">=</span>postgres `</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_DATABASE<span class="op">=</span>n8n `</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_USER<span class="op">=</span>n8n `</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>e DB_POSTGRESDB_PASSWORD<span class="op">=</span>n8n123 `</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>v n8n_data:<span class="op">/</span>home<span class="op">/</span>node<span class="op">/</span>.n8n `</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>p <span class="dv">5678</span>:<span class="dv">5678</span> `</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>d n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -544,15 +562,19 @@ Avisos Críticos
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Caso seja necessário apagar PostgreSQL e n8n, a seguir comandos completos para usar dentro do PowerShell do Windows.</p>
-<div id="15a057ff" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n docker rm <span class="op">-</span>f postgres n8n docker volume rm postgres_data n8n_data docker network rm n8n<span class="op">-</span>network docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Caso seja necessário apagar PostgreSQL e n8n novamente, a seguir comandos completos para usar dentro do PowerShell do Windows.</p>
+<div id="760bb086" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>docker stop postgres n8n<span class="op">;</span> `</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>docker rm <span class="op">-</span>f postgres n8n<span class="op">;</span> `</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>docker volume rm postgres_data n8n_data<span class="op">;</span> `</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>docker network rm n8n<span class="op">-</span>network<span class="op">;</span> `</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>docker rmi <span class="op">-</span>f postgres:<span class="dv">17</span> n8nio<span class="op">/</span>n8n</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>Acessar o n8n pelo seu navegador de internet de preferência (Google Chrome, Mozilla Firefox ou Microsoft Edge), atravês do link:</p>
-<div id="8c913d57" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>http:<span class="op">//</span>localhost:<span class="dv">5678</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d5168c24" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>http:<span class="op">//</span>localhost:<span class="dv">5678</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Faça então seu login para acessar a ferramenta n8n, informando o e-mail, nome, sobrenome e senha, podendo se a mesma utilizada no Docker.</p>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -612,8 +634,8 @@ Avisos Críticos
 </div>
 </div>
 <p>Será exibido o formulário de configuração do nó HTTP Request. Mantenha o método GET selecionado e, no campo URL, informe o endereço:</p>
-<div id="1f5fa06d" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>www.gov.br<span class="op">/</span>capes<span class="op">/</span>pt<span class="op">-</span>br<span class="op">/</span>assuntos<span class="op">/</span>editais<span class="op">-</span>e<span class="op">-</span>resultados<span class="op">-</span>capes</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="712b1498" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>www.gov.br<span class="op">/</span>capes<span class="op">/</span>pt<span class="op">-</span>br<span class="op">/</span>assuntos<span class="op">/</span>editais<span class="op">-</span>e<span class="op">-</span>resultados<span class="op">-</span>capes</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Após preencher os parâmetros, clique no ícone “X” localizado no canto superior esquerdo da janela para fechar o painel de configuração e retornar ao Editor do workflow.</p>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -637,16 +659,16 @@ Avisos Críticos
 <p>Para facilitar a identificação do agente no workflow, altere o nome padrão do nó para “Agente IA Analista CAPES”, utilizando o campo localizado no canto superior direito da janela.</p>
 <p>Vale destacar a presença da expressão {{ $json.data }}, que corresponde a uma variável dinâmica do n8n. Durante a execução do workflow, essa expressão será substituída automaticamente pelos dados recebidos na entrada (INPUT) do nó, permitindo que o agente de IA analise o conteúdo processado na etapa anterior.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo indicado a seguir.</p>
-<div id="ff32bbc1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em análise de editais da CAPES.</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Sua tarefa é analisar o conteúdo fornecido {{ $json.data }} e identificar todos os links relacionados aos programas ou editais mencionados.</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Extraia apenas os programas ou editais explicitamente informados no documento.</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Formato obrigatório da resposta:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>Programa<span class="op">/</span>Edital </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Traga também alguma informação extrar relevante relacionada a cada programa ou edital informados no documento.</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Não inclua comentários, explicações, análises ou textos adicionais. Retorne apenas a tabela.</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Se possível calcule o número total de programas e editais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fd47828b" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em análise de editais da CAPES.</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Sua tarefa é analisar o conteúdo fornecido {{ $json.data }} e identificar todos os links relacionados aos programas ou editais mencionados.</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Extraia apenas os programas ou editais explicitamente informados no documento.</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Formato obrigatório da resposta:</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Programa<span class="op">/</span>Edital </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Traga também alguma informação extrar relevante relacionada a cada programa ou edital informados no documento.</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>Não inclua comentários, explicações, análises ou textos adicionais. Retorne apenas a tabela.</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Se possível calcule o número total de programas e editais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Por fim, clique no ícone “+” associado ao campo “Chat Model*”, localizado na parte inferior do nó “Agente IA Analista CAPES”. Essa ação permitirá adicionar e configurar o modelo de linguagem que será utilizado pelo agente para processar as informações e gerar as análises solicitadas.</p>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -704,8 +726,8 @@ Avisos Críticos
 </div>
 </div>
 <p>Após localizar o componente, clique em “Postgres Chat Memory” para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a opção para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="133bbafd" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e5bd7f04" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa configuração permitirá identificar de forma única a sessão associada ao workflow e ao agente de IA.</p>
 <p>No parâmetro “Context Window Length”, defina o valor 5, indicando que as cinco interações mais recentes serão mantidas no contexto da conversa.</p>
@@ -758,57 +780,57 @@ Avisos Críticos
 <p>Para facilitar a identificação da função deste agente, altere o nome do nó para “Agente IA Relatório Gerencial CAPES”, utilizando o campo localizado no canto superior direito da janela. O objetivo deste agente é transformar as análises produzidas pelo agente anterior em um relatório gerencial estruturado, com linguagem adequada para apoiar a tomada de decisão por gestores e coordenadores.</p>
 <p>Observe a utilização da expressão {{ $json.data }}, uma variável dinâmica do n8n que será substituída automaticamente, durante a execução do workflow, pelos dados recebidos na entrada (INPUT) do nó. Dessa forma, o agente terá acesso ao conteúdo produzido na etapa anterior e poderá utilizá-lo como base para elaborar o relatório gerencial solicitado.</p>
 <p>Em seguida, no parâmetro “Source for Prompt (User Message)”, selecione a opção “Define below”. No campo “Prompt (User Message)”, insira o conteúdo apresentado a seguir.</p>
-<div id="b3997cba" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em elaboração de relatórios executivos e documentos institucionais para alta gestão.</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Com base exclusivamente no conteúdo de entrada fornecido {{ $json.output }}, elabore um Relatório Gerencial no formato de Ofício, utilizando linguagem formal, objetiva, técnica e adequada ao ambiente institucional.</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Utilize apenas <span class="im">as</span> informações presentes no conteúdo analisado.</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Não invente informações, números, datas, indicadores ou conclusões.</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Destaque os principais resultados, evidências, oportunidades, riscos e recomendações identificados.</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Organize o texto de forma clara e estruturada para facilitar a tomada de decisão pela alta gestão.</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Sempre que houver dados quantitativos, apresente<span class="op">-</span>os de forma resumida e objetiva.</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Caso existam inconsistências ou ausência de informações relevantes, registre essa observação no relatório.</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fl">7.</span> Mantenha foco estratégico, evitando detalhes excessivamente operacionais.</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fl">8.</span> Produza um texto com qualidade equivalente a um documento institucional oficial.</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>Estrutura obrigatória:</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>OFÍCIO Nº [gerar automaticamente] com ano atual {{ $today }}.</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>Assunto: Relatório Gerencial</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Contextualização</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Apresentação resumida do tema analisado.</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Principais Achados</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Principais informações identificadas.</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Resultados relevantes.</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Indicadores ou evidências encontradas.</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Traga a lista dos programas em ordem alfabética e com numeração.</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Análise Gerencial</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Impactos institucionais.</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Oportunidades identificadas.</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Riscos ou pontos de atenção.</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Recomendações</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Sugestões de ações para a gestão.</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Encaminhamentos propostos.</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Considerações Finais</span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Síntese executiva para apoio à tomada de decisão.</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Calcule o total de itens de programas fornecidos e traga o total em considerações finais.</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>O relatório deve ser redigido em formato de ofício institucional, pronto para encaminhamento à alta administração.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7672f0e9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Você é um especialista em elaboração de relatórios executivos e documentos institucionais para alta gestão.</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Com base exclusivamente no conteúdo de entrada fornecido {{ $json.output }}, elabore um Relatório Gerencial no formato de Ofício, utilizando linguagem formal, objetiva, técnica e adequada ao ambiente institucional.</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Regras obrigatórias:</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Utilize apenas <span class="im">as</span> informações presentes no conteúdo analisado.</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Não invente informações, números, datas, indicadores ou conclusões.</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Destaque os principais resultados, evidências, oportunidades, riscos e recomendações identificados.</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Organize o texto de forma clara e estruturada para facilitar a tomada de decisão pela alta gestão.</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Sempre que houver dados quantitativos, apresente<span class="op">-</span>os de forma resumida e objetiva.</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Caso existam inconsistências ou ausência de informações relevantes, registre essa observação no relatório.</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fl">7.</span> Mantenha foco estratégico, evitando detalhes excessivamente operacionais.</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fl">8.</span> Produza um texto com qualidade equivalente a um documento institucional oficial.</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>Estrutura obrigatória:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>OFÍCIO Nº [gerar automaticamente] com ano atual {{ $today }}.</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>Assunto: Relatório Gerencial</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> Contextualização</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Apresentação resumida do tema analisado.</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> Principais Achados</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Principais informações identificadas.</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Resultados relevantes.</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Indicadores ou evidências encontradas.</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Traga a lista dos programas em ordem alfabética e com numeração.</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> Análise Gerencial</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Impactos institucionais.</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Oportunidades identificadas.</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Riscos ou pontos de atenção.</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="fl">4.</span> Recomendações</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Sugestões de ações para a gestão.</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Encaminhamentos propostos.</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="fl">5.</span> Considerações Finais</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>   <span class="op">*</span> Síntese executiva para apoio à tomada de decisão.</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="fl">6.</span> Calcule o total de itens de programas fornecidos e traga o total em considerações finais.</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>O relatório deve ser redigido em formato de ofício institucional, pronto para encaminhamento à alta administração.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para finalizar a configuração do agente, é necessário definir o modelo de linguagem que será utilizado para processar as informações e gerar o relatório gerencial. Clique no ícone “+” associado ao campo “Chat Model*”, localizado na parte inferior do nó Agente IA Relatório Gerencial CAPES. Em seguida, selecione o modelo desejado para estabelecer a conexão entre o agente e a inteligência artificial responsável pela geração das respostas.</p>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -849,8 +871,8 @@ Avisos Críticos
 </div>
 </div>
 <p>Após selecionar a opção “Postgres Chat Memory”, clique sobre o componente para abrir o formulário de configuração dos parâmetros. No campo “Session ID”, altere a configuração para “Define below”. Em seguida, no campo “Key”, informe a expressão:</p>
-<div id="b6cfdef3" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f4ba1238" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>{{ $workflow.<span class="bu">id</span> }}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Essa variável dinâmica utilizará o identificador do workflow para associar corretamente o histórico de conversas à sessão do agente de IA.</p>
 <p>No parâmetro “Context Window Length”, defina o valor 5, indicando que as cinco interações mais recentes serão mantidas no contexto enviado ao modelo de linguagem.</p>
@@ -910,8 +932,8 @@ Avisos Críticos
 </div>
 <p>Agora configure os parâmetros do nó “Convert to File”. Mantenha o campo “Put Output File in Field” com o valor “data”, que será utilizado para armazenar o arquivo gerado na saída do nó.</p>
 <p>Em seguida, na seção “Options”, preencha o campo “File Name” com o nome:</p>
-<div id="a9d8b3a8" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Relatorio_Gerencial_CAPES.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6737ddcf" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Relatorio_Gerencial_CAPES.html</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Esse será o nome do arquivo HTML gerado ao final do processamento.</p>
 <p>Após concluir a configuração, clique no ícone “X” localizado no canto superior da janela para fechar o painel de configuração e retornar à área de edição do <em>workflow</em>, onde será possível dar continuidade à construção do fluxo.</p>
