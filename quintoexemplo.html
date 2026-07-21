@@ -529,7 +529,7 @@ Notas Gerais
 <li>Download e Execução:</li>
 </ol>
 <p>O Qwen 2.5 (3b) é uma versão extremamente leve e rápida, ideal para tarefas simples como identificar gênero, pois não exige tanto do processador do seu computador. Para baixar o modelo, digite o seguinte comando:</p>
-<div id="44941fc8" class="cell" data-execution_count="1">
+<div id="289a2d1f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ollama pull qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -544,7 +544,7 @@ Notas Gerais
 <li>Gerenciamento e Verificação:</li>
 </ol>
 <p>Listar modelos: Para visualizar todos os modelos já instalados no seu computador, utilize:</p>
-<div id="76a94853" class="cell" data-execution_count="2">
+<div id="f2b7c543" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ollama <span class="bu">list</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -555,7 +555,7 @@ Notas Gerais
 </figure>
 </div>
 <p>Testar instalação: Caso já tenha baixado o modelo, basta executar o comando:</p>
-<div id="222662fd" class="cell" data-execution_count="3">
+<div id="595ccaec" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ollama run qwen2<span class="fl">.5</span>:<span class="dv">3</span><span class="er">b</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -570,7 +570,7 @@ Notas Gerais
 <li>Encerrando a Sessão:</li>
 </ol>
 <p>Para sair do chat e retornar ao terminal padrão, digite:</p>
-<div id="7d7ad95b" class="cell" data-execution_count="4">
+<div id="6a59bf21" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">/</span>bye</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Como podemos observar na figura a seguir:</p>
@@ -614,7 +614,7 @@ Notas Gerais
 <section id="passo-identificando-as-bibliotecas-necessárias" class="level1 unnumbered">
 <h1 class="unnumbered">5° Passo: Identificando as bibliotecas necessárias</h1>
 <p>No menu superior do Visual Studio Code, localize e abra o <strong>Terminal</strong>. Com ele aberto, execute o comando abaixo para instalar as bibliotecas necessárias. Essas bibliotecas são pacotes de funções que expandem os recursos do Python: utilizaremos o <strong>Pandas</strong> para leitura e manipulação de dados (CSV e Excel) e o <strong>Ollama</strong> para realizar a conexão com os modelos de IA. Aguarde a conclusão da instalação antes de prosseguir, com os seguintes comandos:</p>
-<div id="6b93ffcf" class="cell" data-execution_count="5">
+<div id="41d44393" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atualiza o gerenciador de pacotes pip para a versão mais recente disponível no ambiente Python instalado.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>python.exe <span class="op">-</span>m pip install <span class="op">--</span>upgrade pip</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pip install pandas ollama openpyxl</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +626,7 @@ Notas Gerais
 </figure>
 </div>
 <p>e dentro do novo arquivo <em>quintoagenteia.py</em> coloque o primeiro código logo no começo a seguir:</p>
-<div id="00b2f028" class="cell" data-execution_count="6">
+<div id="52c7cfe4" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Módulo nativo do Python para interagir com o sistema operacional. </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># No seu projeto, ele é essencial para manipular caminhos de arquivos.</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -654,7 +654,7 @@ Notas Gerais
 <section id="passo-configurações-dos-parâmetros" class="level1 unnumbered">
 <h1 class="unnumbered">6° Passo: Configurações dos Parâmetros</h1>
 <p>As configurações destes parâmtros visa facilitar a localização dos arquivos e tornar o código mais entendível possível. Configuramos então os arquivos de entrada e saída, além da variável de total de registros que será utilizado para o processamento com IA</p>
-<div id="69e462cf" class="cell" data-execution_count="7">
+<div id="c4d87355" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Caminhos Globais</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ARQUIVO_ENTRADA <span class="op">=</span> <span class="vs">r"C:/guiaagenteia/planilha_teste_discentes.xlsx"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ARQUIVO_SAIDA_CSV <span class="op">=</span> <span class="st">"C:/guiaagenteia/planilha_dados_tratados_cpf_discentes.csv"</span></span>
@@ -665,7 +665,7 @@ Notas Gerais
 <section id="passo-criação-das-ferramentas-dos-agentes" class="level1 unnumbered">
 <h1 class="unnumbered">7° Passo: Criação das Ferramentas dos agentes</h1>
 <p>Este trecho de código compreende a Camada de Integração Instrumental, ferramentas (Tools) de uma arquitetura agêntica. No escopo da engenharia de software baseada em IA, o bloco estabelece as interfaces determinísticas de entrada e saída (I/O) que servem como os atuadores e sensores do agente no ambiente computacional local.</p>
-<div id="3ef451d3" class="cell" data-execution_count="8">
+<div id="af6ffc70" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. CRIAÇÃO DAS CAPACIDADES NATIVAS (FERRAMENTAS DOS AGENTES)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -693,7 +693,7 @@ Notas Gerais
 <section id="passo-instanciação-do-motor-de-inferência-cognitiva-o-cérebro-do-sistema" class="level1 unnumbered">
 <h1 class="unnumbered">8° Passo: Instanciação do Motor de Inferência Cognitiva, o “cérebro” do sistema</h1>
 <p>Este trecho de código compreende a Instanciação do Motor de Inferência Cognitiva da arquitetura agêntica, utilizando a biblioteca unificada do LangChain para acoplamento com o ecossistema Ollama, parametrizando um modelo de linguagem compacto de alto desempenho (Qwen).</p>
-<div id="2e6e6258" class="cell" data-execution_count="9">
+<div id="6699f870" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. INICIALIZAÇÃO DO MODELO COGNITIVO LOCAL</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -706,7 +706,7 @@ Notas Gerais
 <section id="passo-prompts-dos-agentes-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">9° Passo: Prompts dos agentes de IA</h1>
 <p>Este trecho compreende a Definição da Camada de Diretrizes Cognitivas e Engenharia de Prompts, responsável por estruturar e isolar as instruções semânticas especializadas (limpeza, mapeamento regional e pseudonimização) que guiarão o raciocínio e o comportamento autônomo do modelo de linguagem de acordo com os requisitos de negócio e conformidade legal estabelecidos.</p>
-<div id="dffbb0ec" class="cell" data-execution_count="10">
+<div id="4a9e5be2" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. PROMPTS ESPECÍFICOS DOS AGENTES ESPECIALISTAS</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -772,7 +772,7 @@ Notas Gerais
 <section id="º-passo-acoplamento-e-orquestração-dos-pipelines-lógicos" class="level1 unnumbered">
 <h1 class="unnumbered">10º Passo: Acoplamento e Orquestração dos Pipelines Lógicos</h1>
 <p>Por meio da sintaxe LCEL (LangChain Expression Language), o bloco consolida a Conexão das Cadeias Cognitivas, interligando síncronamente os prompts estruturados, o motor de inferência (LLM) e os parsers de saída para converter instruções semânticas abstratas em objetos unificados, modulares e executáveis.</p>
-<div id="ec247896" class="cell" data-execution_count="11">
+<div id="7547b612" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conexão das cadeias cognitivas do agentes de IA</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>cadeira_abreviatura <span class="op">=</span> prompt_abreviatura <span class="op">|</span> llm <span class="op">|</span> StrOutputParser()</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>cadeira_limpa <span class="op">=</span> prompt_limpeza <span class="op">|</span> llm <span class="op">|</span> StrOutputParser()</span>
@@ -782,7 +782,7 @@ Notas Gerais
 <section id="passo-executando-o-agente-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">11° Passo: Executando o agente de IA</h1>
 <p>Este trecho de código compreende a Camada de Orquestração Executiva e Ciclo de Percepção-Cognição-Ação do agente de IA.</p>
-<div id="a1a05020" class="cell" data-execution_count="12">
+<div id="60aad53f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. EXECUTOR DO AGENTE (ORQUESTRAÇÃO AGÊNTICA DO FLUXO)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ==============================================================================</span></span>
@@ -831,7 +831,7 @@ Notas Gerais
 <section id="passo-gravação-dos-resultados-do-agente-de-ia" class="level1 unnumbered">
 <h1 class="unnumbered">12° Passo: Gravação dos Resultados do Agente de IA</h1>
 <p>Este trecho de código compreende a Camada de Efetuação (Ação Final) e Emissão de resposta do agente de IA.</p>
-<div id="d7f8c897" class="cell" data-execution_count="13">
+<div id="27e8e041" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># [Ação Final] O Agente decide persistir a transformação executando a ferramenta de gravação</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">[Agente -&gt; Ação] Gravando as modificações estruturais geradas..."</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    status_salvamento <span class="op">=</span> salvar_dados_tratados(df_resultado)</span>
@@ -843,7 +843,7 @@ Notas Gerais
 </div>
 <p>ou dentro mesmo do terminal do próprio Visual Studio Code que é acessado pelo menu superior <code>View -&gt; Terminal</code>, acrescente na linha de comando o seguinte código ou clique no ícone <strong>Run Python File</strong> (botão de <em>Play</em> no canto superior direito) do Visual Studio Code para executar o código:</p>
 <p><em>&amp; python.exe c:/guiaagenteia/quintoagenteia.py</em></p>
-<div id="c0f41a6b" class="cell" data-execution_count="14">
+<div id="6f7be9dd" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&amp;</span> python.exe c:<span class="op">/</span>guiaagenteia<span class="op">/</span>quintoagenteia.py</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">

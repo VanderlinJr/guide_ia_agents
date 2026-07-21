@@ -630,7 +630,7 @@
     "href": "avaliacao.html#histórico-de-versões-e-atualizações",
     "title": "5.3 Aprimoramento Contínuo",
     "section": "🔄 Histórico de Versões e Atualizações",
-    "text": "🔄 Histórico de Versões e Atualizações\n\nComo este guia adota a filosofia de melhoria contínua a partir das avaliações recebidas, todas as modificações, correções de bugs nos scripts de Python ou atualizações de modelos no Ollama serão registradas formalmente abaixo:\n\nVersão 1.0.3 (Julho de 2026): Versão atual entregue para o Escritório de Dados. Ajuste na estrutura dos capítulos.\nVersão 1.0.2 (Maio de 2026): Ajuste na estrutura dos capítulos e teste amplo dos exemplos práticos.\nVersão 1.0.1 (Abril de 2026): Ajuste na estrutura dos capítulos e teste amplo dos exemplos práticos.\nVersão 1.0.0 (Março de 2026): Protótipo inicial para testes internos.",
+    "text": "🔄 Histórico de Versões e Atualizações\n\nComo este guia adota a filosofia de melhoria contínua a partir das avaliações recebidas, todas as modificações, correções de bugs nos scripts de Python ou atualizações de modelos no Ollama serão registradas formalmente abaixo:\n\nVersão 1.0.3 (Julho de 2026): Versão atual entregue para o Escritório de Dados. Ajuste na estrutura dos capítulos.\nVersão 1.0.2 (Maio de 2026): Ajuste na estrutura dos capítulos, teste amplo dos exemplos práticos e publicação.\nVersão 1.0.1 (Abril de 2026): Ajuste na estrutura dos capítulos e teste amplo dos exemplos práticos.\nVersão 1.0.0 (Março de 2026): Protótipo inicial para testes internos.",
     "crumbs": [
       "**5ª Parte — Considerações e Complementos**",
       "5.3 Aprimoramento Contínuo"
