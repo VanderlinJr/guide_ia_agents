@@ -151,7 +151,7 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
 <div style="text-align: center; padding: 0px;">
-<p><img src="images/logo-pit-unifesp-color-final.png" alt="Logo" style="width: 32px;"></p>
+<p><img src="images/logomarca_pptpit_transparente3.png" alt="Logo" style="width: 40px;"></p>
 </div>
 </div></div>
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -457,7 +457,7 @@ Notas Gerais
 <p>Já dentro do “Studio”, precisamos descrever em linguagem natural a automação que precisamos construir dentro da caixa de texto, como sugestão para este laboratório usar o seguinte conteúdo, próximo da realidade da Unifesp:<strong>“Crie um fluxo de trabalho com o CrewAI usando o modelo GPT. Preciso de um Agente de Analista que use a ferramenta de busca para rastrear editais de fomento à pesquisa, inovação tecnológica e extensão abertos no Brasil e internacionalmente para o ano de 2026. Adicione um Agente de Consultor IA que receba esses dados brutos da internet, filtre apenas os editais onde Universidades Federais são elegíveis e organize tudo em um Relatório Executivo em formato Markdown/CSV contendo: Órgão Financiador, Objeto do Edital, Valor Máximo do Financiamento, Prazo de Submissão e o Impacto Potencial para a instituição.”</strong></p>
 </div>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="3740aee3" class="cell" data-execution_count="1">
+<div id="cf06e33d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Crie um fluxo de trabalho com o CrewAI usando o modelo GPT. Preciso de um Agente de Analista que use a ferramenta de busca para rastrear editais de fomento à pesquisa, inovação tecnológica e extensão abertos no Brasil e internacionalmente para o ano de <span class="fl">2026.</span> Adicione um Agente de Consultor IA que receba esses dados brutos da internet, filtre apenas os editais onde Universidades Federais são elegíveis e organize tudo em um Relatório Executivo em formato Markdown<span class="op">/</span>CSV contendo: Órgão Financiador, Objeto do Edital, Valor Máximo do Financiamento, Prazo de Submissão e o Impacto Potencial para a instituição.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="text-align: justify;">
@@ -562,12 +562,12 @@ Notas Gerais sobre o uso de Tokens Incluso
 <h1 class="unnumbered">4° Passo: Analisar as definições das Tarefas (O que deve ser feito)</h1>
 <p>No ecossistema do CrewAI, um Agente sem uma Tarefa é um especialista sem trabalho. A seguir são as tarefas, com escopo definido, em quem os os agentes já pré definidos irão executar ao longo do fluxo. Na figura 7 está descrito a tarefa do primeiro agente Analista de Editais, que é a tarefa de busca em editais brasileiros de formento no ano 2026, onde na descrição definimos o seguinte prompt:<strong>“Realizar busca abrangente por editais de fomento à pesquisa, inovação tecnológica e extensão no Brasil para 2026. Pesquisar nos principais sites de agências de fomento brasileiras: CNPq, CAPES, FINEP, FAPESP, FAPERJ, FAPEMIG e outras FAPs estaduais. Coletar informações sobre: nome do edital, órgão financiador, objeto/objetivo, valor máximo de financiamento, prazo de submissão, critérios de elegibilidade e links para o edital completo.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="7cf62125" class="cell" data-execution_count="2">
+<div id="1a23033c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Realizar busca abrangente por editais de fomento à pesquisa, inovação tecnológica e extensão no Brasil para <span class="fl">2026.</span> Pesquisar nos principais sites de agências de fomento brasileiras: CNPq, CAPES, FINEP, FAPESP, FAPERJ, FAPEMIG e outras FAPs estaduais. Coletar informações sobre: nome do edital, órgão financiador, objeto<span class="op">/</span>objetivo, valor máximo de financiamento, prazo de submissão, critérios de elegibilidade e links para o edital completo.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Na Saída esperada, completamos com: <strong>“Lista detalhada dos editais brasileiros de fomento para 2026 com todas as informações coletadas em formato estruturado, incluindo dados sobre elegibilidade de universidades federais.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="d0ee9a54" class="cell" data-execution_count="3">
+<div id="0536f5c8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Lista detalhada dos editais brasileiros de fomento para <span class="dv">2026</span> com todas <span class="im">as</span> informações coletadas em formato estruturado, incluindo dados sobre elegibilidade de universidades federais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -580,12 +580,12 @@ Notas Gerais sobre o uso de Tokens Incluso
 </div>
 <p>Na figura 8, temos a continuação de tarefas que este mesmo agente irá buscar em editais internacionais, como o seguinte <em>prompt</em>: <strong>“Pesquisar editais internacionais de fomento à pesquisa, inovação e extensão para 2026 que permitam participação de instituições brasileiras, especialmente universidades federais. Focar em: European Research Council (ERC), National Science Foundation (NSF), NIH, British Council, Alexander von Humboldt, programas Horizon Europe, DAAD, e outros organismos internacionais de fomento. Coletar as mesmas informações dos editais nacionais.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="231eaa94" class="cell" data-execution_count="4">
+<div id="8b7c277c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Pesquisar editais internacionais de fomento à pesquisa, inovação e extensão para <span class="dv">2026</span> que permitam participação de instituições brasileiras, especialmente universidades federais. Focar em: European Research Council (ERC), National Science Foundation (NSF), NIH, British Council, Alexander von Humboldt, programas Horizon Europe, DAAD, e outros organismos internacionais de fomento. Coletar <span class="im">as</span> mesmas informações dos editais nacionais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Na Saída esperada, completamos com:<strong>“Lista detalhada dos editais internacionais de fomento para 2026 acessíveis a universidades brasileiras, com todas as informações estruturadas sobre financiamento e elegibilidade.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="67c1bcf7" class="cell" data-execution_count="5">
+<div id="ffbecdf4" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Lista detalhada dos editais internacionais de fomento para <span class="dv">2026</span> acessíveis a universidades brasileiras, com todas <span class="im">as</span> informações estruturadas sobre financiamento e elegibilidade.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -598,12 +598,12 @@ Notas Gerais sobre o uso de Tokens Incluso
 </div>
 <p>Logicamente, é repassado para o segundo agente Consultor, as tarefas de inicialmente efetuar as tarefas finais para filtrar editais de universidades federais e relatórios. Nisso a Figura 9, tem como tarefa descrita no seu <em>prompt</em>:<strong>“Analisar todos os editais coletados e filtrar apenas aqueles onde Universidades Federais brasileiras são explicitamente elegíveis como proponentes ou parceiras. Para cada edital elegível, avaliar: 1) Adequação aos objetivos institucionais de universidades federais, 2) Potencial de impacto para a instituição (alto, médio, baixo), 3) Complexidade de aplicação, 4) Alinhamento com áreas prioritárias de pesquisa. Remover editais que não se aplicam a universidades federais.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="9bb8c6b3" class="cell" data-execution_count="6">
+<div id="52fb7b54" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Analisar todos os editais coletados e filtrar apenas aqueles onde Universidades Federais brasileiras são explicitamente elegíveis como proponentes ou parceiras. Para cada edital elegível, avaliar: <span class="dv">1</span>) Adequação aos objetivos institucionais de universidades federais, <span class="dv">2</span>) Potencial de impacto para a instituição (alto, médio, baixo), <span class="dv">3</span>) Complexidade de aplicação, <span class="dv">4</span>) Alinhamento com áreas prioritárias de pesquisa. Remover editais que não se aplicam a universidades federais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Na Saída esperada, completamos com:<strong>“Lista refinada de editais específicos para universidades federais com análise de impacto potencial e recomendações estratégicas para cada oportunidade identificada.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="bced6a20" class="cell" data-execution_count="7">
+<div id="b76f8738" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Lista refinada de editais específicos para universidades federais com análise de impacto potencial e recomendações estratégicas para cada oportunidade identificada.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
@@ -616,12 +616,12 @@ Notas Gerais sobre o uso de Tokens Incluso
 </div>
 <p>Em seguida pelo fluxo, o resultado dessa tarefa será repassada para última tarefa, figura 10, que foi configurada com o seguinte <em>prompt</em>:<strong>“Criar um Relatório Executivo completo em formato Markdown e CSV organizando todos os editais filtrados para Universidades Federais. O relatório deve incluir: 1) Resumo executivo com estatísticas gerais, 2) Tabela principal com: Órgão Financiador, Objeto do Edital, Valor Máximo do Financiamento, Prazo de Submissão, Impacto Potencial, 3) Análises por categoria (nacionais vs internacionais), 4) Recomendações estratégicas, 5) Calendário de submissões prioritárias. Exportar também em formato CSV para análise posterior.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="9e1fc392" class="cell" data-execution_count="8">
+<div id="17215bd9" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Criar um Relatório Executivo completo em formato Markdown e CSV organizando todos os editais filtrados para Universidades Federais. O relatório deve incluir: <span class="dv">1</span>) Resumo executivo com estatísticas gerais, <span class="dv">2</span>) Tabela principal com: Órgão Financiador, Objeto do Edital, Valor Máximo do Financiamento, Prazo de Submissão, Impacto Potencial, <span class="dv">3</span>) Análises por categoria (nacionais vs internacionais), <span class="dv">4</span>) Recomendações estratégicas, <span class="dv">5</span>) Calendário de submissões prioritárias. Exportar também em formato CSV para análise posterior.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Na Saída esperada, completamos com:<strong>“Relatório Executivo em Markdown e arquivo CSV com todos os editais organizados, incluindo análises estratégicas e recomendações para universidades federais brasileiras e trazer obrigatoriamente os links correspondentes aos editais.”</strong></p>
 <p>Ou copie esse mesmo conteúdo por aqui:</p>
-<div id="b469e466" class="cell" data-execution_count="9">
+<div id="4c395baa" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Relatório Executivo em Markdown e arquivo CSV com todos os editais organizados, incluindo análises estratégicas e recomendações para universidades federais brasileiras e trazer obrigatoriamente os links correspondentes aos editais.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div data-layout-align="center" style="margin: 0 auto; text-align: center;">
